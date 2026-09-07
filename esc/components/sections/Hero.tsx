@@ -4,10 +4,21 @@ import HeroCanvas from "@/components/sections/HeroCanvas";
 import MobileHeroImage from "@/components/sections/MobileHeroImage";
 
 // Legibility scrim — near-opaque directly behind the centered text column (roughly the
-// middle third), fading to nothing at both edges. Shared by both hero variants below.
+// middle third), fading to nothing at both edges. Used on the wide desktop/tablet canvas,
+// where the headline sits horizontally between the two characters.
 const scrimStyle = {
   backgroundImage:
     "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 34%, rgba(0,0,0,0.75) 66%, rgba(0,0,0,0) 100%)",
+};
+
+// Mobile scrim — vertical instead of horizontal. On the portrait crop the two faces sit
+// close together near the top with the text now anchored below them, so a horizontal
+// middle-band scrim landed right in the gap between their faces and read as a flat black
+// bar. This stays transparent over the faces and only darkens toward the bottom, where
+// the text actually is.
+const mobileScrimStyle = {
+  backgroundImage:
+    "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.6) 38%, rgba(0,0,0,0) 62%)",
 };
 
 function HeroContent() {
@@ -65,7 +76,7 @@ export default function Hero() {
           them) was built specifically for a static mobile backdrop. */}
       <section className="relative min-h-screen w-full overflow-hidden bg-esc-paper md:hidden">
         <MobileHeroImage />
-        <div aria-hidden className="pointer-events-none absolute inset-0" style={scrimStyle} />
+        <div aria-hidden className="pointer-events-none absolute inset-0" style={mobileScrimStyle} />
         <Nav />
         <div className="relative z-10 flex min-h-screen items-end justify-center px-6 pb-12">
           <HeroContent />
