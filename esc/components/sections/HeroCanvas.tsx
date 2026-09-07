@@ -15,6 +15,7 @@ export default function HeroCanvas() {
   const framesRef = useRef<HTMLImageElement[]>([]);
   const currentFrameRef = useRef(0);
   const rafRef = useRef<number | null>(null);
+  const isVisibleRef = useRef(true);
 
   const [loadProgress, setLoadProgress] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -127,6 +128,14 @@ export default function HeroCanvas() {
     }
 
     const tick = () => {
+      if (!isVisibleRef.current) {
+        // Sticky releases once the tall scroll track scrolls past — the canvas then
+        // sits permanently off-screen for the rest of the page. Stop ticking rather
+        // than redrawing an invisible canvas forever; the observer below restarts
+        // the loop if the user scrolls back up into it.
+        rafRef.current = null;
+        return;
+      }
       const target = targetFrame();
       const current = currentFrameRef.current;
       const eased = current + (target - current) * LERP_FACTOR;
@@ -135,6 +144,18 @@ export default function HeroCanvas() {
       rafRef.current = requestAnimationFrame(tick);
     };
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisibleRef.current;
+        isVisibleRef.current = entry.isIntersecting;
+        if (!wasVisible && entry.isIntersecting && rafRef.current === null) {
+          rafRef.current = requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
     resize();
     rafRef.current = requestAnimationFrame(tick);
     window.addEventListener("resize", resize);
@@ -142,6 +163,7 @@ export default function HeroCanvas() {
     return () => {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
       window.removeEventListener("resize", resize);
+      observer.disconnect();
     };
   }, [loaded]);
 
