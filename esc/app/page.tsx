@@ -4,8 +4,9 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      {/* DOOR SEQUENCE + PROGRAMS SECTION — build later, do not design now */}
-      <section id="next-section-placeholder" style={{ minHeight: "40vh" }} />
+      {/* REST OF PAGE — Bad Day, Villain, Turn, full Design/Architecture criteria, etc.
+          Build later, do not design now. */}
+      <section id="rest-of-page-placeholder" style={{ minHeight: "40vh" }} />
     </main>
   );
 }
