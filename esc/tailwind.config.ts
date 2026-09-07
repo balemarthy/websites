@@ -35,6 +35,7 @@ const config: Config = {
         "esc-md": "0 2px 8px rgba(0,114,132,.09)",
         "esc-lg": "0 4px 16px rgba(0,114,132,.11)",
         "esc-accent": "0 2px 14px rgba(240,120,57,.38)",
+        "esc-glow": "0 0 28px 6px rgba(240,120,57,.4), 0 4px 14px rgba(240,120,57,.35)",
       },
       spacing: {
         "1": "4px",

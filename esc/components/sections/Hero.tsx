@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="relative z-10 px-6 py-10 sm:px-10 lg:absolute lg:inset-0 lg:flex lg:items-center lg:px-16 lg:py-0">
         <div className="lg:max-w-[600px]">
           <h1
-            className="font-display uppercase text-esc-dark-teal"
+            className="font-display uppercase text-esc-dark-teal lg:text-esc-paper"
             style={{
               fontSize: "clamp(2.5rem, 5vw, 4rem)",
               lineHeight: 0.98,
@@ -23,7 +23,7 @@ export default function Hero() {
           </h1>
 
           <p
-            className="mt-6 font-body text-base text-dt-600 sm:text-lg"
+            className="mt-6 font-body text-base text-dt-600 sm:text-lg lg:text-esc-paper/75"
             style={{ maxWidth: "480px" }}
           >
             That gap is why interviews stall. Real engineering judgment, taught the way it&apos;s
@@ -31,16 +31,23 @@ export default function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Button variant="primary">Enrol Now</Button>
+            <Button
+              variant="primary"
+              style={{
+                boxShadow: "0 0 28px 6px rgba(240,120,57,.4), 0 4px 14px rgba(240,120,57,.35)",
+              }}
+            >
+              Enrol Now
+            </Button>
             <a
               href="#"
-              className="font-body text-sm font-bold text-esc-dark-teal transition-colors duration-base ease-standard hover:text-esc-orange"
+              className="font-body text-sm font-bold text-esc-dark-teal transition-colors duration-base ease-standard hover:text-esc-orange lg:text-esc-paper"
             >
               Not sure? Talk to Vamsi first →
             </a>
           </div>
 
-          <p className="mt-6 font-body text-sm text-dt-600">
+          <p className="mt-6 font-body text-sm text-dt-600 lg:text-esc-paper/60">
             Alumni at AMD · Infineon · Mirafra · Bosch
           </p>
         </div>
@@ -67,10 +74,10 @@ export default function Hero() {
           }}
         />
 
-        {/* Floating stat card — attached to the image at every breakpoint */}
+        {/* Floating stat card — bottom-center, straddling the image's light seam, attached at every breakpoint */}
         <div
-          className="absolute z-10 w-[260px] rounded-[12px] bg-esc-paper p-6 shadow-esc-lg sm:w-[300px]"
-          style={{ right: "8%", bottom: "10%" }}
+          className="absolute z-10 w-[260px] -translate-x-1/2 rounded-[12px] bg-esc-paper p-6 shadow-esc-lg sm:w-[300px]"
+          style={{ left: "50%", bottom: "8%" }}
         >
           <span className="block font-display uppercase leading-none text-esc-orange" style={{ fontSize: "2.25rem" }}>
             59 days

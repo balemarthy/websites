@@ -28,7 +28,7 @@ export default function Nav() {
             <a
               key={item}
               href="#"
-              className="font-body text-sm text-esc-dark-teal transition-colors duration-base ease-standard hover:text-esc-orange"
+              className="font-body text-sm text-esc-dark-teal transition-colors duration-base ease-standard hover:text-esc-orange lg:text-esc-paper lg:hover:text-esc-orange"
             >
               {item}
             </a>
