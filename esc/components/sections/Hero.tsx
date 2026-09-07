@@ -67,7 +67,7 @@ export default function Hero() {
         <MobileHeroImage />
         <div aria-hidden className="pointer-events-none absolute inset-0" style={scrimStyle} />
         <Nav />
-        <div className="relative z-10 flex min-h-screen items-start justify-center px-6 pt-[96px]">
+        <div className="relative z-10 flex min-h-screen items-end justify-center px-6 pb-12">
           <HeroContent />
         </div>
       </section>
