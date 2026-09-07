@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import Nav from "@/components/layout/Nav";
 import Button from "@/components/ui/Button";
+import HeroCanvas from "@/components/sections/HeroCanvas";
 
 function StatCard({
   className = "",
@@ -30,8 +31,15 @@ function StatCard({
 
 export default function Hero() {
   return (
-    <section className="relative w-full overflow-hidden bg-esc-paper lg:min-h-screen">
-      <Nav />
+    <section
+      data-hero-scroll-track
+      className="relative w-full overflow-hidden bg-esc-paper lg:h-[400vh] lg:overflow-visible"
+    >
+      {/* Pin point for the scroll-linked canvas: on mobile this wrapper is `contents` (invisible
+          to layout, so Step 1's static mobile flow is untouched); at lg+ it becomes the sticky
+          viewport that stays pinned while the 400vh section above scrolls past underneath it. */}
+      <div className="contents lg:sticky lg:top-0 lg:z-0 lg:block lg:h-screen lg:overflow-hidden">
+        <Nav />
 
       {/* Content block — normal flow above the image on mobile, absolute overlay anchored near the nav on desktop */}
       <div className="relative z-10 px-6 py-10 sm:px-10 lg:absolute lg:inset-0 lg:flex lg:items-start lg:px-16 lg:pb-0 lg:pt-[96px]">
@@ -117,16 +125,9 @@ export default function Hero() {
             row, so the section (overflow-hidden) doesn't clip it */}
         <div className="h-20 sm:h-24 lg:hidden" aria-hidden />
 
-        {/* Desktop: single full-bleed combined image */}
+        {/* Desktop: scroll-linked frame-sequence canvas, replacing the static combined image */}
         <div className="relative hidden lg:block lg:h-full lg:w-full">
-          <Image
-            src="/images/hero/pagla-pagli-divided-world.png"
-            alt="Pagla and Pagli, working in parallel on either side of a divided workspace"
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
-          />
+          <HeroCanvas />
 
           {/* Legibility scrim — strongest over the left 10-25% of the image, fading to nothing by ~48% */}
           <div
@@ -141,6 +142,7 @@ export default function Hero() {
           {/* Card sits low near the image's light seam, clear of the faces/torsos above it */}
           <StatCard className="absolute z-10 left-1/2 -translate-x-1/2" style={{ bottom: "4%" }} />
         </div>
+      </div>
       </div>
     </section>
   );
