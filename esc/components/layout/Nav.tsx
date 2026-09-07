@@ -5,13 +5,12 @@ const NAV_ITEMS = ["The Program", "Sessions", "Results", "About"];
 
 export default function Nav() {
   return (
-    <header className="relative z-20 w-full bg-dt-900 lg:absolute lg:inset-x-0 lg:top-0 lg:bg-transparent">
-      {/* Mobile/tablet: solid dark-teal bar (no photo behind it, so a gradient wouldn't read as
-          anything but a decoration). Desktop: transparent header + this gradient scrim instead,
-          since it overlays the photo/canvas directly. */}
+    <header className="absolute inset-x-0 top-0 z-20 w-full">
+      {/* Transparent header + gradient scrim at every breakpoint now — the hero canvas/photo
+          sits behind the nav everywhere, not just on desktop. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 hidden bg-gradient-to-b from-black/45 via-black/15 to-transparent lg:block"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/15 to-transparent"
       />
       <div className="relative mx-auto flex h-[72px] max-w-[1400px] items-center justify-between gap-4 px-6 lg:px-16">
         <a href="#" className="relative h-11 w-[190px] shrink-0 overflow-hidden lg:h-12 lg:w-[210px]">

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const FRAME_COUNT = 64;
+const MOBILE_BREAKPOINT = 768;
 const LERP_FACTOR = 0.08;
 const SNAP_EPSILON = 0.02;
 
@@ -19,52 +19,40 @@ export default function HeroCanvas() {
   const [loadProgress, setLoadProgress] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
-  // Preload all frames before the sequence is usable — but only at desktop widths.
-  // This component's canvas is CSS-hidden below `lg` (mobile keeps Step 1's static
-  // two-portrait layout), so starting 64 image requests there would just waste
-  // mobile bandwidth on a background that's never shown. Watches the breakpoint
-  // so it starts the preload if the viewport is later resized past it.
+  // Preload the active frame set. Below the md (768px) breakpoint, sample every
+  // 2nd frame from the same 64-file folder (1, 3, 5 ... 63 — 32 frames) to cut
+  // mobile data/decode cost; decided once at mount rather than reacting live to
+  // resize, since crossing this breakpoint mid-session is a rare edge case not
+  // worth the added complexity of hot-swapping the loaded frame set.
   useEffect(() => {
     let cancelled = false;
-    let started = false;
+
+    const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
+    const frameNumbers = isMobile
+      ? Array.from({ length: 32 }, (_, i) => i * 2 + 1)
+      : Array.from({ length: 64 }, (_, i) => i + 1);
+    const total = frameNumbers.length;
+
     let loadedCount = 0;
     const imgs: HTMLImageElement[] = [];
 
-    const startPreload = () => {
-      if (started || cancelled) return;
-      started = true;
-      for (let i = 1; i <= FRAME_COUNT; i++) {
-        const img = new Image();
-        img.src = framePath(i);
-        img.onload = () => {
-          if (cancelled) return;
-          loadedCount++;
-          setLoadProgress(loadedCount / FRAME_COUNT);
-          if (loadedCount === FRAME_COUNT) setLoaded(true);
-        };
-        img.onerror = () => {
-          if (cancelled) return;
-          loadedCount++;
-          if (loadedCount === FRAME_COUNT) setLoaded(true);
-        };
-        imgs.push(img);
-      }
-      framesRef.current = imgs;
-    };
-
-    const mq = window.matchMedia("(min-width: 1024px)");
-    if (mq.matches) {
-      startPreload();
-    } else {
-      const onChange = () => {
-        if (mq.matches) startPreload();
+    for (const n of frameNumbers) {
+      const img = new Image();
+      img.src = framePath(n);
+      img.onload = () => {
+        if (cancelled) return;
+        loadedCount++;
+        setLoadProgress(loadedCount / total);
+        if (loadedCount === total) setLoaded(true);
       };
-      mq.addEventListener("change", onChange);
-      return () => {
-        cancelled = true;
-        mq.removeEventListener("change", onChange);
+      img.onerror = () => {
+        if (cancelled) return;
+        loadedCount++;
+        if (loadedCount === total) setLoaded(true);
       };
+      imgs.push(img);
     }
+    framesRef.current = imgs;
 
     return () => {
       cancelled = true;
@@ -121,11 +109,12 @@ export default function HeroCanvas() {
     };
 
     const targetFrame = () => {
-      if (!track) return 0;
+      const total = framesRef.current.length;
+      if (!track || total === 0) return 0;
       const rect = track.getBoundingClientRect();
       const scrollable = track.offsetHeight - window.innerHeight;
       const progress = scrollable > 0 ? Math.min(1, Math.max(0, -rect.top / scrollable)) : 0;
-      return Math.min(FRAME_COUNT - 1, Math.floor(progress * FRAME_COUNT));
+      return Math.min(total - 1, Math.floor(progress * total));
     };
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
