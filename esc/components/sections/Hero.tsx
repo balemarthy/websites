@@ -90,9 +90,8 @@ export default function Hero() {
       {/* Hero image — two uncropped portraits side by side on mobile, single full-bleed combined image on desktop */}
       <div className="relative w-full lg:absolute lg:inset-0 lg:z-0 lg:h-auto">
         {/* Mobile / tablet: separate portraits, each column matches the image's own 1376:768
-            aspect ratio exactly, so it fills the frame with zero cropping and zero letterboxing.
-            This wrapper is its own positioning context for the stat card below. */}
-        <div className="relative lg:hidden">
+            aspect ratio exactly, so it fills the frame with zero cropping and zero letterboxing. */}
+        <div className="lg:hidden">
           <div className="flex w-full gap-2 sm:gap-3">
             <div className="relative flex-1" style={{ aspectRatio: "1376 / 768" }}>
               <Image
@@ -116,14 +115,16 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Card hangs mostly below the (very short) image row rather than straddling deep
-              into it, so it can't reach up into the text block above or cover the faces */}
-          <StatCard className="absolute z-10 left-1/2 bottom-0 -translate-x-1/2 translate-y-[55%]" />
+          {/* Small, single-line, normal document flow below the images — no overlap */}
+          <div className="mx-auto mt-4 w-[180px] rounded-[12px] bg-esc-paper p-3 text-center shadow-esc-lg sm:w-[200px]">
+            <span className="block whitespace-nowrap font-display text-base uppercase leading-none text-esc-orange sm:text-lg">
+              Stuck <span className="mx-1">→</span> Placed
+            </span>
+            <p className="mt-1.5 font-body text-[11px] text-esc-dark-teal sm:text-xs">
+              The work didn&apos;t change. The visibility did.
+            </p>
+          </div>
         </div>
-
-        {/* Spacer reserving room in normal document flow for the card's overflow below the image
-            row, so the section (overflow-hidden) doesn't clip it */}
-        <div className="h-20 sm:h-24 lg:hidden" aria-hidden />
 
         {/* Desktop: scroll-linked frame-sequence canvas, replacing the static combined image */}
         <div className="relative hidden lg:block lg:h-full lg:w-full">
