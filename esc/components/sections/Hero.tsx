@@ -1,112 +1,85 @@
-"use client";
-
 import Image from "next/image";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import Nav from "@/components/layout/Nav";
 import Button from "@/components/ui/Button";
 
-// Hero entrance — one orchestrated moment, not scattered per-element effects.
-// Spring config from the 3d-scroll-website skill's "Hero text" row
-// (references/02-animation-techniques.md): stiffness 80 / damping 20, a
-// softer entrance than the default 100/20 scroll-reveal spring.
-const heroContainer: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
-  },
-};
-
-const heroItem: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 80, damping: 20 },
-  },
-};
-
 export default function Hero() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
-    <section className="relative overflow-hidden bg-esc-paper px-6 pb-16 pt-12 lg:px-16 lg:pb-24 lg:pt-16">
-      <motion.div
-        initial={prefersReducedMotion ? false : "hidden"}
-        animate="visible"
-        variants={heroContainer}
-        className="mx-auto flex max-w-[1400px] flex-col gap-12 lg:flex-row lg:items-center lg:gap-10"
-      >
-        {/* Left column */}
-        <div className="flex flex-col gap-6 lg:w-[45%]">
-          <motion.h1
-            variants={heroItem}
-            className="max-w-[19ch] font-display text-4xl uppercase leading-[1.05] tracking-tight text-esc-dark-teal sm:text-5xl lg:text-[3.25rem]"
+    <section className="relative w-full overflow-hidden bg-esc-paper lg:min-h-screen">
+      <Nav />
+
+      {/* Content block — normal flow above the image on mobile, absolute overlay on desktop */}
+      <div className="relative z-10 px-6 py-10 sm:px-10 lg:absolute lg:inset-0 lg:flex lg:items-center lg:px-16 lg:py-0">
+        <div className="lg:max-w-[600px]">
+          <h1
+            className="font-display uppercase text-esc-dark-teal"
+            style={{
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              lineHeight: 0.98,
+              letterSpacing: "-0.02em",
+              maxWidth: "600px",
+            }}
           >
             You can make it work. Can you explain why you built it that way?
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            variants={heroItem}
-            className="max-w-[52ch] font-body text-base leading-relaxed text-esc-dark-teal sm:text-lg"
+          <p
+            className="mt-6 font-body text-base text-dt-600 sm:text-lg"
+            style={{ maxWidth: "480px" }}
           >
             That gap is why interviews stall. Real engineering judgment, taught the way it&apos;s
             actually used — not another certificate.
-          </motion.p>
+          </p>
 
-          <motion.div variants={heroItem} className="flex flex-wrap items-center gap-x-8 gap-y-4">
+          <div className="mt-8 flex flex-wrap items-center gap-4">
             <Button variant="primary">Enrol Now</Button>
-            <button
-              type="button"
-              className="inline-flex items-center gap-1.5 font-body text-sm font-bold text-esc-dark-teal underline-offset-4 transition-colors duration-base ease-standard hover:text-esc-orange hover:underline"
+            <a
+              href="#"
+              className="font-body text-sm font-bold text-esc-dark-teal transition-colors duration-base ease-standard hover:text-esc-orange"
             >
-              Not sure? Talk to Vamsi first
-              <ArrowRight size={16} strokeWidth={2} />
-            </button>
-          </motion.div>
+              Not sure? Talk to Vamsi first →
+            </a>
+          </div>
 
-          <motion.p variants={heroItem} className="font-body text-xs text-dt-600 sm:text-sm">
+          <p className="mt-6 font-body text-sm text-dt-600">
             Alumni at AMD · Infineon · Mirafra · Bosch
-          </motion.p>
+          </p>
         </div>
+      </div>
 
-        {/* Right column */}
-        <div className="relative lg:w-[55%]">
-          <motion.div variants={heroItem} className="flex gap-3 sm:gap-4">
-            <div className="relative h-[320px] flex-1 overflow-hidden rounded-lg sm:h-[420px] lg:h-[520px]">
-              <Image
-                src="/images/characters/pagli/hero/pagli-hero.png"
-                alt="Pagli"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 50vw, 27vw"
-                priority
-              />
-            </div>
-            <div className="relative h-[320px] flex-1 overflow-hidden rounded-lg sm:h-[420px] lg:h-[520px]">
-              <Image
-                src="/images/characters/pagla/hero/pagla-hero.png"
-                alt="Pagla"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 50vw, 27vw"
-                priority
-              />
-            </div>
-          </motion.div>
+      {/* Full-bleed hero image — normal flow (below content) on mobile, full-bleed background on desktop */}
+      <div className="relative h-[420px] w-full sm:h-[520px] lg:absolute lg:inset-0 lg:z-0 lg:h-auto">
+        <Image
+          src="/images/hero/pagla-pagli-divided-world.png"
+          alt="Pagla and Pagli, working in parallel on either side of a divided workspace"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
 
-          <motion.div
-            variants={heroItem}
-            className="absolute bottom-4 left-1/2 w-[190px] -translate-x-1/2 rounded-lg bg-white px-5 py-4 text-center shadow-esc-lg sm:bottom-6 sm:w-[220px] sm:px-6 sm:py-5"
-          >
-            <span className="block font-display text-3xl uppercase leading-none text-esc-orange sm:text-4xl">
-              59 days
-            </span>
-            <p className="mt-2 font-body text-xs leading-snug text-esc-dark-teal sm:text-sm">
-              Stuck at ₹4.7L for 3 years — then placed.
-            </p>
-          </motion.div>
+        {/* Legibility scrim — strongest over the left 10-25% of the image, fading to nothing by ~48% */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 hidden lg:block"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,0) 48%)",
+          }}
+        />
+
+        {/* Floating stat card — attached to the image at every breakpoint */}
+        <div
+          className="absolute z-10 w-[260px] rounded-[12px] bg-esc-paper p-6 shadow-esc-lg sm:w-[300px]"
+          style={{ right: "8%", bottom: "10%" }}
+        >
+          <span className="block font-display uppercase leading-none text-esc-orange" style={{ fontSize: "2.25rem" }}>
+            59 days
+          </span>
+          <p className="mt-2 font-body text-sm text-esc-dark-teal">
+            Stuck at ₹4.7L for 3 years — then placed.
+          </p>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
