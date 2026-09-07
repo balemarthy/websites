@@ -105,14 +105,14 @@ export default function Marquee() {
         items={ROW_1_ITEMS}
         colorClass="text-esc-dark-teal"
         direction="rtl"
-        durationSeconds={42}
+        durationSeconds={90}
         reducedMotion={reducedMotion}
       />
       <MarqueeRow
         items={ROW_2_ITEMS}
         colorClass="text-esc-orange"
         direction="ltr"
-        durationSeconds={38}
+        durationSeconds={80}
         reducedMotion={reducedMotion}
       />
     </section>

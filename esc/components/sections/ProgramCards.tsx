@@ -15,6 +15,7 @@ type ProgramCardProps = {
   ctaLabel: string;
   photoSrc: string;
   photoAlt: string;
+  photoObjectPosition: string;
 };
 
 const VARIANT_STYLES: Record<
@@ -46,18 +47,23 @@ function ProgramCard({
   ctaLabel,
   photoSrc,
   photoAlt,
+  photoObjectPosition,
 }: ProgramCardProps) {
   const s = VARIANT_STYLES[variant];
 
   return (
     <div className="flex flex-col overflow-hidden rounded-xl shadow-esc-lg lg:flex-row">
-      {/* Photo — full-bleed, top on mobile, left/right on desktop */}
-      <div className="relative h-[280px] w-full shrink-0 lg:h-auto lg:w-[42%]">
+      {/* Photo — full-bleed, top on mobile, left/right on desktop. The desktop column is
+          narrow but very tall (matches the panel's content height), so a landscape source
+          photo gets cropped hard on both axes — object-position is tuned per photo so the
+          face stays in frame instead of defaulting to dead-center. */}
+      <div className="relative h-[320px] w-full shrink-0 sm:h-[380px] lg:h-auto lg:w-[42%]">
         <Image
           src={photoSrc}
           alt={photoAlt}
           fill
-          className="object-cover object-top"
+          className="object-cover"
+          style={{ objectPosition: photoObjectPosition }}
           sizes="(max-width: 1024px) 100vw, 42vw"
         />
       </div>
@@ -146,6 +152,7 @@ export default function ProgramCards(): ReactNode {
             ctaLabel="Start with Design"
             photoSrc="/images/programs/design/pagli-design.png"
             photoAlt="Pagli, working through the Design cohort material"
+            photoObjectPosition="38% 18%"
           />
         </div>
         <div className="lg:flex-1">
@@ -169,6 +176,7 @@ export default function ProgramCards(): ReactNode {
             ctaLabel="Start with Architecture"
             photoSrc="/images/programs/architecture/pagla-architecture.png"
             photoAlt="Pagla, working through the Architecture cohort material"
+            photoObjectPosition="48% 18%"
           />
         </div>
       </div>
