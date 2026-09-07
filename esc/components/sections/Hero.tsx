@@ -143,8 +143,11 @@ export default function Hero() {
             }}
           />
 
-          {/* Card sits low near the image's light seam, clear of the faces/torsos above it */}
-          <StatCard className="absolute z-10 left-1/2 -translate-x-1/2" style={{ bottom: "4%" }} />
+          {/* Card sits in the clear wall/nightstand gap above the desks — high enough to clear
+              Pagli's papers/notebook clutter at the very bottom, but anchored from the bottom
+              (not viewport-centered) so it can't drift up into the text block's row at narrower
+              lg widths, where the right-aligned text sits closer to the horizontal center */}
+          <StatCard className="absolute z-10 left-1/2 -translate-x-1/2" style={{ bottom: "22%" }} />
         </div>
       </div>
       </div>
