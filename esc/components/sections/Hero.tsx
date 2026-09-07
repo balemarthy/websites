@@ -12,16 +12,16 @@ function StatCard({
 }) {
   return (
     <div
-      className={`w-[260px] rounded-[12px] bg-esc-paper p-5 shadow-esc-lg sm:w-[300px] sm:p-6 ${className}`}
+      className={`w-[200px] rounded-[12px] bg-esc-paper p-4 shadow-esc-lg sm:w-[230px] ${className}`}
       style={style}
     >
       <span
         className="block font-display uppercase leading-none text-esc-orange"
-        style={{ fontSize: "2rem" }}
+        style={{ fontSize: "1.4rem" }}
       >
-        Stuck <span className="mx-2">→</span> Placed
+        Stuck <span className="mx-1.5">→</span> Placed
       </span>
-      <p className="mt-3 font-body text-sm text-esc-dark-teal">
+      <p className="mt-2 font-body text-xs text-esc-dark-teal sm:text-sm">
         The work didn&apos;t change. The visibility did.
       </p>
     </div>
@@ -109,8 +109,8 @@ export default function Hero() {
           </div>
 
           {/* Card hangs mostly below the (very short) image row rather than straddling deep
-              into it, so it can't reach up into the text block above */}
-          <StatCard className="absolute z-10 left-1/2 bottom-0 -translate-x-1/2 translate-y-[35%]" />
+              into it, so it can't reach up into the text block above or cover the faces */}
+          <StatCard className="absolute z-10 left-1/2 bottom-0 -translate-x-1/2 translate-y-[55%]" />
         </div>
 
         {/* Spacer reserving room in normal document flow for the card's overflow below the image
@@ -138,8 +138,8 @@ export default function Hero() {
             }}
           />
 
-          {/* Card straddles the image's light seam, 8% up from the bottom of the full-bleed image */}
-          <StatCard className="absolute z-10 left-1/2 -translate-x-1/2" style={{ bottom: "8%" }} />
+          {/* Card sits low near the image's light seam, clear of the faces/torsos above it */}
+          <StatCard className="absolute z-10 left-1/2 -translate-x-1/2" style={{ bottom: "4%" }} />
         </div>
       </div>
     </section>
