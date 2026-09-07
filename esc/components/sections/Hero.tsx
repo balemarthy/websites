@@ -41,8 +41,10 @@ export default function Hero() {
       <div className="contents lg:sticky lg:top-0 lg:z-0 lg:block lg:h-screen lg:overflow-hidden">
         <Nav />
 
-      {/* Content block — normal flow above the image on mobile, absolute overlay anchored near the nav on desktop */}
-      <div className="relative z-10 px-6 py-10 sm:px-10 lg:absolute lg:inset-0 lg:flex lg:items-start lg:px-16 lg:pb-0 lg:pt-[96px]">
+      {/* Content block — normal flow above the image on mobile, absolute overlay anchored near the
+          nav on desktop. Aligned to the right (above Pagli) rather than the left (above Pagla),
+          since Pagla's face/shoulder sits under the left side through much of the frame sequence. */}
+      <div className="relative z-10 px-6 py-10 sm:px-10 lg:absolute lg:inset-0 lg:flex lg:items-start lg:justify-end lg:px-16 lg:pb-0 lg:pt-[96px]">
         <div className="lg:max-w-[600px]">
           <h1
             className="font-display uppercase text-esc-dark-teal lg:text-esc-paper"
@@ -130,13 +132,14 @@ export default function Hero() {
         <div className="relative hidden lg:block lg:h-full lg:w-full">
           <HeroCanvas />
 
-          {/* Legibility scrim — strongest over the left 10-25% of the image, fading to nothing by ~48% */}
+          {/* Legibility scrim — strongest over the right 10-25% of the image (behind the text,
+              now positioned above Pagli), fading to nothing by ~48% from that edge */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,0) 48%)",
+                "linear-gradient(to left, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,0) 48%)",
             }}
           />
 
