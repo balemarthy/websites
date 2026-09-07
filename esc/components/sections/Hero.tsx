@@ -1,30 +1,7 @@
-import type { CSSProperties } from "react";
 import Image from "next/image";
 import Nav from "@/components/layout/Nav";
 import Button from "@/components/ui/Button";
 import HeroCanvas from "@/components/sections/HeroCanvas";
-
-function StatCard({
-  className = "",
-  style,
-}: {
-  className?: string;
-  style?: CSSProperties;
-}) {
-  return (
-    <div
-      className={`w-[180px] rounded-[12px] bg-esc-paper p-3 text-center shadow-esc-lg sm:w-[200px] sm:p-4 lg:w-[230px] ${className}`}
-      style={style}
-    >
-      <span className="block whitespace-nowrap font-display uppercase leading-none text-esc-orange text-base sm:text-lg lg:text-xl">
-        Stuck <span className="mx-1 sm:mx-1.5">→</span> Placed
-      </span>
-      <p className="mt-1.5 font-body text-[11px] text-esc-dark-teal sm:mt-2 sm:text-xs lg:text-sm">
-        The work didn&apos;t change. The visibility did.
-      </p>
-    </div>
-  );
-}
 
 export default function Hero() {
   return (
@@ -47,9 +24,9 @@ export default function Hero() {
             className="font-display uppercase text-esc-dark-teal lg:text-esc-paper"
             style={{
               fontSize: "clamp(2rem, 4vw, 3.25rem)",
-              lineHeight: 0.98,
+              lineHeight: 1.05,
               letterSpacing: "-0.02em",
-              maxWidth: "600px",
+              maxWidth: "22ch",
             }}
           >
             You can make it work. Can you explain why you built it that way?
@@ -113,31 +90,24 @@ export default function Hero() {
               />
             </div>
           </div>
-
-          {/* Same card used everywhere now — normal document flow below the images, no overlap */}
-          <StatCard className="mx-auto mt-4" />
         </div>
 
         {/* Desktop: scroll-linked frame-sequence canvas, replacing the static combined image */}
         <div className="relative hidden lg:block lg:h-full lg:w-full">
           <HeroCanvas />
 
-          {/* Legibility scrim — strongest behind the now horizontally-centered text, fading out
-              toward both edges rather than favoring one side */}
+          {/* Text legibility scrim — near-opaque directly behind the centered text column
+              (roughly the middle third), fading to nothing at both the left and right edges.
+              Full-height (not vertically tapered), so it holds all the way from the nav down
+              through the trust line, not just around the headline. */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
             style={{
               backgroundImage:
-                "radial-gradient(ellipse 45% 60% at 50% 30%, rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0) 80%)",
+                "linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 34%, rgba(0,0,0,0.75) 66%, rgba(0,0,0,0) 100%)",
             }}
           />
-
-          {/* Card sits in the clear wall/nightstand gap above the desks — high enough to clear
-              Pagli's papers/notebook clutter at the very bottom, but anchored from the bottom
-              (not viewport-centered) so it can't drift up into the text block's row at narrower
-              lg widths, where the right-aligned text sits closer to the horizontal center */}
-          <StatCard className="absolute z-10 left-1/2 -translate-x-1/2" style={{ bottom: "22%" }} />
         </div>
       </div>
       </div>
