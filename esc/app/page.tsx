@@ -1,12 +1,13 @@
-import Hero from "@/components/hero/Hero";
+import Nav from "@/components/layout/Nav";
+import Hero from "@/components/sections/Hero";
 
 export default function Home() {
   return (
     <main>
+      <Nav />
       <Hero />
-      {/* REST OF PAGE — Bad Day, Villain, Turn, full Design/Architecture criteria, etc.
-          Build later, do not design now. */}
-      <section id="rest-of-page-placeholder" style={{ minHeight: "40vh" }} />
+      {/* PROGRAMS SECTION — Design / Architecture. Build later, do not design now. */}
+      <section id="programs-placeholder" style={{ minHeight: "40vh" }} />
     </main>
   );
 }
