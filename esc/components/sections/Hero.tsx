@@ -1,6 +1,7 @@
 import Nav from "@/components/layout/Nav";
 import Button from "@/components/ui/Button";
 import HeroCanvas from "@/components/sections/HeroCanvas";
+import HeroTextTiming from "@/components/sections/HeroTextTiming";
 import MobileHeroImage from "@/components/sections/MobileHeroImage";
 
 // Legibility scrim — near-opaque directly behind the centered text column (roughly the
@@ -92,9 +93,9 @@ export default function Hero() {
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           <Nav />
 
-          <div className="absolute inset-0 z-10 flex items-start justify-center px-10 pt-[96px] lg:px-16">
+          <HeroTextTiming>
             <HeroContent />
-          </div>
+          </HeroTextTiming>
 
           <HeroCanvas />
 

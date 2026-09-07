@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getHeroScrollProgress } from "./heroScrollProgress";
 
 const FRAME_COUNT = 64;
 const LERP_FACTOR = 0.08;
@@ -62,11 +63,6 @@ export default function HeroCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // The tall scroll track is the nearest ancestor with this data attribute
-    // (the outer <section> in Hero.tsx) — its height above one viewport is
-    // the scroll distance that maps to 0-100% of the sequence.
-    const track = canvas.closest("[data-hero-scroll-track]") as HTMLElement | null;
-
     const drawFrame = (index: number) => {
       const img = framesRef.current[index];
       if (!img || !img.complete || img.naturalWidth === 0) return;
@@ -104,10 +100,8 @@ export default function HeroCanvas() {
 
     const targetFrame = () => {
       const total = framesRef.current.length;
-      if (!track || total === 0) return 0;
-      const rect = track.getBoundingClientRect();
-      const scrollable = track.offsetHeight - window.innerHeight;
-      const progress = scrollable > 0 ? Math.min(1, Math.max(0, -rect.top / scrollable)) : 0;
+      if (total === 0) return 0;
+      const progress = getHeroScrollProgress();
       return Math.min(total - 1, Math.floor(progress * total));
     };
 
