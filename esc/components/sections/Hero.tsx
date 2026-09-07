@@ -53,28 +53,56 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Full-bleed hero image — normal flow (below content) on mobile, full-bleed background on desktop */}
-      <div className="relative h-[420px] w-full sm:h-[520px] lg:absolute lg:inset-0 lg:z-0 lg:h-auto">
-        <Image
-          src="/images/hero/pagla-pagli-divided-world.png"
-          alt="Pagla and Pagli, working in parallel on either side of a divided workspace"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+      {/* Hero image — two uncropped portraits side by side on mobile, single full-bleed combined image on desktop */}
+      <div className="relative w-full lg:absolute lg:inset-0 lg:z-0 lg:h-auto">
+        {/* Mobile / tablet: separate portraits, each column matches the image's own 1376:768
+            aspect ratio exactly, so it fills the frame with zero cropping and zero letterboxing */}
+        <div className="flex w-full gap-2 sm:gap-3 lg:hidden">
+          <div className="relative flex-1" style={{ aspectRatio: "1376 / 768" }}>
+            <Image
+              src="/images/hero/pagli-hero.png"
+              alt="Pagli, working at her desk"
+              fill
+              priority
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
+          <div className="relative flex-1" style={{ aspectRatio: "1376 / 768" }}>
+            <Image
+              src="/images/hero/pagla-hero.png"
+              alt="Pagla, working at his desk"
+              fill
+              priority
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
+        </div>
 
-        {/* Legibility scrim — strongest over the left 10-25% of the image, fading to nothing by ~48% */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 hidden lg:block"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,0) 48%)",
-          }}
-        />
+        {/* Desktop: single full-bleed combined image */}
+        <div className="relative hidden lg:block lg:h-full lg:w-full">
+          <Image
+            src="/images/hero/pagla-pagli-divided-world.png"
+            alt="Pagla and Pagli, working in parallel on either side of a divided workspace"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
 
-        {/* Floating stat card — bottom-center, straddling the image's light seam, attached at every breakpoint */}
+          {/* Legibility scrim — strongest over the left 10-25% of the image, fading to nothing by ~48% */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,0) 48%)",
+            }}
+          />
+        </div>
+
+        {/* Floating stat card — bottom-center, attached to the image block at every breakpoint */}
         <div
           className="absolute z-10 w-[260px] -translate-x-1/2 rounded-[12px] bg-esc-paper p-6 shadow-esc-lg sm:w-[300px]"
           style={{ left: "50%", bottom: "8%" }}
