@@ -2,15 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
-import PinnedBeats from "./PinnedBeats";
-import StackedBeats from "./StackedBeats";
+import PinnedHero from "./PinnedHero";
+import StackedHero from "./StackedHero";
 
 export default function Hero() {
   const prefersReducedMotion = useReducedMotion();
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
+    // Beat 1's split composition needs real width to breathe, so the
+    // pinned sequence only kicks in at desktop widths — tablets and
+    // phones get the stacked, non-pinned fallback.
+    const mq = window.matchMedia("(min-width: 1024px)");
     const update = () => setIsDesktop(mq.matches);
     update();
     mq.addEventListener("change", update);
@@ -21,7 +24,7 @@ export default function Hero() {
 
   return (
     <section aria-label="Meet Pagla and Pagli" className="bg-esc-paper">
-      {usePinned ? <PinnedBeats /> : <StackedBeats />}
+      {usePinned ? <PinnedHero /> : <StackedHero />}
     </section>
   );
 }
