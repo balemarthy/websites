@@ -1,19 +1,45 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Nav from "@/components/layout/Nav";
 import Button from "@/components/ui/Button";
+
+function StatCard({
+  className = "",
+  style,
+}: {
+  className?: string;
+  style?: CSSProperties;
+}) {
+  return (
+    <div
+      className={`w-[260px] rounded-[12px] bg-esc-paper p-5 shadow-esc-lg sm:w-[300px] sm:p-6 ${className}`}
+      style={style}
+    >
+      <span
+        className="block font-display uppercase leading-none text-esc-orange"
+        style={{ fontSize: "2rem" }}
+      >
+        Stuck <span className="mx-2">→</span> Placed
+      </span>
+      <p className="mt-3 font-body text-sm text-esc-dark-teal">
+        The work didn&apos;t change. The visibility did.
+      </p>
+    </div>
+  );
+}
 
 export default function Hero() {
   return (
     <section className="relative w-full overflow-hidden bg-esc-paper lg:min-h-screen">
       <Nav />
 
-      {/* Content block — normal flow above the image on mobile, absolute overlay on desktop */}
-      <div className="relative z-10 px-6 py-10 sm:px-10 lg:absolute lg:inset-0 lg:flex lg:items-center lg:px-16 lg:py-0">
+      {/* Content block — normal flow above the image on mobile, absolute overlay anchored near the nav on desktop */}
+      <div className="relative z-10 px-6 py-10 sm:px-10 lg:absolute lg:inset-0 lg:flex lg:items-start lg:px-16 lg:pb-0 lg:pt-[96px]">
         <div className="lg:max-w-[600px]">
           <h1
             className="font-display uppercase text-esc-dark-teal lg:text-esc-paper"
             style={{
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              fontSize: "clamp(2rem, 4vw, 3.25rem)",
               lineHeight: 0.98,
               letterSpacing: "-0.02em",
               maxWidth: "600px",
@@ -56,29 +82,40 @@ export default function Hero() {
       {/* Hero image — two uncropped portraits side by side on mobile, single full-bleed combined image on desktop */}
       <div className="relative w-full lg:absolute lg:inset-0 lg:z-0 lg:h-auto">
         {/* Mobile / tablet: separate portraits, each column matches the image's own 1376:768
-            aspect ratio exactly, so it fills the frame with zero cropping and zero letterboxing */}
-        <div className="flex w-full gap-2 sm:gap-3 lg:hidden">
-          <div className="relative flex-1" style={{ aspectRatio: "1376 / 768" }}>
-            <Image
-              src="/images/hero/pagli-hero.png"
-              alt="Pagli, working at her desk"
-              fill
-              priority
-              className="object-cover"
-              sizes="50vw"
-            />
+            aspect ratio exactly, so it fills the frame with zero cropping and zero letterboxing.
+            This wrapper is its own positioning context for the stat card below. */}
+        <div className="relative lg:hidden">
+          <div className="flex w-full gap-2 sm:gap-3">
+            <div className="relative flex-1" style={{ aspectRatio: "1376 / 768" }}>
+              <Image
+                src="/images/hero/pagli-hero.png"
+                alt="Pagli, working at her desk"
+                fill
+                priority
+                className="object-cover"
+                sizes="50vw"
+              />
+            </div>
+            <div className="relative flex-1" style={{ aspectRatio: "1376 / 768" }}>
+              <Image
+                src="/images/hero/pagla-hero.png"
+                alt="Pagla, working at his desk"
+                fill
+                priority
+                className="object-cover"
+                sizes="50vw"
+              />
+            </div>
           </div>
-          <div className="relative flex-1" style={{ aspectRatio: "1376 / 768" }}>
-            <Image
-              src="/images/hero/pagla-hero.png"
-              alt="Pagla, working at his desk"
-              fill
-              priority
-              className="object-cover"
-              sizes="50vw"
-            />
-          </div>
+
+          {/* Card hangs mostly below the (very short) image row rather than straddling deep
+              into it, so it can't reach up into the text block above */}
+          <StatCard className="absolute z-10 left-1/2 bottom-0 -translate-x-1/2 translate-y-[35%]" />
         </div>
+
+        {/* Spacer reserving room in normal document flow for the card's overflow below the image
+            row, so the section (overflow-hidden) doesn't clip it */}
+        <div className="h-20 sm:h-24 lg:hidden" aria-hidden />
 
         {/* Desktop: single full-bleed combined image */}
         <div className="relative hidden lg:block lg:h-full lg:w-full">
@@ -100,19 +137,9 @@ export default function Hero() {
                 "linear-gradient(to right, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,0) 48%)",
             }}
           />
-        </div>
 
-        {/* Floating stat card — bottom-center, attached to the image block at every breakpoint */}
-        <div
-          className="absolute z-10 w-[260px] -translate-x-1/2 rounded-[12px] bg-esc-paper p-6 shadow-esc-lg sm:w-[300px]"
-          style={{ left: "50%", bottom: "8%" }}
-        >
-          <span className="block font-display uppercase leading-none text-esc-orange" style={{ fontSize: "2.25rem" }}>
-            59 days
-          </span>
-          <p className="mt-2 font-body text-sm text-esc-dark-teal">
-            Stuck at ₹4.7L for 3 years — then placed.
-          </p>
+          {/* Card straddles the image's light seam, 8% up from the bottom of the full-bleed image */}
+          <StatCard className="absolute z-10 left-1/2 -translate-x-1/2" style={{ bottom: "8%" }} />
         </div>
       </div>
     </section>
