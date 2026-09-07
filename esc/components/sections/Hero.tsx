@@ -42,10 +42,10 @@ export default function Hero() {
         <Nav />
 
       {/* Content block — normal flow above the image on mobile, absolute overlay anchored near the
-          nav on desktop. Aligned to the right (above Pagli) rather than the left (above Pagla),
-          since Pagla's face/shoulder sits under the left side through much of the frame sequence. */}
-      <div className="relative z-10 px-6 py-10 sm:px-10 lg:absolute lg:inset-0 lg:flex lg:items-start lg:justify-end lg:px-16 lg:pb-0 lg:pt-[96px]">
-        <div className="lg:max-w-[600px]">
+          nav on desktop. Centered horizontally over the seam between Pagla and Pagli, rather than
+          sitting entirely over either of them. */}
+      <div className="relative z-10 px-6 py-10 sm:px-10 lg:absolute lg:inset-0 lg:flex lg:items-start lg:justify-center lg:px-16 lg:pb-0 lg:pt-[96px]">
+        <div className="lg:max-w-[600px] lg:text-center">
           <h1
             className="font-display uppercase text-esc-dark-teal lg:text-esc-paper"
             style={{
@@ -66,7 +66,7 @@ export default function Hero() {
             actually used — not another certificate.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-wrap items-center gap-4 lg:justify-center">
             <Button
               variant="primary"
               style={{
@@ -132,14 +132,14 @@ export default function Hero() {
         <div className="relative hidden lg:block lg:h-full lg:w-full">
           <HeroCanvas />
 
-          {/* Legibility scrim — strongest over the right 10-25% of the image (behind the text,
-              now positioned above Pagli), fading to nothing by ~48% from that edge */}
+          {/* Legibility scrim — strongest behind the now horizontally-centered text, fading out
+              toward both edges rather than favoring one side */}
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(to left, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,0) 48%)",
+                "radial-gradient(ellipse 45% 60% at 50% 30%, rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.45) 45%, rgba(0,0,0,0) 80%)",
             }}
           />
 
