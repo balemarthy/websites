@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const MOBILE_BREAKPOINT = 768;
+const FRAME_COUNT = 64;
 const LERP_FACTOR = 0.08;
 const SNAP_EPSILON = 0.02;
 
@@ -20,24 +20,17 @@ export default function HeroCanvas() {
   const [loadProgress, setLoadProgress] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
-  // Preload the active frame set. Below the md (768px) breakpoint, sample every
-  // 2nd frame from the same 64-file folder (1, 3, 5 ... 63 — 32 frames) to cut
-  // mobile data/decode cost; decided once at mount rather than reacting live to
-  // resize, since crossing this breakpoint mid-session is a rare edge case not
-  // worth the added complexity of hot-swapping the loaded frame set.
+  // Preload all 64 frames. This component only mounts at md+ (Hero.tsx renders a
+  // static hero with a dedicated portrait image below that) — no mobile-specific
+  // sampling needed here anymore.
   useEffect(() => {
     let cancelled = false;
 
-    const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
-    const frameNumbers = isMobile
-      ? Array.from({ length: 32 }, (_, i) => i * 2 + 1)
-      : Array.from({ length: 64 }, (_, i) => i + 1);
-    const total = frameNumbers.length;
-
+    const total = FRAME_COUNT;
     let loadedCount = 0;
     const imgs: HTMLImageElement[] = [];
 
-    for (const n of frameNumbers) {
+    for (let n = 1; n <= FRAME_COUNT; n++) {
       const img = new Image();
       img.src = framePath(n);
       img.onload = () => {
