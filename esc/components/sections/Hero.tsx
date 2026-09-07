@@ -13,16 +13,13 @@ function StatCard({
 }) {
   return (
     <div
-      className={`w-[200px] rounded-[12px] bg-esc-paper p-4 shadow-esc-lg sm:w-[230px] ${className}`}
+      className={`w-[180px] rounded-[12px] bg-esc-paper p-3 text-center shadow-esc-lg sm:w-[200px] sm:p-4 lg:w-[230px] ${className}`}
       style={style}
     >
-      <span
-        className="block font-display uppercase leading-none text-esc-orange"
-        style={{ fontSize: "1.4rem" }}
-      >
-        Stuck <span className="mx-1.5">→</span> Placed
+      <span className="block whitespace-nowrap font-display uppercase leading-none text-esc-orange text-base sm:text-lg lg:text-xl">
+        Stuck <span className="mx-1 sm:mx-1.5">→</span> Placed
       </span>
-      <p className="mt-2 font-body text-xs text-esc-dark-teal sm:text-sm">
+      <p className="mt-1.5 font-body text-[11px] text-esc-dark-teal sm:mt-2 sm:text-xs lg:text-sm">
         The work didn&apos;t change. The visibility did.
       </p>
     </div>
@@ -117,15 +114,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Small, single-line, normal document flow below the images — no overlap */}
-          <div className="mx-auto mt-4 w-[180px] rounded-[12px] bg-esc-paper p-3 text-center shadow-esc-lg sm:w-[200px]">
-            <span className="block whitespace-nowrap font-display text-base uppercase leading-none text-esc-orange sm:text-lg">
-              Stuck <span className="mx-1">→</span> Placed
-            </span>
-            <p className="mt-1.5 font-body text-[11px] text-esc-dark-teal sm:text-xs">
-              The work didn&apos;t change. The visibility did.
-            </p>
-          </div>
+          {/* Same card used everywhere now — normal document flow below the images, no overlap */}
+          <StatCard className="mx-auto mt-4" />
         </div>
 
         {/* Desktop: scroll-linked frame-sequence canvas, replacing the static combined image */}
