@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import Button from "@/components/ui/Button";
 
-const NAV_ITEMS = ["The Program", "Sessions", "Results", "About"];
+const NAV_ITEMS = ["The Program", "Weekend Sessions", "Downloads", "About Me"];
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
