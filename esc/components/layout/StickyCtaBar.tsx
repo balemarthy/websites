@@ -28,8 +28,8 @@ export default function StickyCtaBar() {
   return (
     <div
       aria-hidden={!visible}
-      className={`fixed inset-x-0 bottom-0 z-30 h-14 w-full border-t border-esc-dark-teal/15 bg-esc-paper transition-transform duration-base ease-standard sm:h-16 ${
-        visible ? "translate-y-0" : "translate-y-full"
+      className={`fixed inset-x-0 bottom-0 z-30 h-14 w-full border-t border-esc-dark-teal/15 bg-esc-paper transition-transform duration-base ease-standard sm:h-16 md:bottom-auto md:top-0 md:border-b md:border-t-0 ${
+        visible ? "translate-y-0 md:translate-y-[72px]" : "translate-y-full md:-translate-y-full"
       }`}
     >
       <div className="mx-auto flex h-full max-w-[1400px] items-center justify-center px-0 sm:justify-end sm:px-6 lg:px-16">
