@@ -8,11 +8,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "esc-orange": "#F07839",
-        "esc-dark-teal": "#007284",
-        "esc-paper": "#FBF7F1",
-        "esc-teal": "#1A8FA0",
+        // Wired to styles/tokens.css — these four are byte-exact matches to their
+        // token, so pointing the utility at var() is a lossless, zero-visual-change
+        // swap (see tailwind.config.ts token-retrofit note in PR/commit description).
+        "esc-orange": "var(--orange-500)",
+        "esc-dark-teal": "var(--teal-500)",
+        "esc-paper": "var(--paper)",
+        "esc-teal": "var(--teal-accent-500)",
+        // Not present in styles/tokens.css — no token to wire these to. Left as raw
+        // hex; flagged for review rather than guessed at.
         "esc-body-black": "#1A1A1A",
+        // dt-50/100/600/900 predate styles/tokens.css and do NOT match the new
+        // --teal-050/100/600/900 ramp (dt-600 #4C9CA9 and dt-900 #005B6A in
+        // particular are a completely different lightness than --teal-600 #054B56
+        // and --teal-900 #041113 — those are near-black background stops, these are
+        // mid-tone muted-text stops). Left as raw hex on purpose; flagged for review
+        // rather than silently repointed to values that would visibly change every
+        // place they're used for body text.
         "dt-50": "#F2F8F9",
         "dt-100": "#DEEDEF",
         "dt-600": "#4C9CA9",

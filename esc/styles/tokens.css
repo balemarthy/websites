@@ -1,0 +1,67 @@
+/*
+Canonical design tokens for embeddedsystemcoach.com.
+
+This file is the single source of truth for every color, shadow, radius, and
+motion value used anywhere on the site. All future work should reference
+these variable names (var(--token-name)) — never a raw hex value, and never
+a hand-typed rgba() that happens to match a token's color, when a token
+already exists for it.
+*/
+
+:root {
+  /* ===== BASE BRAND COLORS (locked, do not alter) ===== */
+  --paper: #FBF7F1;
+  --teal-500: #007284;   /* Dark Teal, the base */
+  --orange-500: #F07839; /* Orange, the base */
+  --teal-accent-500: #1A8FA0;
+
+  /* ===== DARK TEAL RAMP (computed HSL, proportionally desaturated at extremes — do not hand-edit individual stops) ===== */
+  --teal-050: #F2F7F7; --teal-100: #DFEAEC; --teal-200: #C6D9DD; --teal-300: #A2C8CE;
+  --teal-400: #67BDCB; --teal-600: #054B56; --teal-700: #063036; --teal-800: #051B1F; --teal-900: #041113;
+
+  /* ===== ORANGE RAMP ===== */
+  --orange-050: #F9F4F1; --orange-100: #F1E2DA; --orange-200: #EAC9B8; --orange-300: #E8A887;
+  --orange-400: #EE7E44; --orange-600: #E06220; --orange-700: #BD5924; --orange-800: #A25127; --orange-900: #924C27;
+
+  /* ===== TYPE ===== */
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Lato', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ===== RADIUS ===== */
+  --radius-card: 20px;
+  --radius-panel: 12px;
+  --radius-pill: 100px;
+
+  /* ===== SHADOWS — two families, do not mix ===== */
+  --shadow-flat: 0 8px 24px -6px rgba(0, 53, 58, 0.15), 0 2px 6px -1px rgba(0, 53, 58, 0.08);
+  --shadow-glass: 0 24px 60px -12px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.12) inset, 0 0 0 1px rgba(255,255,255,0.03) inset;
+
+  /* ===== MOTION ===== */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-card: 450ms;
+}
+
+/*
+GOVERNANCE — read before styling any new section.
+FLAT treatment (Paper background, --shadow-flat, solid fills, no blur): Nav, Hero text/CTA layer,
+Marquee, Program cards, Sticky CTA bar, the About-Me typographic line. This is the site's default
+mode — light, direct, daylight.
+
+GLASS treatment (--teal-800 or --teal-900 backdrop, translucent Paper-wash panels with
+backdrop-filter blur, one contained --orange-400 radial glow, --shadow-glass): reserved for the
+program-detail stack cards (this prompt) and, later, Testimonials — both sections that benefit
+from a moodier, deeper-focus atmosphere. Do NOT apply glass to any section not listed here without
+an explicit decision to add it here first — the effect only reads as premium because it's rare.
+
+===== IMPLEMENTATION NOTE — fonts =====
+--font-display / --font-body / --font-mono above hold the literal font-family name strings, for
+reference and documentation. Do NOT wire actual component CSS to these three specific variables:
+this project loads all three fonts through next/font (see app/layout.tsx), which self-hosts each
+one under its own generated variable (--font-bricolage, --font-lato, --font-jetbrains) already
+exposed as the Tailwind utilities font-display / font-body / font-mono. Using this file's
+--font-display etc. directly would ask the browser to find a system-installed "Bricolage
+Grotesque", which most machines don't have, and silently fall back to sans-serif. Keep using the
+existing font-display / font-body / font-mono Tailwind classes for actual text — they already
+consume the correct (optimized, self-hosted) token, just one layer further down than this file.
+*/
