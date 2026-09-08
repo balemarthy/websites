@@ -3,7 +3,6 @@ import Marquee from "@/components/sections/Marquee";
 import ProgramCards from "@/components/sections/ProgramCards";
 import ProgramStacks from "@/components/sections/ProgramStacks";
 import Battlefield from "@/components/sections/Battlefield";
-import Marquee2 from "@/components/sections/Marquee2";
 
 export default function Home() {
   return (
@@ -25,8 +24,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
-      <Marquee2 />
     </main>
   );
 }

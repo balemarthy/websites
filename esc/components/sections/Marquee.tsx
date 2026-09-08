@@ -8,16 +8,21 @@ const ROW_2_ITEMS = [
   "10 HOURS OVER 15 DAYS",
   "SIX MODULES, ZERO GUESSWORK",
   "FIVE SESSIONS, ONE REAL PROJECT",
+  "ALUMNI AT AMD",
+  "INFINEON",
+  "MIRAFRA",
+  "BOSCH",
+  "CONTINENTAL",
+  "WIPRO",
+  "CISCO",
+  "DELL",
 ];
 
 // Repeat the base list a few times per half so a full loop cycle feels rich
 // rather than looping every couple of words.
 const REPEATS = 6;
 
-// Shared by every marquee instance on the site (see Marquee2) — same seamless-
-// loop technique, same FLAT treatment, only the item typography/color and
-// speed/direction differ per row.
-export function useReducedMotionPreference() {
+function useReducedMotionPreference() {
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -31,7 +36,7 @@ export function useReducedMotionPreference() {
   return reducedMotion;
 }
 
-export function MarqueeRow({
+function MarqueeRow({
   items,
   itemClassName,
   direction,
