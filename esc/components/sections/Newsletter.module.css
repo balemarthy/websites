@@ -1,0 +1,85 @@
+.section {
+  width: 100%;
+  background-color: var(--paper);
+  padding: 80px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--teal-800);
+  border-radius: var(--radius-card);
+  padding: 40px 32px;
+  box-shadow: var(--shadow-glass);
+  border: 1px solid rgba(251, 247, 241, 0.08);
+}
+
+.heading {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--paper);
+  text-align: center;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 4px;
+  margin-top: 24px;
+  background-color: var(--paper);
+  border-radius: var(--radius-pill);
+}
+
+.input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  background: transparent;
+  padding: 0 16px;
+  font-size: 14px;
+  color: var(--teal-500);
+}
+
+.input::placeholder {
+  color: var(--teal-500);
+  opacity: 0.6;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.button {
+  flex: 0 0 auto;
+  height: 48px;
+  padding: 0 24px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background-color: var(--orange-500);
+  color: var(--paper);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.microcopy {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(251, 247, 241, 0.6);
+}
+
+@media (min-width: 1024px) {
+  .heading {
+    font-size: 26px;
+  }
+}

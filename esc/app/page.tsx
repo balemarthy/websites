@@ -3,6 +3,8 @@ import Marquee from "@/components/sections/Marquee";
 import ProgramCards from "@/components/sections/ProgramCards";
 import ProgramStacks from "@/components/sections/ProgramStacks";
 import Battlefield from "@/components/sections/Battlefield";
+import Testimonials from "@/components/sections/Testimonials";
+import Newsletter from "@/components/sections/Newsletter";
 
 export default function Home() {
   return (
@@ -24,6 +26,9 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      <Testimonials />
+      <Newsletter />
     </main>
   );
 }
