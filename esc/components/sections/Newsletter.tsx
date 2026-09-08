@@ -14,6 +14,9 @@ export default function Newsletter() {
     <section className={styles.section}>
       <div className={styles.card}>
         <h2 className={`font-display ${styles.heading}`}>STAY AHEAD OF THE CURVE</h2>
+        <p className={`font-body ${styles.subline}`}>
+          Join the newsletter — occasional emails on embedded careers.
+        </p>
 
         <form className={styles.pill} onSubmit={handleSubmit}>
           <input

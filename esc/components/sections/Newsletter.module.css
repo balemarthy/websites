@@ -27,6 +27,14 @@
   margin: 0 auto;
 }
 
+.subline {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(251, 247, 241, 0.75);
+}
+
 .pill {
   display: flex;
   align-items: center;
