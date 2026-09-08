@@ -26,27 +26,3 @@ body {
     transform: translateX(-50%);
   }
 }
-
-/* Program stack cards (glass treatment) — crossfade + upward slide on the incoming
-   card. Plain CSS @keyframes rather than a JS-driven animation library: the
-   animation timeline is compositor-owned from the moment the element is inserted,
-   so it doesn't depend on a sustained stream of rAF callbacks to progress. */
-@keyframes stack-card-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes stack-card-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
