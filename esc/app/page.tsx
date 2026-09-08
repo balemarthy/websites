@@ -5,6 +5,7 @@ import ProgramStacks from "@/components/sections/ProgramStacks";
 import Battlefield from "@/components/sections/Battlefield";
 import Testimonials from "@/components/sections/Testimonials";
 import Newsletter from "@/components/sections/Newsletter";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
 
       <Testimonials />
       <Newsletter />
+      <Footer />
     </main>
   );
 }
