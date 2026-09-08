@@ -1,0 +1,18 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: var(--canvas);
+}
+
+.wordmark {
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
