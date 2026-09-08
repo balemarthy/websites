@@ -55,17 +55,7 @@ function HeroContent() {
         >
           See The Programs
         </Button>
-        <a
-          href="#"
-          className="font-body text-sm font-bold text-esc-paper transition-colors duration-base ease-standard hover:text-esc-orange"
-        >
-          Not sure? Talk to Vamsi first →
-        </a>
       </div>
-
-      <p className="mt-6 font-body text-sm text-esc-paper/60">
-        Alumni at AMD · Infineon · Mirafra · Bosch
-      </p>
     </div>
   );
 }
