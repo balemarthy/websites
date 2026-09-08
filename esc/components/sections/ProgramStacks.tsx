@@ -28,8 +28,8 @@ const DESIGN_ITEMS: StackItem[] = [
   },
   {
     tag: "The Shift",
-    title: "DAY 1 → DAY 15",
-    desc: "Day 1: you can make code work, but you can't always say why it's built that way. Day 15: you design systems you can explain line by line.",
+    title: "BEFORE → AFTER",
+    desc: "Before: you can make code work, but you can't always say why it's built that way. After two months: you design systems you can explain line by line — not instantly, the same way every real skill is actually built.",
   },
 ];
 
