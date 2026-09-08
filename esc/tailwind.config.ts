@@ -8,13 +8,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Wired to styles/tokens.css — these four are byte-exact matches to their
-        // token, so pointing the utility at var() is a lossless, zero-visual-change
-        // swap (see tailwind.config.ts token-retrofit note in PR/commit description).
-        "esc-orange": "var(--orange-500)",
-        "esc-dark-teal": "var(--teal-500)",
-        "esc-paper": "var(--paper)",
-        "esc-teal": "var(--teal-accent-500)",
+        // These four are byte-exact matches to their styles/tokens.css token
+        // (--orange-500, --teal-500, --paper, --teal-accent-500 respectively) — kept
+        // as literal hex, NOT var(), because Tailwind can only generate opacity-
+        // modifier utilities (e.g. text-esc-paper/75, used throughout Hero) by
+        // decomposing a color into RGB channels at build time, which it cannot do
+        // for an opaque var() reference. Wiring these through var() previously
+        // broke every /opacity-modified usage silently (Tailwind emitted invalid
+        // CSS, so the browser dropped the color and text fell back to whatever it
+        // inherited) — see git history for that regression and its fix.
+        "esc-orange": "#F07839",
+        "esc-dark-teal": "#007284",
+        "esc-paper": "#FBF7F1",
+        "esc-teal": "#1A8FA0",
         // Not present in styles/tokens.css — no token to wire these to. Left as raw
         // hex; flagged for review rather than guessed at.
         "esc-body-black": "#1A1A1A",
