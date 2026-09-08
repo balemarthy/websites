@@ -14,15 +14,32 @@ const ROW_2_ITEMS = [
 // rather than looping every couple of words.
 const REPEATS = 6;
 
-function MarqueeRow({
+// Shared by every marquee instance on the site (see Marquee2) — same seamless-
+// loop technique, same FLAT treatment, only the item typography/color and
+// speed/direction differ per row.
+export function useReducedMotionPreference() {
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const update = () => setReducedMotion(mq.matches);
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  return reducedMotion;
+}
+
+export function MarqueeRow({
   items,
-  colorClass,
+  itemClassName,
   direction,
   durationSeconds,
   reducedMotion,
 }: {
   items: string[];
-  colorClass: string;
+  itemClassName: string;
   direction: "ltr" | "rtl";
   durationSeconds: number;
   reducedMotion: boolean;
@@ -32,10 +49,7 @@ function MarqueeRow({
   const content = (
     <>
       {repeated.map((item, i) => (
-        <span
-          key={i}
-          className={`whitespace-nowrap font-display text-lg font-extrabold uppercase tracking-[0.08em] sm:text-2xl ${colorClass}`}
-        >
+        <span key={i} className={`whitespace-nowrap ${itemClassName}`}>
           {item}
           <span aria-hidden className="mx-6 sm:mx-8">
             ·
@@ -89,28 +103,20 @@ function MarqueeRow({
 }
 
 export default function Marquee() {
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mq.matches);
-    const update = () => setReducedMotion(mq.matches);
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
+  const reducedMotion = useReducedMotionPreference();
 
   return (
     <section aria-label="Programs at a glance" className="bg-esc-paper">
       <MarqueeRow
         items={ROW_1_ITEMS}
-        colorClass="text-esc-dark-teal"
+        itemClassName="font-display text-lg font-extrabold uppercase tracking-[0.08em] sm:text-2xl text-esc-dark-teal"
         direction="rtl"
         durationSeconds={90}
         reducedMotion={reducedMotion}
       />
       <MarqueeRow
         items={ROW_2_ITEMS}
-        colorClass="text-esc-orange"
+        itemClassName="font-display text-lg font-extrabold uppercase tracking-[0.08em] sm:text-2xl text-esc-orange"
         direction="ltr"
         durationSeconds={80}
         reducedMotion={reducedMotion}
