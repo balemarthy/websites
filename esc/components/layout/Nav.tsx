@@ -1,9 +1,15 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import { Menu, X } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 const NAV_ITEMS = ["The Program", "Sessions", "Results", "About"];
 
 export default function Nav() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="absolute inset-x-0 top-0 z-20 w-full">
       {/* Transparent header + gradient scrim at every breakpoint now — the hero canvas/photo
@@ -39,11 +45,39 @@ export default function Nav() {
         <Button
           variant="primary"
           href="#programs"
-          className="whitespace-nowrap px-3 py-2 text-[10px] sm:px-6 sm:py-2.5 sm:text-xs"
+          className="hidden whitespace-nowrap md:inline-flex md:px-6 md:py-2.5 md:text-xs"
         >
           See The Programs
         </Button>
+
+        {/* Mobile/tablet menu toggle — the CTA lives in the fixed bottom bar already, so
+            the top nav only needs room for the logo and this on narrow screens. */}
+        <button
+          type="button"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-esc-paper transition-colors duration-base ease-standard hover:text-esc-orange md:hidden"
+        >
+          {menuOpen ? <X size={24} strokeWidth={2} /> : <Menu size={24} strokeWidth={2} />}
+        </button>
       </div>
+
+      {menuOpen && (
+        <div className="relative flex flex-col gap-1 bg-esc-paper px-6 pb-6 pt-2 shadow-esc-lg md:hidden">
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item}
+              href="#"
+              onClick={() => setMenuOpen(false)}
+              className="font-body text-base text-esc-dark-teal transition-colors duration-base ease-standard hover:text-esc-orange"
+              style={{ padding: "12px 0" }}
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   );
 }
