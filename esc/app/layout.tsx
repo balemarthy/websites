@@ -34,7 +34,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       lang="en"
       className={`${bricolage.variable} ${lato.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="bg-esc-paper font-body text-esc-dark-teal">
+      <body className="bg-esc-paper pb-14 font-body text-esc-dark-teal sm:pb-16">
         <MotionConfig reducedMotion="user">{children}</MotionConfig>
         <StickyCtaBar />
       </body>

@@ -2,7 +2,7 @@ import Button from "@/components/ui/Button";
 
 export default function StickyCtaBar() {
   return (
-    <div className="h-14 w-full border-t border-esc-dark-teal/15 bg-esc-paper sm:h-16">
+    <div className="fixed inset-x-0 bottom-0 z-30 h-14 w-full border-t border-esc-dark-teal/15 bg-esc-paper sm:h-16">
       <div className="mx-auto flex h-full max-w-[1400px] items-center justify-center px-0 sm:justify-end sm:px-6 lg:px-16">
         <Button
           variant="primary"
