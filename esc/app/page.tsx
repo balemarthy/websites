@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
 import ProgramCards from "@/components/sections/ProgramCards";
+import ProgramStacks from "@/components/sections/ProgramStacks";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
 
       <Marquee />
       <ProgramCards />
+      <ProgramStacks />
     </main>
   );
 }
