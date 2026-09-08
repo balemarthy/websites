@@ -2,11 +2,16 @@ import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
 import ProgramCards from "@/components/sections/ProgramCards";
 import ProgramStacks from "@/components/sections/ProgramStacks";
+import Battlefield from "@/components/sections/Battlefield";
 
 export default function Home() {
   return (
     <main>
       <Hero />
+      <Marquee />
+      <ProgramCards />
+      <ProgramStacks />
+      <Battlefield />
 
       <section className="bg-esc-paper px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24">
         <div className="mx-auto max-w-2xl text-center">
@@ -19,10 +24,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
-      <Marquee />
-      <ProgramCards />
-      <ProgramStacks />
     </main>
   );
 }
