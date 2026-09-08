@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { ShuffleStack } from "./ShuffleStack";
 import styles from "./ProgramStacks.module.css";
 
 type StackItem = { tag: string; title: string; desc: string };
@@ -61,63 +61,13 @@ const ARCHITECTURE_ITEMS: StackItem[] = [
   },
 ];
 
-const ROLE_CLASSES = [styles.roleFront, styles.roleMiddle, styles.roleBack, styles.roleHidden];
-
-function ShuffleStack({ items, label }: { items: StackItem[]; label: string }) {
-  const [order, setOrder] = useState([0, 1, 2, 3]);
-  const [contentByCard, setContentByCard] = useState<Record<number, number>>({ 0: 0, 1: 1, 2: 2, 3: 3 });
-  const [exitingId, setExitingId] = useState<number | null>(null);
-  const nextContentRef = useRef(4);
-  const [dotIdx, setDotIdx] = useState(0);
-
-  useEffect(() => {
-    const id = window.setInterval(shuffle, 3700);
-    return () => window.clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  function shuffle() {
-    setOrder((prev) => {
-      const exiting = prev[0];
-      setExitingId(exiting);
-      const next = [prev[1], prev[2], prev[3], exiting];
-      window.setTimeout(() => {
-        setContentByCard((p) => ({ ...p, [exiting]: nextContentRef.current % items.length }));
-        nextContentRef.current++;
-        setExitingId(null);
-      }, 720);
-      return next;
-    });
-    setDotIdx((p) => (p + 1) % items.length);
-  }
-
-  function roleClass(cardId: number) {
-    if (cardId === exitingId) return styles.roleExit;
-    const pos = order.indexOf(cardId);
-    return ROLE_CLASSES[pos];
-  }
-
+function ProgramCard(item: StackItem) {
   return (
-    <div className={styles.stackOuter}>
-      <p className={`font-mono ${styles.stackLabel}`}>{label}</p>
-      <div className={styles.stackWrap}>
-        {[0, 1, 2, 3].map((cardId) => {
-          const item = items[contentByCard[cardId]];
-          return (
-            <div key={cardId} className={`${styles.card} ${roleClass(cardId)}`}>
-              <div className={`font-mono ${styles.tagPill}`}>{item.tag}</div>
-              <div className={`font-display ${styles.cardTitle}`}>{item.title}</div>
-              <div className={`font-body ${styles.cardDesc}`}>{item.desc}</div>
-            </div>
-          );
-        })}
-      </div>
-      <div className={styles.dots} aria-hidden>
-        {items.map((_, i) => (
-          <span key={i} className={`${styles.dot} ${i === dotIdx ? styles.dotActive : ""}`} />
-        ))}
-      </div>
-    </div>
+    <>
+      <div className={`font-mono ${styles.tagPill}`}>{item.tag}</div>
+      <div className={`font-display ${styles.cardTitle}`}>{item.title}</div>
+      <div className={`font-body ${styles.cardDesc}`}>{item.desc}</div>
+    </>
   );
 }
 
@@ -136,8 +86,12 @@ export default function ProgramStacks() {
       </div>
 
       <div className={styles.stacksRow}>
-        <ShuffleStack items={DESIGN_ITEMS} label="EMBEDDED SOFTWARE DESIGN" />
-        <ShuffleStack items={ARCHITECTURE_ITEMS} label="EMBEDDED SOFTWARE ARCHITECTURE" />
+        <ShuffleStack items={DESIGN_ITEMS} label="EMBEDDED SOFTWARE DESIGN" renderCard={ProgramCard} />
+        <ShuffleStack
+          items={ARCHITECTURE_ITEMS}
+          label="EMBEDDED SOFTWARE ARCHITECTURE"
+          renderCard={ProgramCard}
+        />
       </div>
     </section>
   );

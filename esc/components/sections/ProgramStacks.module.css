@@ -55,49 +55,6 @@
   gap: 64px;
 }
 
-.stackOuter {
-  /* A flex column with align-items: center (see .stacksRow) shrink-wraps its
-     children to their content's intrinsic width — a width:100% on a descendant
-     several levels down has no real size to resolve against in that context.
-     This gives the stack itself a definite, capped width so .stackWrap's 100%
-     below has something concrete to be 100% of. No margin:auto here — combined
-     with justify-content: center at the row-mode breakpoint below, an auto
-     side-margin on a flex item absorbs free space along the main axis on its
-     own, badly inflating the gap between the two stacks; .stacksRow's
-     align-items: center already centers this in column mode without it. */
-  width: 100%;
-  max-width: 320px;
-}
-
-.stackLabel {
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(251, 247, 241, 0.7);
-  text-align: center;
-  margin-bottom: 16px;
-}
-
-.stackWrap {
-  position: relative;
-  width: 100%;
-  height: 400px;
-}
-
-.card {
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-card);
-  padding: 32px;
-  color: var(--paper);
-  display: flex;
-  flex-direction: column;
-  transition:
-    transform 700ms var(--ease-premium),
-    opacity 700ms var(--ease-premium),
-    filter 700ms var(--ease-premium);
-}
-
 .tagPill {
   background: var(--orange-500);
   color: var(--teal-800);
@@ -128,80 +85,6 @@
   max-width: 96%;
 }
 
-.roleFront {
-  transform: translate(0, 0) rotate(0deg) scale(1);
-  opacity: 1;
-  filter: blur(0px);
-  z-index: 4;
-  background: rgba(251, 247, 241, 0.09);
-  backdrop-filter: blur(22px) saturate(140%);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
-  border: 1px solid rgba(251, 247, 241, 0.16);
-  box-shadow: var(--shadow-glass);
-}
-
-.roleMiddle {
-  transform: translate(16px, 12px) rotate(4deg) scale(0.94);
-  opacity: 0.55;
-  filter: blur(1px);
-  z-index: 3;
-  background: rgba(251, 247, 241, 0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(251, 247, 241, 0.1);
-}
-
-.roleBack {
-  transform: translate(30px, 22px) rotate(7deg) scale(0.88);
-  opacity: 0.28;
-  filter: blur(2px);
-  z-index: 2;
-  background: rgba(251, 247, 241, 0.04);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(251, 247, 241, 0.06);
-}
-
-.roleHidden {
-  background: rgba(251, 247, 241, 0.04);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(251, 247, 241, 0.06);
-  transform: translate(42px, 30px) rotate(9deg) scale(0.82);
-  opacity: 0;
-  z-index: 1;
-}
-
-.roleExit {
-  transform: translate(90px, -40px) rotate(14deg) scale(0.92);
-  opacity: 0;
-  filter: blur(0px);
-  z-index: 5;
-}
-
-.dots {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  margin-top: 24px;
-}
-
-.dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: rgba(251, 247, 241, 0.2);
-  transition:
-    background-color 300ms var(--ease-premium),
-    transform 300ms var(--ease-premium);
-}
-
-.dotActive {
-  background-color: var(--orange-500);
-  transform: scale(1.3);
-}
-
 @media (min-width: 1024px) {
   .heading {
     font-size: 36px;
@@ -214,32 +97,7 @@
     gap: 80px;
   }
 
-  .stackOuter {
-    /* A definite (non-percentage) width here, not max-width: percentage width
-       on a row-mode flex item sets an oversized flex-basis (100% of the row),
-       and clamping that back down via max-width was throwing off the gap math
-       between the two items. Row mode doesn't need the percentage trick that
-       column mode (mobile) does, since align-items isn't shrink-wrapping here. */
-    width: 340px;
-    max-width: none;
-  }
-
-  .stackWrap {
-    width: 340px;
-    height: 460px;
-  }
-
   .cardTitle {
     font-size: 32px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card {
-    transition: none;
-  }
-
-  .dot {
-    transition: none;
   }
 }
