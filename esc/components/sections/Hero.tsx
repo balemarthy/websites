@@ -48,11 +48,12 @@ function HeroContent() {
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
         <Button
           variant="primary"
+          href="#programs"
           style={{
             boxShadow: "0 0 28px 6px rgba(240,120,57,.4), 0 4px 14px rgba(240,120,57,.35)",
           }}
         >
-          Enrol Now
+          See The Programs
         </Button>
         <a
           href="#"

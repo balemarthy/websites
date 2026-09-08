@@ -38,9 +38,10 @@ export default function Nav() {
 
         <Button
           variant="primary"
+          href="#programs"
           className="whitespace-nowrap px-3 py-2 text-[10px] sm:px-6 sm:py-2.5 sm:text-xs"
         >
-          Enrol Now
+          See The Programs
         </Button>
       </div>
     </header>

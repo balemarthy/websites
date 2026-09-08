@@ -1,9 +1,17 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonOwnProps = {
   children: ReactNode;
   variant?: "primary" | "outline";
 };
+
+type ButtonAsButton = ButtonOwnProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
+
+type ButtonAsAnchor = ButtonOwnProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
+
+type ButtonProps = ButtonAsButton | ButtonAsAnchor;
 
 export default function Button({
   children,
@@ -18,8 +26,20 @@ export default function Button({
       ? "bg-esc-orange text-white shadow-esc-accent hover:opacity-90"
       : "border-2 border-esc-dark-teal text-esc-dark-teal hover:bg-dt-50";
 
+  if ("href" in props && props.href !== undefined) {
+    return (
+      <a className={`${base} ${styles} ${className}`} {...props}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <button type="button" className={`${base} ${styles} ${className}`} {...props}>
+    <button
+      type="button"
+      className={`${base} ${styles} ${className}`}
+      {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
       {children}
     </button>
   );

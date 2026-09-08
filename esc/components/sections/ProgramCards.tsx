@@ -128,7 +128,7 @@ function ProgramCard({
 
 export default function ProgramCards(): ReactNode {
   return (
-    <section className="bg-esc-paper px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
+    <section id="programs" className="scroll-mt-20 bg-esc-paper px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
       <div className="mx-auto flex max-w-[1400px] flex-col gap-8 lg:flex-row">
         <div className="lg:flex-1">
           <ProgramCard

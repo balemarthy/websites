@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Bricolage_Grotesque, Lato, JetBrains_Mono } from "next/font/google";
 import { MotionConfig } from "framer-motion";
+import StickyCtaBar from "@/components/layout/StickyCtaBar";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     >
       <body className="bg-esc-paper font-body text-esc-dark-teal">
         <MotionConfig reducedMotion="user">{children}</MotionConfig>
+        <StickyCtaBar />
       </body>
     </html>
   );
