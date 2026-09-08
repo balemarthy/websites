@@ -1,0 +1,287 @@
+.pill {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 8px 24px;
+  background-color: var(--paper);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-flat);
+}
+
+/* ===== Desktop items ===== */
+
+.desktopItems {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+.navItemWrap {
+  position: relative;
+}
+
+.navItem {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--teal-500);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background-color 200ms var(--ease-premium),
+    color 200ms var(--ease-premium);
+}
+
+.navItem:hover {
+  background-color: rgba(0, 114, 132, 0.06);
+}
+
+.navItemActive,
+.navItemActive:hover {
+  background-color: var(--orange-500);
+  color: var(--paper);
+}
+
+/* ===== Dropdown (ELEVATED-SOLID: solid --teal-800 fill, shadow-glass, no blur) ===== */
+
+.dropdownPanel {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  z-index: 10;
+  width: max-content;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(-8px);
+  background-color: var(--teal-800);
+  padding: 20px;
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(251, 247, 241, 0.08);
+  box-shadow: var(--shadow-glass);
+  transition:
+    opacity 200ms var(--ease-premium),
+    transform 200ms var(--ease-premium);
+}
+
+.dropdownOpen {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdownGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  transform: translate(-50%, -50%);
+  background-image: radial-gradient(circle, rgba(238, 126, 68, 0.25) 0%, rgba(238, 126, 68, 0) 70%);
+  pointer-events: none;
+}
+
+.dropdownCards {
+  position: relative;
+  display: flex;
+  gap: 16px;
+}
+
+.dropdownCard {
+  display: block;
+  width: 220px;
+  padding: 18px;
+  border-radius: var(--radius-panel);
+  background-color: rgba(251, 247, 241, 0.06);
+  border: 1px solid rgba(251, 247, 241, 0.08);
+  color: var(--paper);
+  text-decoration: none;
+  transition: background-color 200ms var(--ease-premium);
+}
+
+.dropdownCard:hover {
+  background-color: rgba(251, 247, 241, 0.1);
+}
+
+.tagPill {
+  display: inline-block;
+  background: var(--orange-500);
+  color: var(--teal-800);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.cardDesc {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(251, 247, 241, 0.85);
+}
+
+/* ===== Mobile bar (logo + hamburger) ===== */
+
+.mobileBar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.wordmark {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--teal-500);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hamburger {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburgerBar {
+  position: absolute;
+  left: 10px;
+  width: 20px;
+  height: 2px;
+  background-color: var(--teal-500);
+  border-radius: 2px;
+  transition:
+    transform 250ms var(--ease-premium),
+    opacity 200ms var(--ease-premium),
+    top 250ms var(--ease-premium);
+}
+
+.bar1 {
+  top: 14px;
+}
+
+.bar2 {
+  top: 19px;
+}
+
+.bar3 {
+  top: 24px;
+}
+
+.hamburgerOpen .bar1 {
+  top: 19px;
+  transform: rotate(45deg);
+}
+
+.hamburgerOpen .bar2 {
+  opacity: 0;
+}
+
+.hamburgerOpen .bar3 {
+  top: 19px;
+  transform: rotate(-45deg);
+}
+
+/* ===== Mobile full-screen overlay ===== */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  background-color: var(--paper);
+  transform: translateY(-100%);
+  transition: transform 300ms var(--ease-premium);
+  overflow-y: auto;
+  padding: 112px 24px 40px;
+}
+
+.overlayOpen {
+  transform: translateY(0);
+}
+
+.mobileList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobileItem {
+  display: block;
+  width: 100%;
+  padding: 14px 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--teal-500);
+  background: transparent;
+  border: none;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mobileItemActive {
+  color: var(--orange-500);
+}
+
+.mobileAccordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 90%;
+  margin: 4px 0 8px auto;
+}
+
+.mobileCard {
+  display: block;
+  padding: 16px;
+  border-radius: var(--radius-panel);
+  background-color: var(--teal-500);
+  box-shadow: var(--shadow-flat);
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.mobileCard .tagPill {
+  background: var(--orange-500);
+  color: var(--teal-800);
+}
+
+.mobileCard .cardDesc {
+  color: rgba(251, 247, 241, 0.85);
+}
+
+@media (min-width: 1024px) {
+  .desktopItems {
+    display: flex;
+  }
+
+  .mobileBar {
+    display: none;
+  }
+
+  /* The mobile overlay is only ever opened by the mobile hamburger, which is
+     hidden at this breakpoint — but transform: translateY(-100%) alone still
+     leaves its content in the layout (off-screen, not display:none), so its
+     buttons/links stay focusable and clickable. Remove it from the desktop
+     tree entirely instead of just visually hiding it. */
+  .overlay {
+    display: none;
+  }
+}

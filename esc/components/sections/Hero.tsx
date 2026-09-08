@@ -1,4 +1,3 @@
-import Nav from "@/components/layout/Nav";
 import Button from "@/components/ui/Button";
 import HeroCanvas from "@/components/sections/HeroCanvas";
 import HeroTextTiming from "@/components/sections/HeroTextTiming";
@@ -63,7 +62,6 @@ export default function Hero() {
       <section className="relative min-h-screen w-full overflow-hidden bg-esc-paper md:hidden">
         <MobileHeroImage />
         <div aria-hidden className="pointer-events-none absolute inset-0" style={mobileScrimStyle} />
-        <Nav />
         <div className="relative z-10 flex min-h-screen items-end justify-center px-6 pb-12">
           <HeroContent />
         </div>
@@ -76,8 +74,6 @@ export default function Hero() {
         className="relative hidden w-full bg-esc-paper md:block md:h-[350vh] lg:h-[400vh]"
       >
         <div className="sticky top-0 h-screen w-full overflow-hidden">
-          <Nav />
-
           <HeroTextTiming>
             <HeroContent />
           </HeroTextTiming>

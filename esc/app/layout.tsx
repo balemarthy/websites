@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Bricolage_Grotesque, Lato, JetBrains_Mono } from "next/font/google";
 import { MotionConfig } from "framer-motion";
+import Nav from "@/components/layout/Nav";
 import StickyCtaBar from "@/components/layout/StickyCtaBar";
 import "./globals.css";
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${bricolage.variable} ${lato.variable} ${jetbrainsMono.variable}`}
     >
       <body className="bg-esc-paper pb-14 font-body text-esc-dark-teal sm:pb-16">
+        <Nav />
         <MotionConfig reducedMotion="user">{children}</MotionConfig>
         <StickyCtaBar />
       </body>
