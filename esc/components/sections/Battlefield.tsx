@@ -11,7 +11,7 @@ const BULLETS = [
 ];
 
 const COACHING_PARAGRAPH =
-  "Coaching institutes — Emertxe and Vector are the names that come up most, alongside CDAC for the government-backed route. The pitch is always the same: a promised job, a handful of success stories. The real number is closer to 6 or 7 percent of students actually landing strong placements.";
+  "Coaching institutes — a handful of names keep coming up, along with the government-backed route. The pitch is always the same: a promised job, a handful of success stories. The real number is closer to 6 or 7 percent of students actually landing strong placements.";
 
 const SKEPTICISM = [
   `"Why does this cost what it costs?"`,
