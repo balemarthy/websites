@@ -1,18 +1,144 @@
-.nav {
+/* ===== Logo — its own fixed chip, top-left, independent of the pill ===== */
+
+.logoChip {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  display: flex;
+  top: 20px;
+  left: 24px;
+  z-index: 60;
+  display: inline-flex;
   align-items: center;
-  padding: 16px 24px;
+  height: 48px;
+  padding: 0 14px;
   background-color: var(--canvas);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-flat);
 }
 
-.wordmark {
-  font-weight: 800;
-  font-size: 16px;
-  letter-spacing: -0.02em;
+.logoImg {
+  height: 24px;
+  width: auto;
+}
+
+/* ===== Desktop pill (desktop only — see media query at bottom) ===== */
+
+.pill {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  align-items: center;
+  height: 64px;
+  padding: 8px 8px;
+  background-color: var(--canvas);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-flat);
+}
+
+.desktopItems {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navItem {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 600;
   color: var(--ink);
+  background: transparent;
+  border: none;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background-color 200ms var(--ease-premium),
+    color 200ms var(--ease-premium);
+}
+
+.navItem:hover {
+  background-color: rgba(10, 31, 68, 0.06);
+}
+
+/* ===== Mobile hamburger + compact panel (mobile only) ===== */
+
+.mobileWrap {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 60;
+}
+
+.hamburger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  background-color: var(--canvas);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-flat);
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* ELEVATED-SOLID: solid Navy 800 fill, shadow-glass, no backdrop-blur. Page
+   content stays visible behind it; this is not a full-screen takeover. */
+.mobilePanel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: var(--glass-backdrop);
+  padding: 12px;
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(251, 247, 241, 0.08);
+  box-shadow: var(--shadow-glass);
+  transition:
+    opacity 200ms var(--ease-premium),
+    transform 200ms var(--ease-premium);
+}
+
+.mobilePanelOpen {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mobilePanelItem {
+  display: block;
+  padding: 10px 12px;
+  border-radius: var(--radius-panel);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--canvas);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mobilePanelItem:hover {
+  background-color: rgba(251, 247, 241, 0.08);
+}
+
+@media (min-width: 1024px) {
+  .pill {
+    display: flex;
+  }
+
+  .mobileWrap {
+    display: none;
+  }
 }

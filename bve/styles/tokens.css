@@ -1,29 +1,30 @@
 /*
-PLACEHOLDER design tokens for BVE.
-
-No locked brand system exists for this project yet (unlike ESC, which has a
-dedicated esc-design-system skill with locked colors/type/voice). These are
-neutral stand-in values so the site is buildable and structurally consistent
-with the ESC pipeline. Replace every value here once real brand colors,
-type, and motion values are decided — do not build out real sections against
-these placeholders as if they were final.
+BVE design tokens — locked v1.0 (see anthropic-skills:bve-design-system).
+Navy/Amber/Electric Blue palette on a warm Paper canvas.
 */
 
 :root {
-  --canvas: #F7F6F3;
-  --ink: #14181C;
-  --accent-500: #2E9E5B;
-  --accent-600: #227A46;
+  --canvas: #FBF7F1;
+  --ink: #0A1F44;
+  --ink-body: #1A1A1A;
+  --accent-500: #E8A020;
+  --accent-600: #C98C1F;
+  --accent-glow: #DEAC54;
+  --data-accent: #0066CC;
+  --glass-backdrop: #050A11;
 
-  --font-display: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Lato', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  --radius-card: 16px;
-  --radius-panel: 12px;
-  --radius-pill: 100px;
+  --radius-card: 10px;
+  --radius-panel: 6px;
+  --radius-pill: 9999px;
 
-  --shadow-flat: 0 8px 24px -6px rgba(20, 24, 28, 0.12), 0 2px 6px -1px rgba(20, 24, 28, 0.06);
+  --shadow-flat: 0 4px 16px rgba(10, 31, 68, 0.11);
+  --shadow-accent: 0 2px 14px rgba(232, 160, 32, 0.38);
+  --shadow-glass: 0 24px 60px -12px rgba(5, 10, 17, 0.5), 0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset;
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
 }
 

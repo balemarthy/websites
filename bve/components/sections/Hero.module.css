@@ -1,62 +1,224 @@
 .hero {
+  position: relative;
   width: 100%;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 96px 24px 64px;
+  height: 450vh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
   background-color: var(--canvas);
 }
 
-.content {
-  max-width: 640px;
-  text-align: center;
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
-.heading {
-  font-weight: 800;
-  font-size: 32px;
-  line-height: 1.1;
+.mobileBackdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: none;
+  background-color: var(--canvas);
+  overflow: hidden;
+}
+
+.mobileBackdropImage {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.loader {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--canvas);
+}
+
+.loaderTrack {
+  width: min(240px, 60vw);
+  height: 2px;
+  background-color: rgba(10, 31, 68, 0.12);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.loaderBar {
+  height: 100%;
+  background-color: var(--accent-500);
+  transition: width 120ms linear;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+/* Portrait layer — off-center, anchored right, snaps between 3 states */
+.portraitWrap {
+  position: absolute;
+  inset: 0;
+}
+
+.portrait {
+  position: absolute;
+  right: 4vw;
+  bottom: 0;
+  height: 88%;
+  width: auto;
+  max-width: 46vw;
+  object-fit: contain;
+  object-position: bottom;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-slow, 320ms) var(--ease-standard, ease);
+}
+
+.portraitActive {
+  opacity: 1;
+}
+
+/* Text layer — off-center, anchored left, overlaps the portrait edge */
+.textBlock {
+  position: absolute;
+  left: 6vw;
+  top: 14vh;
+  width: 52vw;
+  min-height: 34vh;
+}
+
+.headline {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: 18ch;
+  margin: 0;
+  color: #FFFFFF;
+  text-shadow: 0 2px 20px rgba(5, 10, 17, 0.45);
+  text-transform: uppercase;
   letter-spacing: -0.02em;
-  color: var(--ink);
+  line-height: 0.97;
+  font-weight: 800;
   opacity: 0;
-  animation: rise-in 600ms var(--ease-premium) 80ms forwards;
+  transform: translateY(-16px);
+  transition: opacity var(--duration-slow, 320ms) var(--ease-standard, ease),
+    transform var(--duration-slow, 320ms) var(--ease-standard, ease);
 }
 
-.subline {
-  margin-top: 16px;
-  font-size: 16px;
-  line-height: 1.5;
-  color: rgba(20, 24, 28, 0.7);
-  opacity: 0;
-  animation: rise-in 600ms var(--ease-premium) 200ms forwards;
+.headlineActive {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.headline0 {
+  font-size: 40px;
+}
+
+.headline1 {
+  font-size: 52px;
+}
+
+.headline2 {
+  font-size: 68px;
+  z-index: 3;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .heading,
-  .subline {
-    animation: none;
-    opacity: 1;
-    transform: none;
+  .headline,
+  .portrait {
+    transition: none;
   }
 }
 
-@media (min-width: 1024px) {
-  .heading {
+/* Mobile — no canvas, no frame-sequence photography at all */
+@media (max-width: 1023px) {
+  .hero {
+    height: 200vh;
+  }
+
+  .canvas {
+    display: none;
+  }
+
+  .mobileBackdrop {
+    display: block;
+    top: 0;
+    bottom: auto;
+    height: 68vh;
+    mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+  }
+
+  .portrait {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: auto;
+    top: 4vh;
+    height: 46vh;
+    max-width: 84vw;
+    transition-duration: var(--duration-fast, 120ms);
+  }
+
+  .textBlock {
+    left: 6vw;
+    right: 6vw;
+    top: 51vh;
+    width: auto;
+    bottom: auto;
+    text-align: center;
+    min-height: auto;
+  }
+
+  .headline {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    max-width: none;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 0 2px 16px rgba(5, 10, 17, 0.55);
+    transform: translateY(10px);
+    transition-duration: var(--duration-fast, 120ms);
+  }
+
+  .headlineActive {
+    transform: translateY(0);
+  }
+
+  .headline0 {
+    font-size: 26px;
+  }
+
+  .headline1 {
+    font-size: 32px;
+  }
+
+  .headline2 {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .headline0 {
     font-size: 48px;
   }
-  .subline {
-    font-size: 18px;
+
+  .headline1 {
+    font-size: 60px;
+  }
+
+  .headline2 {
+    font-size: 80px;
   }
 }
