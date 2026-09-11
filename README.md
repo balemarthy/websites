@@ -6,8 +6,7 @@ One git repo, several independent Next.js sites, each its own brand and its own 
 websites/
 ├── esc/     embeddedsystemcoach.com   — Vamsi's embedded-systems coaching brand
 ├── bve/     balemarthyvamsi.com       — Vamsi's career-visibility coaching brand (BVE)
-├── dnm/     digitalnetworkmarketer.in — Guru/Gowri faceless second-income brand (DNM)
-└── igloo/   planning notes only, nothing built yet (see igloo/project-brief.md)
+└── dnm/     digitalnetworkmarketer.in — Guru/Gowri faceless second-income brand (DNM)
 ```
 
 `bve` and `dnm` were scaffolded as siblings of `esc` (commit `e3b284d`) — `bve` is a fresh build with `esc`'s *fonts and structural tokens* reused but its own Navy/Amber/Electric Blue palette; `dnm` is a closer clone that reuses `esc`'s palette and fonts almost exactly, with only its own wordmark as the distinguishing visual element.
@@ -23,7 +22,6 @@ This repo has no per-project `CLAUDE.md`. If you (human or agent) are opening th
 | `esc` | embeddedsystemcoach.com | Homepage built: hero, marquees, program cards/stacks, Battlefield, Testimonials, Newsletter, Footer. Longest-running of the three — most of the shared component patterns (`ShuffleStack`, `Marquee`, the CSS-module + design-token approach) originated here and were ported to `bve`/`dnm`. |
 | `bve` | balemarthyvamsi.com | Homepage built end-to-end: scroll-driven frame-sequence hero (desktop) with a lighter mobile-only path, Marquee, ProgramCards, ProgramStacks, Battlefield, AboutAuthority, Testimonials, Newsletter, floating-pill Nav. Tagged `bve-v1.0.0` (commit `49588ba`). Sub-pages (`/career-fluency`, `/about`, etc. — linked from the nav) don't exist yet; this is a homepage-only build. |
 | `dnm` | digitalnetworkmarketer.in | Homepage built (commit `778d96d`, not yet tagged). **Placeholder art and draft-only copy** — see `dnm/IMAGES-NEEDED.md` for the exact list of what's still needed before this one can launch (hero visual, optional logo, Battlefield/reframe copy needs Vamsi's review, registration form isn't wired to a real backend). |
-| `igloo` | — | A single planning doc (`igloo/project-brief.md`) from an initial feasibility discussion about a WebGL/canvas-heavy site in the style of igloo.inc. Nothing has been built against it — treat it as notes, not a project. |
 
 Tags on `main`, in case you need a known-good point to diff against or roll back to:
 
