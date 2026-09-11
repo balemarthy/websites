@@ -1,30 +1,39 @@
 /*
-PLACEHOLDER design tokens for DNM.
-
-No locked brand system exists for this project yet (unlike ESC, which has a
-dedicated esc-design-system skill with locked colors/type/voice). These are
-neutral stand-in values so the site is buildable and structurally consistent
-with the ESC pipeline. Replace every value here once real brand colors,
-type, and motion values are decided — do not build out real sections against
-these placeholders as if they were final.
+DNM design tokens — locked v1.0 (see anthropic-skills:dnm-design-system).
+Exact palette-and-font clone of ESC's system by deliberate "family look"
+decision. Orange/Dark-Teal palette on a warm Paper canvas. The wordmark
+("DigitalNetworkMarketer" with "Network" in orange) is the one DNM-specific
+visual element — see components/layout/Nav.tsx.
 */
 
 :root {
-  --canvas: #F7F6F3;
-  --ink: #14181C;
-  --accent-500: #3457D5;
-  --accent-600: #2941AA;
+  --canvas: #FBF7F1;
+  --white: #FFFFFF;
+  --ink: #007284;
+  --ink-body: #1A1A1A;
+  --ink-muted: #4C9CA9;
+  --accent-500: #F07839;
+  --accent-600: #D9612A;
+  --data-accent: #1A8FA0;
+  --surface-dark: #005B6A;
+  --border: #E6EAEC;
 
-  --font-display: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Lato', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  --radius-card: 16px;
-  --radius-panel: 12px;
-  --radius-pill: 100px;
+  --radius-card: 10px;
+  --radius-panel: 6px;
+  --radius-pill: 9999px;
+  --radius-xl: 14px;
 
-  --shadow-flat: 0 8px 24px -6px rgba(20, 24, 28, 0.12), 0 2px 6px -1px rgba(20, 24, 28, 0.06);
+  --shadow-sm: 0 1px 3px rgba(0, 114, 132, 0.07);
+  --shadow-flat: 0 4px 16px rgba(0, 114, 132, 0.11);
+  --shadow-accent: 0 2px 14px rgba(240, 120, 57, 0.38);
+  --shadow-dark: 0 20px 48px -14px rgba(0, 91, 106, 0.45);
+
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /*
@@ -35,5 +44,11 @@ these var()s directly — this project loads fonts through next/font (see
 app/layout.tsx), which self-hosts each one under its own generated variable,
 exposed as the Tailwind utilities font-display / font-body / font-mono.
 Referencing this file's vars directly would ask the browser for a
-system-installed font and silently fall back. Same pattern as ESC.
+system-installed font and silently fall back. Same pattern as ESC and BVE.
+
+===== IMPLEMENTATION NOTE — no glassmorphism =====
+The design system explicitly forbids blur/glassmorphism overlays (see
+spacing-effects.md Do/Don't). Where BVE's equivalent components use
+backdrop-filter blur on dark surfaces, DNM's versions use solid dark-teal
+fills (--surface-dark) instead. Don't reintroduce backdrop-filter here.
 */

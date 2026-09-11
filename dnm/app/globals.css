@@ -9,11 +9,20 @@
 }
 
 :focus-visible {
-  outline: 3px solid rgba(52, 87, 213, 0.6);
+  outline: 3px solid rgba(240, 120, 57, 0.5);
   outline-offset: 2px;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+@keyframes dnm-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

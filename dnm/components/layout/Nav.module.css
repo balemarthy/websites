@@ -1,18 +1,227 @@
-.nav {
+/* ===== Bar — one flex row, logo left / right-group right ===== */
+/* Both children live in normal flex flow (not independently fixed), so the
+   right group can never be overlapped by the logo — the logo shrinks
+   (min-width: 0 + clamp() font-size below) before that could happen, at
+   any viewport width. */
+
+.bar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 50;
+  z-index: 60;
   display: flex;
   align-items: center;
-  padding: 16px 24px;
-  background-color: var(--canvas);
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 24px;
 }
 
+/* ===== Wordmark — the one DNM-specific visual element ===== */
+
 .wordmark {
+  display: block;
   font-weight: 800;
-  font-size: 16px;
-  letter-spacing: -0.02em;
+  /* Scales down on narrow viewports instead of overflowing — swap in an
+     <Image> logo here later with a max-width/height instead of relying on
+     font-size, but keep .logoChip's shrink behavior below either way. */
+  font-size: clamp(11px, 3.4vw, 15px);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
   color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wordmarkAccent {
+  color: var(--accent-500);
+}
+
+/* ===== Logo chip — shrinkable flex item, never fixed on its own ===== */
+
+.logoChip {
+  flex: 0 1 auto;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 16px;
+  background-color: var(--canvas);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-flat);
+  text-decoration: none;
+}
+
+/* ===== Right-hand group — CTA/hamburger, also a shrink-proof flex item ===== */
+
+.rightGroup {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ===== Desktop pill (desktop only — see media query at bottom) ===== */
+
+.pill {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  align-items: center;
+  height: 56px;
+  padding: 6px 6px;
+  background-color: var(--canvas);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-flat);
+}
+
+.desktopItems {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.navItem {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color var(--duration-base, 200ms) var(--ease-standard);
+}
+
+.navItem:hover {
+  background-color: rgba(0, 114, 132, 0.08);
+}
+
+/* ===== Primary CTA — always reachable, desktop only ===== */
+
+.cta {
+  display: none;
+  align-items: center;
+  height: 48px;
+  padding: 0 22px;
+  background-color: var(--accent-500);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: var(--shadow-accent);
+  transition: background-color var(--duration-base, 200ms) var(--ease-standard);
+}
+
+.cta:hover {
+  background-color: var(--accent-600);
+}
+
+/* ===== Mobile: compact CTA + hamburger, compact panel (mobile only) ===== */
+
+.mobileWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctaMobile {
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 16px;
+  background-color: var(--accent-500);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: var(--shadow-accent);
+}
+
+.hamburger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  flex-shrink: 0;
+  background-color: var(--canvas);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-flat);
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* Solid dark-teal fill, no backdrop-blur — see spacing-effects.md
+   (glassmorphism is explicitly disallowed). Page content stays visible
+   behind it; this is a compact panel, not a full-screen takeover. */
+.mobilePanel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 200px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: var(--surface-dark);
+  padding: 12px;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-dark);
+  transition:
+    opacity var(--duration-base, 200ms) var(--ease-standard),
+    transform var(--duration-base, 200ms) var(--ease-standard);
+}
+
+.mobilePanelOpen {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mobilePanelItem {
+  display: block;
+  padding: 10px 12px;
+  border-radius: var(--radius-panel);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mobilePanelItem:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 1024px) {
+  .pill {
+    display: flex;
+  }
+
+  .cta {
+    display: inline-flex;
+  }
+
+  .mobileWrap {
+    display: none;
+  }
 }

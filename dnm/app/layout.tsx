@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Lato, JetBrains_Mono } from "next/font/google";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
 
-// PLACEHOLDER fonts (Inter + JetBrains Mono) — swap for real brand fonts
-// once decided, following the same next/font self-hosting pattern as ESC.
-const inter = Inter({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-inter",
+  weight: ["700", "800"],
+  variable: "--font-bricolage",
+});
+
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-lato",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -20,14 +24,15 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DNM",
-  description: "Placeholder description — replace once brand copy is locked.",
+  title: "Digital Network Marketer",
+  description:
+    "A digital income system for working professionals — build a second income stream without quitting the day job.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-dnm-canvas font-body text-dnm-ink">
+    <html lang="en" className={`${bricolage.variable} ${lato.variable} ${jetbrainsMono.variable}`}>
+      <body className="bg-dnm-canvas font-body text-dnm-ink-body">
         <Nav />
         {children}
         <Footer />

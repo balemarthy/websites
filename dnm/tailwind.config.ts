@@ -1,8 +1,6 @@
 import type { Config } from "tailwindcss";
 
-// PLACEHOLDER tokens — no locked DNM brand system exists yet (unlike ESC,
-// which has a dedicated design-system skill). Swap these for the real brand
-// palette/fonts once they're defined; keep the var() wiring pattern below.
+// Locked DNM brand tokens (anthropic-skills:dnm-design-system v1.0).
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
@@ -11,14 +9,21 @@ const config: Config = {
         // Kept as literal hex (not var()) so Tailwind can generate opacity-
         // modifier utilities like text-dnm-ink/75 — see esc/tailwind.config.ts
         // for the full explanation of why var() breaks this.
-        "dnm-ink": "#14181C",
-        "dnm-canvas": "#F7F6F3",
-        "dnm-accent": "#3457D5",
+        "dnm-ink": "#007284",
+        "dnm-ink-body": "#1A1A1A",
+        "dnm-ink-muted": "#4C9CA9",
+        "dnm-canvas": "#FBF7F1",
+        "dnm-white": "#FFFFFF",
+        "dnm-accent": "#F07839",
+        "dnm-accent-600": "#D9612A",
+        "dnm-data": "#1A8FA0",
+        "dnm-dark": "#005B6A",
+        "dnm-border": "#E6EAEC",
       },
       fontFamily: {
-        display: ["var(--font-display)", "sans-serif"],
-        body: ["var(--font-body)", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        display: ["var(--font-bricolage)", "sans-serif"],
+        body: ["var(--font-lato)", "sans-serif"],
+        mono: ["var(--font-jetbrains)", "monospace"],
       },
       borderRadius: {
         xs: "2px",

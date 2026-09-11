@@ -1,62 +1,244 @@
-.hero {
+/* ===== Scroll rig — sticky canvas / mobile image stack ===== */
+
+.scrollSection {
+  position: relative;
   width: 100%;
-  min-height: 100svh;
+  /* Mobile: fewer swap points, no fine-grained scrub needed. */
+  height: 300vh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--surface-dark);
+}
+
+.loader {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 96px 24px 64px;
-  background-color: var(--canvas);
+  background-color: var(--surface-dark);
 }
 
-.content {
-  max-width: 640px;
-  text-align: center;
+.loaderTrack {
+  width: 200px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
 }
 
-.heading {
+.loaderBar {
+  height: 100%;
+  background-color: var(--accent-500);
+  transition: width 120ms var(--ease-standard);
+}
+
+/* ===== Desktop: canvas + captions (hidden below 768px) ===== */
+
+.canvas {
+  display: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.scrim {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 20, 24, 0.75) 0%, rgba(0, 20, 24, 0) 45%);
+  pointer-events: none;
+}
+
+.captionLayer {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 64px 72px;
+}
+
+.caption {
+  position: absolute;
+  left: 64px;
+  right: 64px;
+  bottom: 0;
+  max-width: 720px;
   font-weight: 800;
   font-size: 32px;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.02em;
-  color: var(--ink);
+  color: var(--white);
   opacity: 0;
-  animation: rise-in 600ms var(--ease-premium) 80ms forwards;
+  transition: opacity 400ms var(--ease-standard);
 }
 
-.subline {
-  margin-top: 16px;
-  font-size: 16px;
-  line-height: 1.5;
-  color: rgba(20, 24, 28, 0.7);
+.caption:first-child {
+  opacity: 1;
+}
+
+/* ===== Mobile: static image crossfade + captions (default) ===== */
+
+.mobileStack {
+  position: absolute;
+  inset: 0;
+}
+
+.mobileImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   opacity: 0;
-  animation: rise-in 600ms var(--ease-premium) 200ms forwards;
+  transition: opacity 500ms var(--ease-standard);
 }
 
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
+.mobileImage:first-child {
+  opacity: 1;
+}
+
+.mobileScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 20, 24, 0.8) 0%, rgba(0, 20, 24, 0) 40%);
+  pointer-events: none;
+}
+
+.mobileCaptionLayer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 24px 40px;
+}
+
+.mobileCaption {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 0;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  opacity: 0;
+  transition: opacity 500ms var(--ease-standard);
+}
+
+.mobileCaption:first-child {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .scrollSection {
+    /* Desktop: full 148-frame scrub needs real room to breathe. */
+    height: 400vh;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .canvas,
+  .scrim,
+  .captionLayer {
+    display: block;
+  }
+
+  .mobileStack {
+    display: none;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .heading,
-  .subline {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
+/* ===== Closing section — static, HTML/CSS/Framer Motion only ===== */
+
+.close {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px;
+  background-color: var(--surface-dark);
+}
+
+.closeGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 640px;
+  height: 640px;
+  transform: translate(-50%, -50%);
+  background-image: radial-gradient(circle, rgba(240, 120, 57, 0.28) 0%, rgba(240, 120, 57, 0) 70%);
+  pointer-events: none;
+}
+
+.closeHeading {
+  position: relative;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  max-width: 480px;
+}
+
+.closeWordmarkPlate {
+  position: relative;
+  display: inline-flex;
+  margin-top: 28px;
+  padding: 10px 20px;
+  background-color: var(--white);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-dark);
+}
+
+.closeWordmark {
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--ink-body);
+}
+
+.closeWordmarkAccent {
+  color: var(--accent-500);
+}
+
+.closeCta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 28px;
+  margin-top: 32px;
+  background-color: var(--accent-500);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  box-shadow: var(--shadow-accent);
+  transition: background-color var(--duration-base, 200ms) var(--ease-standard);
+}
+
+.closeCta:hover {
+  background-color: var(--accent-600);
 }
 
 @media (min-width: 1024px) {
-  .heading {
-    font-size: 48px;
-  }
-  .subline {
-    font-size: 18px;
+  .closeHeading {
+    font-size: 42px;
+    max-width: 620px;
   }
 }
