@@ -4,8 +4,10 @@
   overflow: hidden;
   padding: 90px 24px;
   background-color: var(--glass-backdrop);
+  /* Opacity matched to ESC's live equivalent (0.55) so the photo reads with
+     the same vividness across the family — not a heavier BVE-specific tint. */
   background-image:
-    linear-gradient(rgba(5, 10, 17, 0.86), rgba(5, 10, 17, 0.86)),
+    linear-gradient(rgba(5, 10, 17, 0.55), rgba(5, 10, 17, 0.55)),
     url("/testimonials/testimonials-bg.png");
   background-size: cover;
   background-position: center;
