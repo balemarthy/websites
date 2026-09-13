@@ -4,6 +4,13 @@
   overflow: hidden;
   padding: 90px 24px;
   background-color: var(--surface-dark);
+  /* Solid-tint gradient over the image, not a blur — DNM's design system
+     forbids backdrop-filter/glassmorphism (see tokens.css note). */
+  background-image:
+    linear-gradient(rgba(0, 91, 106, 0.86), rgba(0, 91, 106, 0.86)),
+    url("/testimonials/testimonials-bg.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .intro {
