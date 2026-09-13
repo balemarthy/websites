@@ -5,9 +5,11 @@ once a file lands at the given path, update the one line noted and the
 placeholder disappears. No layout/component work should be needed for any
 of these.
 
-Reminder: DNM is fully faceless — no photo, headshot, or likeness of Vamsi
-anywhere on this site. Where a "person" is needed, use an illustrated
-Guru/Gowri character or an abstract/icon-based visual instead.
+Reminder: DNM is faceless with respect to Vamsi specifically — no photo,
+headshot, or likeness of Vamsi anywhere on this site. This does not mean
+no human faces at all: other people (actors, illustrated characters) are
+fine, and are exactly how the hero already tells the Guru/Gowri/Gaurav
+story — see below.
 
 ## 1. Logo (optional — currently a text wordmark)
 
@@ -19,22 +21,22 @@ launch. If Vamsi wants an actual logo mark instead of the text wordmark:
 - Swap point: `components/layout/Nav.tsx` (`Wordmark()`) and
   `components/layout/Footer.tsx`
 
-## 2. Hero visual (highest priority — most visible empty slot)
+## 2. Hero visual — done, not a placeholder
 
-- File: `public/hero/hero-visual.png` (or `.svg`)
-- Spec: roughly square, ~640×640px source, transparent background
-- Content: a Guru/Gowri illustrated character, or an abstract
-  digital-income visual (chart/network/device motif) — never a real photo
-- Swap point: `components/sections/Hero.tsx` — replace the `.visualSlot`
-  placeholder `<div>` with a `next/image` `<Image>` tag (the exact
-  replacement snippet is left as a comment right above the placeholder)
+This is no longer outstanding. `Hero.tsx` runs a real scroll-driven
+frame sequence on desktop (`public/frames/`, 148 frames) and static
+per-character images on mobile (`public/hero-mobile/`), cycling through
+three real actors playing Guru, Gowri, and Gaurav. This satisfies the
+faceless-re-Vamsi rule above (none of them are Vamsi) and needs no
+further asset work.
 
 ## 3. Testimonials (content, not images)
 
 No headshots needed — cards currently show name/role text only, no avatar.
-If real testimonials should carry a small avatar later, that's a new
-decision (illustrated avatar or initials, not a photo, to stay
-faceless-consistent) — flag it before adding.
+If real testimonials should carry a small avatar later, a real headshot
+of the testimonial-giver is fine (they're not Vamsi) provided they've
+consented to appear — illustrated avatar or initials also work if that's
+preferred instead. Flag the choice before adding.
 
 - Swap point: `components/sections/Testimonials.tsx` (`TESTIMONIALS` array)
 
