@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import Button from "@/components/ui/Button";
+import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 
 type Variant = "design" | "architecture";
 
@@ -129,8 +130,8 @@ function ProgramCard({
 export default function ProgramCards(): ReactNode {
   return (
     <section id="programs" className="scroll-mt-20 bg-esc-paper px-6 py-20 sm:px-10 lg:px-16 lg:py-28">
-      <div className="mx-auto flex max-w-[1400px] flex-col gap-8 lg:flex-row">
-        <div className="lg:flex-1">
+      <AnimatedSection className="mx-auto flex max-w-[1400px] flex-col gap-8 lg:flex-row">
+        <AnimatedItem className="lg:flex-1">
           <ProgramCard
             variant="design"
             eyebrow="Cohort One"
@@ -154,8 +155,8 @@ export default function ProgramCards(): ReactNode {
             photoAlt="Pagli, working through the Design cohort material"
             photoObjectPosition="38% 18%"
           />
-        </div>
-        <div className="lg:flex-1">
+        </AnimatedItem>
+        <AnimatedItem className="lg:flex-1">
           <ProgramCard
             variant="architecture"
             eyebrow="Cohort Two"
@@ -178,8 +179,8 @@ export default function ProgramCards(): ReactNode {
             photoAlt="Pagla, working through the Architecture cohort material"
             photoObjectPosition="48% 18%"
           />
-        </div>
-      </div>
+        </AnimatedItem>
+      </AnimatedSection>
     </section>
   );
 }

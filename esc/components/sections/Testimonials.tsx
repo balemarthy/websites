@@ -2,6 +2,7 @@
 
 import { ShuffleStack } from "./ShuffleStack";
 import styles from "./Testimonials.module.css";
+import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 
 type Testimonial = { quote: string; nameRole: string };
 
@@ -45,10 +46,12 @@ function TestimonialCard(item: Testimonial) {
 export default function Testimonials() {
   return (
     <section className={styles.section}>
-      <div className={styles.intro}>
-        <p className={`font-mono ${styles.eyebrow}`}>WHAT PEOPLE SAY</p>
-        <h2 className={`font-display ${styles.heading}`}>AFTER THE PROGRAMME</h2>
-      </div>
+      <AnimatedSection>
+        <AnimatedItem className={styles.intro}>
+          <p className={`font-mono ${styles.eyebrow}`}>WHAT PEOPLE SAY</p>
+          <h2 className={`font-display ${styles.heading}`}>AFTER THE PROGRAMME</h2>
+        </AnimatedItem>
+      </AnimatedSection>
 
       <div className={styles.stackCenter}>
         <ShuffleStack items={TESTIMONIALS} renderCard={TestimonialCard} />

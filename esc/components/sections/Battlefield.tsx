@@ -1,3 +1,5 @@
+import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
+
 const EYEBROW = "WHAT YOU'VE PROBABLY ALREADY TRIED";
 
 const INTRO =
@@ -27,8 +29,9 @@ const CLOSING_LINE =
 export default function Battlefield() {
   return (
     <section className="w-full px-6 py-24" style={{ backgroundColor: "var(--teal-800)" }}>
-      <div className="mx-auto max-w-[680px]">
-        <div className="text-center">
+      <AnimatedSection className="mx-auto max-w-[680px]">
+        <AnimatedItem>
+          <div className="text-center">
           <p
             className="font-mono text-[11px] uppercase tracking-[0.04em]"
             style={{ color: "var(--orange-400)" }}
@@ -121,7 +124,8 @@ export default function Battlefield() {
         >
           {CLOSING_LINE}
         </p>
-      </div>
+      </AnimatedItem>
+      </AnimatedSection>
     </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import { ShuffleStack } from "./ShuffleStack";
 import styles from "./ProgramStacks.module.css";
+import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 
 type StackItem = { tag: string; title: string; desc: string };
 
@@ -76,14 +77,16 @@ export default function ProgramStacks() {
     <section className={styles.section}>
       <div aria-hidden className={styles.glow} />
 
-      <div className={styles.intro}>
-        <p className={`font-mono ${styles.eyebrow}`}>HOW IT&apos;S BUILT</p>
-        <h2 className={`font-display ${styles.heading}`}>TWO LAYERS, IN ORDER</h2>
-        <p className={`font-body ${styles.subline}`}>
-          Everything ESC teaches sits under one umbrella, Embedded Fluency — two programmes, each
-          solving a different half of the same problem.
-        </p>
-      </div>
+      <AnimatedSection>
+        <AnimatedItem className={styles.intro}>
+          <p className={`font-mono ${styles.eyebrow}`}>HOW IT&apos;S BUILT</p>
+          <h2 className={`font-display ${styles.heading}`}>TWO LAYERS, IN ORDER</h2>
+          <p className={`font-body ${styles.subline}`}>
+            Everything ESC teaches sits under one umbrella, Embedded Fluency — two programmes, each
+            solving a different half of the same problem.
+          </p>
+        </AnimatedItem>
+      </AnimatedSection>
 
       <div className={styles.stacksRow}>
         <ShuffleStack items={DESIGN_ITEMS} label="EMBEDDED SOFTWARE DESIGN" renderCard={ProgramCard} />

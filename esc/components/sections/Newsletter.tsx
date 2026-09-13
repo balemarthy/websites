@@ -2,6 +2,7 @@
 
 import type { FormEvent } from "react";
 import styles from "./Newsletter.module.css";
+import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 
 export default function Newsletter() {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -12,7 +13,8 @@ export default function Newsletter() {
 
   return (
     <section className={styles.section}>
-      <div className={styles.card}>
+      <AnimatedSection>
+      <AnimatedItem className={styles.card}>
         <h2 className={`font-display ${styles.heading}`}>STAY AHEAD OF THE CURVE</h2>
         <p className={`font-body ${styles.subline}`}>
           Join the newsletter — occasional emails on embedded careers.
@@ -32,7 +34,8 @@ export default function Newsletter() {
         </form>
 
         <p className={`font-body ${styles.microcopy}`}>No spam, unsubscribe anytime.</p>
-      </div>
+      </AnimatedItem>
+      </AnimatedSection>
     </section>
   );
 }
