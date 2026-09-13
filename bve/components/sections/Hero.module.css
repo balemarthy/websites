@@ -20,6 +20,25 @@
   z-index: 1;
 }
 
+/* Legibility scrim for the headline — the canvas plays real photography that
+   swings from dark rooms to a bright projector screen right behind the text
+   column, and the headline's text-shadow alone isn't enough against that.
+   Darkens the left/text half only; fades out before the portrait on the
+   right so the portrait itself stays unaffected. Desktop only — mobile's
+   text sits below the (already-masked) backdrop image, not over it. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(5, 10, 17, 0.55) 0%,
+    rgba(5, 10, 17, 0.38) 38%,
+    rgba(5, 10, 17, 0) 60%
+  );
+}
+
 .mobileBackdrop {
   position: absolute;
   inset: 0;
@@ -147,6 +166,10 @@
   }
 
   .canvas {
+    display: none;
+  }
+
+  .scrim {
     display: none;
   }
 

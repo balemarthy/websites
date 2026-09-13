@@ -182,6 +182,7 @@ export default function Hero() {
         )}
 
         <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
+        <div className={styles.scrim} aria-hidden="true" />
         <div className={styles.mobileBackdrop} aria-hidden="true">
           {isMobile && (
             <Image
