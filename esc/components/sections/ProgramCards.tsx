@@ -52,7 +52,7 @@ function ProgramCard({
   const s = VARIANT_STYLES[variant];
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-xl shadow-esc-lg lg:flex-row">
+    <div className="flex h-full flex-col overflow-hidden rounded-xl shadow-esc-lg lg:flex-row">
       {/* Photo — full-bleed, top on mobile, left/right on desktop. The desktop column is
           narrow but very tall (matches the panel's content height), so a landscape source
           photo gets cropped hard on both axes — object-position is tuned per photo so the
