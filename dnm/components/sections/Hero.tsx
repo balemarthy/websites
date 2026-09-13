@@ -151,7 +151,13 @@ export default function Hero() {
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    // Cover-fit, centered.
+    // Cover-fit, anchored toward the top rather than dead-centered. On wide,
+    // short viewports this crops top/bottom to fill the canvas — a center
+    // anchor put subjects' heads close enough to the top to collide with
+    // the fixed nav pill in several frames across the sequence. Biasing
+    // toward 0 keeps more headroom above the subject (crops more off the
+    // bottom instead), pushing them down and away from the nav.
+    const VERTICAL_ANCHOR = 0.25;
     const imgRatio = img.naturalWidth / img.naturalHeight;
     const canvasRatio = cw / ch;
     let drawW: number;
@@ -164,7 +170,7 @@ export default function Hero() {
       drawH = cw / imgRatio;
     }
     const offX = (cw - drawW) / 2;
-    const offY = (ch - drawH) / 2;
+    const offY = (ch - drawH) * VERTICAL_ANCHOR;
 
     ctx.clearRect(0, 0, cw, ch);
     ctx.drawImage(img, offX, offY, drawW, drawH);
