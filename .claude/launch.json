@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "esc",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "esc", "run", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "bve",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "bve", "run", "dev", "--", "-p", "3001"],
+      "port": 3001
+    },
+    {
+      "name": "dnm",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "dnm", "run", "dev", "--", "-p", "3002"],
+      "port": 3002
+    }
+  ]
+}
