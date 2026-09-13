@@ -4,6 +4,11 @@
   overflow: hidden;
   padding: 90px 24px;
   background-color: var(--glass-backdrop);
+  background-image:
+    linear-gradient(rgba(5, 10, 17, 0.86), rgba(5, 10, 17, 0.86)),
+    url("/testimonials/testimonials-bg.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .intro {
