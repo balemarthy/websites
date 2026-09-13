@@ -63,20 +63,25 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 0 64px 72px;
+  padding: 0 64px;
 }
 
 .caption {
   position: absolute;
   left: 64px;
-  right: 64px;
-  bottom: 0;
+  bottom: 140px;
   max-width: 720px;
+  width: fit-content;
   font-weight: 800;
   font-size: 32px;
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--white);
+  background-color: rgba(0, 20, 24, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 20px 28px;
+  border-radius: 20px;
   opacity: 0;
   transition: opacity 400ms var(--ease-standard);
 }
@@ -119,19 +124,24 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 0 24px 40px;
+  padding: 0 24px;
 }
 
 .mobileCaption {
   position: absolute;
   left: 24px;
   right: 24px;
-  bottom: 0;
+  bottom: 80px;
   font-weight: 800;
   font-size: 22px;
   line-height: 1.2;
   letter-spacing: -0.01em;
   color: var(--white);
+  background-color: rgba(0, 20, 24, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 16px 20px;
+  border-radius: 16px;
   opacity: 0;
   transition: opacity 500ms var(--ease-standard);
 }
