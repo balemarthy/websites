@@ -76,10 +76,14 @@
   font-size: 32px;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: var(--white);
-  background-color: rgba(0, 20, 24, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  /* Teal-tinted white, not var(--white) — keeps the caption feeling part
+     of the dark-teal panel rather than a flat white layer on top. Scoped
+     to this caption only, not the shared --white token. */
+  color: #EAF6F7;
+  /* Solid fill, not a blurred glass panel — DNM's design system forbids
+     backdrop-filter/glassmorphism (see tokens.css note); BVE's equivalent
+     uses blur, DNM uses a solid dark-teal fill instead. */
+  background-color: var(--surface-dark);
   padding: 20px 28px;
   border-radius: 20px;
   opacity: 0;
@@ -136,10 +140,8 @@
   font-size: 22px;
   line-height: 1.2;
   letter-spacing: -0.01em;
-  color: var(--white);
-  background-color: rgba(0, 20, 24, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  color: #EAF6F7;
+  background-color: var(--surface-dark);
   padding: 16px 20px;
   border-radius: 16px;
   opacity: 0;
