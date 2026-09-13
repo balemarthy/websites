@@ -122,7 +122,9 @@
   top: 0;
   max-width: 18ch;
   margin: 0;
-  color: #FFFFFF;
+  /* Navy-tinted white, not clinical #FFFFFF — keeps the headline feeling
+     part of the navy hero rather than a flat white layer dropped on top. */
+  color: #EDF1FA;
   text-shadow: 0 2px 20px rgba(5, 10, 17, 0.45);
   text-transform: uppercase;
   letter-spacing: -0.02em;
@@ -209,7 +211,7 @@
     bottom: auto;
     max-width: none;
     text-align: center;
-    color: #FFFFFF;
+    color: #EDF1FA;
     text-shadow: 0 2px 16px rgba(5, 10, 17, 0.55);
     transform: translateY(10px);
     transition-duration: var(--duration-fast, 120ms);
