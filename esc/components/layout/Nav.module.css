@@ -34,19 +34,80 @@
   border: none;
   white-space: nowrap;
   text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
   transition:
     background-color 200ms var(--ease-premium),
     color 200ms var(--ease-premium);
 }
 
-a.navItem:hover {
+a.navItem:hover,
+button.navItem:hover {
   background-color: rgba(0, 114, 132, 0.06);
 }
 
 .navItemActive,
-a.navItemActive:hover {
+a.navItemActive:hover,
+button.navItemActive:hover {
   background-color: var(--orange-500);
   color: var(--paper);
+}
+
+/* ===== Desktop dropdowns — ELEVATED-SOLID (--teal-800 fill, --shadow-glass,
+   NO backdrop-blur), per the governance note in styles/tokens.css: "floating
+   overlay panels sitting over light content — nav dropdowns." Same visual
+   language as the mobile panel below. ===== */
+
+.dropdownWrap {
+  position: relative;
+}
+
+.desktopDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  min-width: 260px;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: var(--teal-800);
+  padding: 12px;
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(251, 247, 241, 0.08);
+  box-shadow: var(--shadow-glass);
+  transition:
+    opacity 200ms var(--ease-premium),
+    transform 200ms var(--ease-premium);
+}
+
+.desktopDropdownOpen {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.desktopDropdownItem {
+  display: block;
+  padding: 10px 12px;
+  border-radius: var(--radius-panel);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--paper);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.desktopDropdownItem:hover {
+  background-color: rgba(251, 247, 241, 0.08);
+}
+
+.desktopDropdownItemActive,
+a.desktopDropdownItemActive:hover {
+  background-color: var(--orange-500);
+  color: var(--teal-800);
 }
 
 /* ===== Mobile hamburger + compact panel (mobile only) ===== */
@@ -141,23 +202,52 @@ a.navItemActive:hover {
 
 .mobilePanelItem {
   display: block;
+  width: 100%;
   padding: 10px 12px;
   border-radius: var(--radius-panel);
   font-size: 15px;
   font-weight: 600;
   color: var(--paper);
   text-decoration: none;
+  text-align: left;
   white-space: nowrap;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
-a.mobilePanelItem:hover {
+a.mobilePanelItem:hover,
+button.mobilePanelItem:hover {
   background-color: rgba(251, 247, 241, 0.08);
 }
 
 .mobilePanelItemActive,
-a.mobilePanelItemActive:hover {
+a.mobilePanelItemActive:hover,
+button.mobilePanelItemActive:hover {
   background-color: var(--orange-500);
   color: var(--teal-800);
+}
+
+/* In-panel accordion for The Program / Weekend Sessions — no flyout room at
+   mobile widths, so sub-links expand in place instead. */
+.mobileAccordion {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 250ms var(--ease-premium);
+}
+
+.mobileAccordionOpen {
+  max-height: 320px;
+}
+
+.mobilePanelSubItem {
+  padding-left: 24px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
 @media (min-width: 1024px) {
