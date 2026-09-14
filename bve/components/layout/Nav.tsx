@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import styles from "./Nav.module.css";
 
@@ -33,9 +34,9 @@ export default function Nav() {
       <nav className={`font-body ${styles.pill}`} aria-label="Primary">
         <div className={styles.desktopItems}>
           {LINKS.map((link) => (
-            <a key={link.href} href={link.href} className={styles.navItem}>
+            <Link key={link.href} href={link.href} className={styles.navItem}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
       </nav>
@@ -58,14 +59,14 @@ export default function Nav() {
 
         <div className={`font-body ${styles.mobilePanel} ${open ? styles.mobilePanelOpen : ""}`}>
           {LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className={styles.mobilePanelItem}
               onClick={() => setOpen(false)}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
