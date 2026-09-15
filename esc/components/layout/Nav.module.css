@@ -53,21 +53,20 @@
     box-shadow 250ms var(--ease-premium);
 }
 
-/* GLASS treatment (per styles/tokens.css governance — reserved for full-bleed
-   dark sections) while the hero's dark photo is behind the pill: translucent
-   Paper-wash + backdrop blur instead of the solid Paper fill, so the photo
-   reads through instead of being covered by an opaque bar. Nav item text
-   switches to Paper since --teal-500 has no contrast against a blurred photo. */
+/* Fully transparent — no fill, no blur, no shadow — while the hero's dark
+   photo is behind the pill: just the nav items floating directly over the
+   photo (which already carries Hero.tsx's own legibility scrim). No blur/
+   wash means no soft shadow halo bleeding down toward the headline below.
+   Nav item text switches to Paper since --teal-500 has no contrast against
+   a photo, with a text-shadow standing in for the dropped background. */
 .pillGlass {
-  background-color: rgba(251, 247, 241, 0.14);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: var(--shadow-glass);
-  border: 1px solid rgba(251, 247, 241, 0.16);
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .pillGlass .navItem {
   color: var(--paper);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
 }
 
 .pillGlass a.navItem:hover,

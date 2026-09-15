@@ -147,7 +147,7 @@ export default function HeroTextTiming({ children }: { children: ReactNode }) {
       {/* Headline/subtext/CTA/trust-line — opacity driven by the same scroll progress */}
       <div
         ref={contentRef}
-        className="absolute inset-0 z-10 flex items-start justify-center px-10 pt-[132px] lg:px-16"
+        className="absolute inset-0 z-10 flex items-start justify-center px-10 pt-[160px] lg:px-16"
         style={{ opacity: LOW_OPACITY }}
       >
         {children}

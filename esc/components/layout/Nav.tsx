@@ -55,13 +55,14 @@ export default function Nav() {
     setMobileGroup(null);
   }, [pathname]);
 
-  // Desktop pill goes glass (translucent + blurred) while the dark hero photo
-  // is behind it, and solid Paper everywhere else — GLASS treatment is
-  // reserved for full-bleed dark sections per styles/tokens.css's governance
-  // note, so it can't stay glass once paper-background content (rest of the
-  // homepage, or any child page) scrolls underneath it. The hero's pinned
-  // canvas fills the viewport for the entire height of its scroll track, so
-  // "hero track still intersecting the viewport" is exactly the same window.
+  // Desktop pill goes fully transparent (paper text floating directly over
+  // the photo, no fill/blur/shadow) while the dark hero photo is behind it,
+  // and solid Paper everywhere else — it can't stay transparent once
+  // paper-background content (rest of the homepage, or any child page)
+  // scrolls underneath it, there'd be nothing to read the text against. The
+  // hero's pinned canvas fills the viewport for the entire height of its
+  // scroll track, so "hero track still intersecting the viewport" is exactly
+  // the same window as "dark photo is behind the pill."
   useEffect(() => {
     if (!isHome) {
       setOverHero(false);
