@@ -13,7 +13,10 @@ const STATEMENTS = [
 export default function EmbeddedSoftwareArchitecturePage() {
   return (
     <main className="flex min-h-screen flex-col" style={{ backgroundColor: "var(--paper)" }}>
-      <DoubtCloudHero statements={STATEMENTS} />
+      <DoubtCloudHero
+        statements={STATEMENTS}
+        backgroundImage="/images/hero/architecture-hero-bg.jpg"
+      />
       <Footer />
     </main>
   );

@@ -1,18 +1,19 @@
 .section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: clamp(560px, 82vh, 820px);
   min-height: 560px;
   overflow: hidden;
   isolation: isolate;
-  /* Two background-image layers: if the JPG 404s, the browser just leaves that
-     layer transparent there and the gradient underneath still shows — no JS
-     fallback needed, and a missing asset can never break the build. */
+  /* Two background-image layers: if the custom property or its image fails to
+     load, the browser just leaves that layer transparent there and the
+     gradient underneath still shows — no JS fallback needed, and a missing
+     asset can never break the build. */
   background-image:
-    url("/images/hero/doubt-cloud-bg.jpg"),
+    var(--hero-bg-image),
     linear-gradient(135deg, var(--teal-600) 0%, var(--teal-800) 100%);
   background-size: cover;
-  background-position: center;
+  background-position: center 30%;
 }
 
 .canvasWrap {
@@ -68,7 +69,7 @@
   max-width: 46vw;
   padding: 6px 14px;
   border-radius: var(--radius-panel, 12px);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--paper);
   text-align: center;
@@ -122,6 +123,6 @@
 
 @media (min-width: 640px) {
   .statement {
-    font-size: 16px;
+    font-size: 19px;
   }
 }

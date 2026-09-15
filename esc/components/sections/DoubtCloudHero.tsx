@@ -16,12 +16,14 @@ const MODEL_HEIGHT = 3;
 const RING_RADIUS = 2.15;
 const RING_Y = MODEL_HEIGHT * 0.62;
 const CAMERA_DISTANCE = 6.6;
-const CAMERA_POSITION: [number, number, number] = [0, RING_Y - 0.15, CAMERA_DISTANCE];
-const CAMERA_TARGET: [number, number, number] = [0, RING_Y - 0.15, 0];
+const CAMERA_HEIGHT = RING_Y - 0.6;
+const CAMERA_POSITION: [number, number, number] = [0, CAMERA_HEIGHT, CAMERA_DISTANCE];
+const CAMERA_TARGET: [number, number, number] = [0, CAMERA_HEIGHT, 0];
 
 type DoubtCloudHeroProps = {
   statements: string[];
   modelPath?: string;
+  backgroundImage?: string;
 };
 
 function Model({ path }: { path: string }) {
@@ -114,7 +116,7 @@ function StatementRing({
             className={`font-body ${styles.statement} ${
               i === activeIndex ? styles.statementActive : styles.statementInactive
             }`}
-            style={{ "--statement-scale": i === activeIndex ? 1.1 : 0.92 } as CSSProperties}
+            style={{ "--statement-scale": i === activeIndex ? 1.3 : 0.7 } as CSSProperties}
           >
             {text}
           </div>
@@ -127,12 +129,17 @@ function StatementRing({
 export default function DoubtCloudHero({
   statements,
   modelPath = "/models/pagla-pagli-hero.glb",
+  backgroundImage = "/images/hero/doubt-cloud-bg.jpg",
 }: DoubtCloudHeroProps) {
   const [azimuthalAngle, setAzimuthalAngle] = useState(0);
   const [hasInteracted, setHasInteracted] = useState(false);
 
   return (
-    <section className={styles.section} aria-label="Program hero">
+    <section
+      className={styles.section}
+      aria-label="Program hero"
+      style={{ "--hero-bg-image": `url(${backgroundImage})` } as CSSProperties}
+    >
       <div className={styles.canvasWrap}>
         <Canvas camera={{ position: CAMERA_POSITION, fov: 42 }} gl={{ alpha: true }}>
           <ambientLight intensity={0.7} />
