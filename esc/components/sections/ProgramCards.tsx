@@ -14,6 +14,7 @@ type ProgramCardProps = {
   pathSteps: string[];
   forYouIf: string[];
   ctaLabel: string;
+  ctaHref: string;
   photoSrc: string;
   photoAlt: string;
   photoObjectPosition: string;
@@ -46,6 +47,7 @@ function ProgramCard({
   pathSteps,
   forYouIf,
   ctaLabel,
+  ctaHref,
   photoSrc,
   photoAlt,
   photoObjectPosition,
@@ -117,6 +119,7 @@ function ProgramCard({
 
         <Button
           variant="primary"
+          href={ctaHref}
           className="mt-2 self-start"
           style={{ boxShadow: "0 0 20px 4px rgba(240,120,57,.3), 0 4px 12px rgba(240,120,57,.3)" }}
         >
@@ -151,6 +154,7 @@ export default function ProgramCards(): ReactNode {
               "You're willing to sit with material that doesn't resolve in ten minutes.",
             ]}
             ctaLabel="Start with Design"
+            ctaHref="/programs/embedded-software-design"
             photoSrc="/images/programs/design/pagli-design.png"
             photoAlt="Pagli, working through the Design cohort material"
             photoObjectPosition="38% 18%"
@@ -175,6 +179,7 @@ export default function ProgramCards(): ReactNode {
               "You want a portfolio project you can defend in an interview, not just show.",
             ]}
             ctaLabel="Start with Architecture"
+            ctaHref="/programs/embedded-software-architecture"
             photoSrc="/images/programs/architecture/pagla-architecture.png"
             photoAlt="Pagla, working through the Architecture cohort material"
             photoObjectPosition="48% 18%"

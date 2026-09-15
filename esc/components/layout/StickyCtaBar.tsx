@@ -6,7 +6,7 @@ export default function StickyCtaBar() {
       <div className="mx-auto flex h-full max-w-[1400px] items-center justify-center px-0 sm:justify-end sm:px-6 lg:px-16">
         <Button
           variant="primary"
-          href="#programs"
+          href="/#programs"
           className="w-full text-esc-paper sm:w-auto"
         >
           Explore Programs
