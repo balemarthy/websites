@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Linkedin, Youtube } from "lucide-react";
 import styles from "./Footer.module.css";
 
@@ -15,7 +16,9 @@ const SOCIAL_LINKS: Array<{ label: string; href: string; Icon?: typeof Linkedin 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <p className={`font-display ${styles.wordmark}`}>Embedded System Coach</p>
+      <Link href="/" className={`font-display ${styles.wordmark}`}>
+        Embedded System Coach
+      </Link>
 
       <div className={styles.socialRow}>
         {SOCIAL_LINKS.map(({ label, href, Icon }) => (

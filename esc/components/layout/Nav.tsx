@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Nav.module.css";
@@ -73,6 +74,21 @@ export default function Nav() {
 
   return (
     <>
+      {/* Home logo link — fixed top-left, visible at every breakpoint, on every
+          page (Nav renders globally via app/layout.tsx). This is the fix for
+          "no way back to the homepage from a child page": the wordmark itself
+          is the backlink. */}
+      <Link href="/" className={styles.logoLink} aria-label="Embedded System Coach — Home">
+        <Image
+          src="/images/logo/esc-logo-light.png"
+          alt="Embedded System Coach"
+          width={160}
+          height={44}
+          priority
+          className={styles.logoImage}
+        />
+      </Link>
+
       {/* Desktop: floating Paper pill. "The Program" and "Weekend Sessions"
           are click-toggled dropdowns — ELEVATED-SOLID panels (--teal-800
           fill, --shadow-glass, no backdrop-blur) per the governance note in
