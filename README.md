@@ -76,6 +76,10 @@ This is the honest answer to "why wouldn't a fresh clone already be at the same 
 
 Everything else — every color value, every component, every image — *is* checked into git specifically so that (1) and (2) not transferring doesn't actually block continuing the work. The code and assets are self-contained; only the "why we chose this" reasoning lives in those two places.
 
+## Cinematic hero build workflows
+
+See [`cinematic-hero-workflow.md`](cinematic-hero-workflow.md) at repo root — the technical reference for building hero sections (ambient video loop, scroll-driven frame sequence, and an additive mouse-parallax layer). Read it before starting any new hero build or reworking an existing one.
+
 ## Instructions for an agent (Claude Code / Antigravity) opening this folder fresh
 
 If you're an AI agent that's just been pointed at this folder path with no other context, do this before making any changes:
