@@ -1,19 +1,19 @@
 import Footer from "@/components/layout/Footer";
+import DoubtCloudHero from "@/components/sections/DoubtCloudHero";
+
+const STATEMENTS = [
+  "I can make it work. I just can't explain why.",
+  "A tutorial said configure this register. So I did.",
+  "It works — until someone asks me to change it.",
+  "Am I actually good at this?",
+  "Is embedded even the right field for me?",
+  "Years of experience. Still not fluent.",
+];
 
 export default function EmbeddedSoftwareDesignPage() {
   return (
     <main className="flex min-h-screen flex-col" style={{ backgroundColor: "var(--paper)" }}>
-      <div className="flex flex-1 flex-col items-center justify-center px-6 py-32 text-center">
-        <h1
-          className="font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl"
-          style={{ color: "var(--teal-800)" }}
-        >
-          EMBEDDED SOFTWARE DESIGN
-        </h1>
-        <p className="font-body mt-4 text-base" style={{ color: "var(--teal-600)" }}>
-          Content in progress. Check back soon.
-        </p>
-      </div>
+      <DoubtCloudHero statements={STATEMENTS} />
       <Footer />
     </main>
   );

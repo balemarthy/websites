@@ -1,19 +1,19 @@
 import Footer from "@/components/layout/Footer";
+import DoubtCloudHero from "@/components/sections/DoubtCloudHero";
+
+const STATEMENTS = [
+  "I shipped it. Could I defend every decision in it?",
+  "Most of it was instinct. Not reasoning.",
+  "A folder of files nobody can explain six months later.",
+  "I did a project — mostly by copying and guessing.",
+  "Real project experience isn't the same as real fundamentals.",
+  "I know it works. I don't know why it's designed this way.",
+];
 
 export default function EmbeddedSoftwareArchitecturePage() {
   return (
     <main className="flex min-h-screen flex-col" style={{ backgroundColor: "var(--paper)" }}>
-      <div className="flex flex-1 flex-col items-center justify-center px-6 py-32 text-center">
-        <h1
-          className="font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl"
-          style={{ color: "var(--teal-800)" }}
-        >
-          EMBEDDED SOFTWARE ARCHITECTURE
-        </h1>
-        <p className="font-body mt-4 text-base" style={{ color: "var(--teal-600)" }}>
-          Content in progress. Check back soon.
-        </p>
-      </div>
+      <DoubtCloudHero statements={STATEMENTS} />
       <Footer />
     </main>
   );

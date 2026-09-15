@@ -1,0 +1,127 @@
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  /* Two background-image layers: if the JPG 404s, the browser just leaves that
+     layer transparent there and the gradient underneath still shows — no JS
+     fallback needed, and a missing asset can never break the build. */
+  background-image:
+    url("/images/hero/doubt-cloud-bg.jpg"),
+    linear-gradient(135deg, var(--teal-600) 0%, var(--teal-800) 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+.canvasWrap {
+  position: absolute;
+  inset: 0;
+}
+
+/* ===== Loading fallback (shown while the ~13MB GLB streams in) ===== */
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-family: inherit;
+}
+
+.loaderPulse {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--orange-500);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.loaderLabel {
+  color: var(--paper);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(0.7);
+    opacity: 0.5;
+    box-shadow: 0 0 0 0 rgba(240, 120, 57, 0.5);
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 14px rgba(240, 120, 57, 0);
+  }
+}
+
+/* ===== Floating statement text (rendered via drei <Html>, one per angle) ===== */
+
+.statement {
+  pointer-events: none;
+  width: max-content;
+  max-width: 46vw;
+  padding: 6px 14px;
+  border-radius: var(--radius-panel, 12px);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--paper);
+  text-align: center;
+  white-space: normal;
+  transition:
+    opacity 250ms ease,
+    transform 250ms ease,
+    text-shadow 250ms ease;
+  /* drei's <Html center> already centers this element's own wrapper on the
+     anchor point — this transform only handles the active/inactive scale
+     bump, not positioning (adding a translate(-50%,-50%) here would double
+     up with that outer centering and drift the text off its anchor). */
+  transform: scale(var(--statement-scale, 1));
+  transform-origin: center;
+}
+
+.statementInactive {
+  opacity: 0.4;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.statementActive {
+  opacity: 1;
+  font-weight: 700;
+  text-shadow:
+    0 0 18px rgba(240, 120, 57, 0.85),
+    0 0 36px rgba(240, 120, 57, 0.5),
+    0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== "Drag to explore" hint ===== */
+
+.dragHint {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  z-index: 5;
+  color: var(--paper);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  pointer-events: none;
+  transition: opacity 500ms ease;
+}
+
+.dragHintHidden {
+  opacity: 0;
+}
+
+@media (min-width: 640px) {
+  .statement {
+    font-size: 16px;
+  }
+}
