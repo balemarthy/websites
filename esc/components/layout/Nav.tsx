@@ -38,6 +38,7 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [desktopMenu, setDesktopMenu] = useState<NavGroupKey | null>(null);
   const [mobileGroup, setMobileGroup] = useState<NavGroupKey | null>(null);
+  const [overHero, setOverHero] = useState(false);
 
   const isHome = pathname === "/";
   const isDownloadsActive = pathname === "/downloads";
@@ -53,6 +54,30 @@ export default function Nav() {
     setMobileOpen(false);
     setMobileGroup(null);
   }, [pathname]);
+
+  // Desktop pill goes glass (translucent + blurred) while the dark hero photo
+  // is behind it, and solid Paper everywhere else — GLASS treatment is
+  // reserved for full-bleed dark sections per styles/tokens.css's governance
+  // note, so it can't stay glass once paper-background content (rest of the
+  // homepage, or any child page) scrolls underneath it. The hero's pinned
+  // canvas fills the viewport for the entire height of its scroll track, so
+  // "hero track still intersecting the viewport" is exactly the same window.
+  useEffect(() => {
+    if (!isHome) {
+      setOverHero(false);
+      return;
+    }
+    const track = document.querySelector("[data-hero-scroll-track]");
+    if (!track) {
+      setOverHero(false);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => setOverHero(entry.isIntersecting), {
+      threshold: 0,
+    });
+    observer.observe(track);
+    return () => observer.disconnect();
+  }, [isHome]);
 
   // Close the mobile panel and any open desktop dropdown on outside click / Escape.
   useEffect(() => {
@@ -115,7 +140,11 @@ export default function Nav() {
           fill, --shadow-glass, no backdrop-blur) per the governance note in
           styles/tokens.css, the same treatment the mobile panel already
           uses below. */}
-      <nav ref={navRef} className={`font-body ${styles.pill}`} aria-label="Primary">
+      <nav
+        ref={navRef}
+        className={`font-body ${styles.pill} ${overHero ? styles.pillGlass : ""}`}
+        aria-label="Primary"
+      >
         <div className={styles.desktopItems}>
           {NAV_GROUPS.map((group) => {
             const isGroupActive = group.links.some((link) => pathname === link.href);
