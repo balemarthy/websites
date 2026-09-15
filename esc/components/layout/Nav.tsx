@@ -29,6 +29,7 @@ export default function Nav() {
   const [desktopMenu, setDesktopMenu] = useState<DesktopMenu>(null);
   const [mobileGroup, setMobileGroup] = useState<MobileGroup>(null);
 
+  const isHome = pathname === "/";
   const isDownloadsActive = pathname === "/downloads";
   const isAboutActive = pathname === "/about";
   const isBlogActive = pathname === "/blog";
@@ -77,13 +78,15 @@ export default function Nav() {
       {/* Home logo link — fixed top-left, visible at every breakpoint, on every
           page (Nav renders globally via app/layout.tsx). This is the fix for
           "no way back to the homepage from a child page": the wordmark itself
-          is the backlink. */}
+          is the backlink. Homepage keeps the light (cream-on-transparent)
+          mark since its hero sits on a dark photo; every child page has a
+          solid --paper background, so it gets the navy mark instead. */}
       <Link href="/" className={styles.logoLink} aria-label="Embedded System Coach — Home">
         <Image
-          src="/images/logo/esc-logo-light.png"
+          src={isHome ? "/images/logo/esc-logo-navbar-light.png" : "/images/logo/esc-logo-navbar.png"}
           alt="Embedded System Coach"
-          width={160}
-          height={44}
+          width={224}
+          height={80}
           priority
           className={styles.logoImage}
         />
