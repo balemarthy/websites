@@ -38,13 +38,13 @@
 .pill {
   display: none;
   position: fixed;
-  top: 24px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 60;
   align-items: center;
-  height: 64px;
-  padding: 8px 24px;
+  height: 52px;
+  padding: 6px 18px;
   background-color: var(--paper);
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-flat);
@@ -53,16 +53,16 @@
 .desktopItems {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 }
 
 .navItem {
   display: inline-flex;
   align-items: center;
-  height: 40px;
-  padding: 0 18px;
+  height: 36px;
+  padding: 0 15px;
   border-radius: var(--radius-pill);
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--teal-500);
   background: transparent;
