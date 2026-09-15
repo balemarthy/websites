@@ -6,19 +6,29 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Nav.module.css";
 
-const PROGRAM_LINKS = [
-  { label: "Embedded Software Design", href: "/programs/embedded-software-design" },
-  { label: "Embedded Software Architecture", href: "/programs/embedded-software-architecture" },
+// Desktop dropdowns and mobile accordions render the same two groups —
+// drive both from one config instead of two near-identical JSX blocks each.
+const NAV_GROUPS = [
+  {
+    key: "program" as const,
+    label: "The Program",
+    links: [
+      { label: "Embedded Software Design", href: "/programs/embedded-software-design" },
+      { label: "Embedded Software Architecture", href: "/programs/embedded-software-architecture" },
+    ],
+  },
+  {
+    key: "sessions" as const,
+    label: "Weekend Sessions",
+    links: [
+      { label: "Bytes to Sockets", href: "/weekend-sessions/bytes-to-sockets" },
+      { label: "BLE In Weekend", href: "/weekend-sessions/ble-in-weekend" },
+      { label: "LM75 Driver Architecture", href: "/weekend-sessions/lm75-driver-architecture" },
+    ],
+  },
 ];
 
-const SESSION_LINKS = [
-  { label: "Bytes to Sockets", href: "/weekend-sessions/bytes-to-sockets" },
-  { label: "BLE In Weekend", href: "/weekend-sessions/ble-in-weekend" },
-  { label: "LM75 Driver Architecture", href: "/weekend-sessions/lm75-driver-architecture" },
-];
-
-type DesktopMenu = "program" | "sessions" | null;
-type MobileGroup = "program" | "sessions" | null;
+type NavGroupKey = (typeof NAV_GROUPS)[number]["key"];
 
 export default function Nav() {
   const pathname = usePathname();
@@ -26,15 +36,23 @@ export default function Nav() {
   const mobileWrapRef = useRef<HTMLDivElement>(null);
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [desktopMenu, setDesktopMenu] = useState<DesktopMenu>(null);
-  const [mobileGroup, setMobileGroup] = useState<MobileGroup>(null);
+  const [desktopMenu, setDesktopMenu] = useState<NavGroupKey | null>(null);
+  const [mobileGroup, setMobileGroup] = useState<NavGroupKey | null>(null);
 
   const isHome = pathname === "/";
   const isDownloadsActive = pathname === "/downloads";
   const isAboutActive = pathname === "/about";
   const isBlogActive = pathname === "/blog";
-  const isProgramActive = PROGRAM_LINKS.some((link) => pathname === link.href);
-  const isSessionsActive = SESSION_LINKS.some((link) => pathname === link.href);
+
+  // Close any open dropdown/panel on route change — a same-nav link click
+  // (Downloads, About Me, Blog, or a dropdown item itself) fires inside
+  // navRef, so the outside-click handler below never sees it, and browser
+  // back/forward don't fire a click at all.
+  useEffect(() => {
+    setDesktopMenu(null);
+    setMobileOpen(false);
+    setMobileGroup(null);
+  }, [pathname]);
 
   // Close the mobile panel and any open desktop dropdown on outside click / Escape.
   useEffect(() => {
@@ -65,11 +83,11 @@ export default function Nav() {
     setMobileGroup(null);
   }
 
-  function toggleDesktopMenu(menu: Exclude<DesktopMenu, null>) {
+  function toggleDesktopMenu(menu: NavGroupKey) {
     setDesktopMenu((current) => (current === menu ? null : menu));
   }
 
-  function toggleMobileGroup(group: Exclude<MobileGroup, null>) {
+  function toggleMobileGroup(group: NavGroupKey) {
     setMobileGroup((current) => (current === group ? null : group));
   }
 
@@ -99,65 +117,40 @@ export default function Nav() {
           uses below. */}
       <nav ref={navRef} className={`font-body ${styles.pill}`} aria-label="Primary">
         <div className={styles.desktopItems}>
-          <div className={styles.dropdownWrap}>
-            <button
-              type="button"
-              aria-haspopup="true"
-              aria-expanded={desktopMenu === "program"}
-              onClick={() => toggleDesktopMenu("program")}
-              className={`${styles.navItem} ${isProgramActive ? styles.navItemActive : ""}`}
-            >
-              The Program
-            </button>
-            <div
-              className={`${styles.desktopDropdown} ${
-                desktopMenu === "program" ? styles.desktopDropdownOpen : ""
-              }`}
-            >
-              {PROGRAM_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setDesktopMenu(null)}
-                  className={`${styles.desktopDropdownItem} ${
-                    pathname === link.href ? styles.desktopDropdownItemActive : ""
+          {NAV_GROUPS.map((group) => {
+            const isGroupActive = group.links.some((link) => pathname === link.href);
+            return (
+              <div key={group.key} className={styles.dropdownWrap}>
+                <button
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded={desktopMenu === group.key}
+                  onClick={() => toggleDesktopMenu(group.key)}
+                  className={`${styles.navItem} ${isGroupActive ? styles.navItemActive : ""}`}
+                >
+                  {group.label}
+                </button>
+                <div
+                  className={`${styles.desktopDropdown} ${
+                    desktopMenu === group.key ? styles.desktopDropdownOpen : ""
                   }`}
                 >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.dropdownWrap}>
-            <button
-              type="button"
-              aria-haspopup="true"
-              aria-expanded={desktopMenu === "sessions"}
-              onClick={() => toggleDesktopMenu("sessions")}
-              className={`${styles.navItem} ${isSessionsActive ? styles.navItemActive : ""}`}
-            >
-              Weekend Sessions
-            </button>
-            <div
-              className={`${styles.desktopDropdown} ${
-                desktopMenu === "sessions" ? styles.desktopDropdownOpen : ""
-              }`}
-            >
-              {SESSION_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setDesktopMenu(null)}
-                  className={`${styles.desktopDropdownItem} ${
-                    pathname === link.href ? styles.desktopDropdownItemActive : ""
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
+                  {group.links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setDesktopMenu(null)}
+                      className={`${styles.desktopDropdownItem} ${
+                        pathname === link.href ? styles.desktopDropdownItemActive : ""
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
 
           <Link
             href="/downloads"
@@ -195,63 +188,41 @@ export default function Nav() {
         </button>
 
         <div className={`font-body ${styles.mobilePanel} ${mobileOpen ? styles.mobilePanelOpen : ""}`}>
-          <button
-            type="button"
-            aria-expanded={mobileGroup === "program"}
-            onClick={() => toggleMobileGroup("program")}
-            className={`${styles.mobilePanelItem} ${styles.mobilePanelGroupTrigger} ${
-              isProgramActive ? styles.mobilePanelItemActive : ""
-            }`}
-          >
-            The Program
-          </button>
-          <div
-            className={`${styles.mobileAccordion} ${
-              mobileGroup === "program" ? styles.mobileAccordionOpen : ""
-            }`}
-          >
-            {PROGRAM_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={closeMobileMenu}
-                className={`${styles.mobilePanelItem} ${styles.mobilePanelSubItem} ${
-                  pathname === link.href ? styles.mobilePanelItemActive : ""
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          <button
-            type="button"
-            aria-expanded={mobileGroup === "sessions"}
-            onClick={() => toggleMobileGroup("sessions")}
-            className={`${styles.mobilePanelItem} ${styles.mobilePanelGroupTrigger} ${
-              isSessionsActive ? styles.mobilePanelItemActive : ""
-            }`}
-          >
-            Weekend Sessions
-          </button>
-          <div
-            className={`${styles.mobileAccordion} ${
-              mobileGroup === "sessions" ? styles.mobileAccordionOpen : ""
-            }`}
-          >
-            {SESSION_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={closeMobileMenu}
-                className={`${styles.mobilePanelItem} ${styles.mobilePanelSubItem} ${
-                  pathname === link.href ? styles.mobilePanelItemActive : ""
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          {NAV_GROUPS.map((group) => {
+            const isGroupActive = group.links.some((link) => pathname === link.href);
+            return (
+              <div key={group.key}>
+                <button
+                  type="button"
+                  aria-expanded={mobileGroup === group.key}
+                  onClick={() => toggleMobileGroup(group.key)}
+                  className={`${styles.mobilePanelItem} ${styles.mobilePanelGroupTrigger} ${
+                    isGroupActive ? styles.mobilePanelItemActive : ""
+                  }`}
+                >
+                  {group.label}
+                </button>
+                <div
+                  className={`${styles.mobileAccordion} ${
+                    mobileGroup === group.key ? styles.mobileAccordionOpen : ""
+                  }`}
+                >
+                  {group.links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      onClick={closeMobileMenu}
+                      className={`${styles.mobilePanelItem} ${styles.mobilePanelSubItem} ${
+                        pathname === link.href ? styles.mobilePanelItemActive : ""
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
 
           <Link
             href="/downloads"
