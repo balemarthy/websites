@@ -122,7 +122,7 @@ export default function EmbeddedSoftwareArchitecturePage() {
       <ScrollStatement phrases={SCROLL_PHRASES} />
 
       {/* 3.1 — What's In It For You */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <AnimatedSection className="mx-auto flex max-w-[760px] flex-col gap-10">
           <AnimatedItem className="flex flex-col gap-5">
             <p className="font-body text-base leading-relaxed text-esc-dark-teal sm:text-lg">
@@ -154,8 +154,19 @@ export default function EmbeddedSoftwareArchitecturePage() {
         </AnimatedSection>
       </section>
 
+      {/* Early CTA — for readers already sold by the hook + promise */}
+      <section className="bg-esc-paper px-6 py-8 sm:px-10 lg:px-16">
+        <AnimatedSection className="mx-auto max-w-[560px] text-center">
+          <AnimatedItem>
+            <Button variant="outline" href="/apply/embedded-software-architecture">
+              Ready Now? Start with Architecture →
+            </Button>
+          </AnimatedItem>
+        </AnimatedSection>
+      </section>
+
       {/* 3.2 — Format */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <SectionHeading
           eyebrow="Format"
           heading="Fifteen Days. Five Sessions. One Real Project."
@@ -173,13 +184,13 @@ export default function EmbeddedSoftwareArchitecturePage() {
       </section>
 
       {/* 3.3 — The Roadmap: Five Sessions, in Order */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <SectionHeading eyebrow="In Order" heading="The Roadmap: Five Sessions" />
         <RoadmapList steps={ROADMAP_STEPS} />
       </section>
 
       {/* 3.4 — Key Philosophy */}
-      <section className="bg-esc-paper px-6 py-8 sm:px-10 lg:px-16">
+      <section className="bg-esc-paper px-6 py-4 sm:px-10 lg:px-16">
         <AnimatedSection className="mx-auto max-w-[760px]">
           <Callout eyebrow="Key Philosophy">
             Design before coding. Continuous feedback through test-driven development. Apply this
@@ -190,12 +201,23 @@ export default function EmbeddedSoftwareArchitecturePage() {
       </section>
 
       {/* 3.5 — Who This Is Not For / For You If */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <ForYouList notForYou={notForYou} forYou={FOR_YOU} />
+
+        <AnimatedItem className="mt-8 flex justify-center">
+          <Button variant="outline" href="/apply/embedded-software-architecture">
+            Ready? Start with Architecture →
+          </Button>
+        </AnimatedItem>
+      </section>
+
+      {/* Testimonials */}
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
+        <ProgramTestimonials testimonials={TESTIMONIALS} />
       </section>
 
       {/* 3.6 — No guarantee callout */}
-      <section className="bg-esc-paper px-6 py-8 sm:px-10 lg:px-16">
+      <section className="bg-esc-paper px-6 py-4 sm:px-10 lg:px-16">
         <AnimatedSection className="mx-auto max-w-[760px]">
           <Callout>
             No job guarantee. Nobody honestly can promise one. What you get is the habit of designing
@@ -206,7 +228,7 @@ export default function EmbeddedSoftwareArchitecturePage() {
       </section>
 
       {/* 3.7 — Format / Price / CTA */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <AnimatedSection className="mx-auto flex max-w-[560px] flex-col items-center gap-4 text-center">
           <AnimatedItem>
             <p className="font-body text-base text-esc-dark-teal">
@@ -223,15 +245,15 @@ export default function EmbeddedSoftwareArchitecturePage() {
               className="mt-2"
               style={{ boxShadow: "0 0 20px 4px rgba(240,120,57,.3), 0 4px 12px rgba(240,120,57,.3)" }}
             >
-              Start with Architecture
+              Start Defending Your Decisions
             </Button>
           </AnimatedItem>
+          <AnimatedItem>
+            <p className="font-body text-sm text-esc-teal">
+              10 hours. 15 days. Five evening sessions.
+            </p>
+          </AnimatedItem>
         </AnimatedSection>
-      </section>
-
-      {/* 3.8 — Testimonials */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
-        <ProgramTestimonials testimonials={TESTIMONIALS} />
       </section>
 
       <Footer />

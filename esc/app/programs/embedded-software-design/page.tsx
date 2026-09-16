@@ -166,7 +166,7 @@ export default function EmbeddedSoftwareDesignPage() {
       <ScrollStatement phrases={SCROLL_PHRASES} />
 
       {/* 2.1 — What's In It For You */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <AnimatedSection className="mx-auto flex max-w-[760px] flex-col gap-10">
           <AnimatedItem className="flex flex-col gap-5">
             <p className="font-body text-base leading-relaxed text-esc-dark-teal sm:text-lg">
@@ -198,8 +198,19 @@ export default function EmbeddedSoftwareDesignPage() {
         </AnimatedSection>
       </section>
 
+      {/* Early CTA — for readers already sold by the hook + promise */}
+      <section className="bg-esc-paper px-6 py-8 sm:px-10 lg:px-16">
+        <AnimatedSection className="mx-auto max-w-[560px] text-center">
+          <AnimatedItem>
+            <Button variant="outline" href="/apply/embedded-software-design">
+              Ready Now? Start with Design →
+            </Button>
+          </AnimatedItem>
+        </AnimatedSection>
+      </section>
+
       {/* 2.2 — Before We Begin: Hardware */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <SectionHeading eyebrow="Before We Begin" heading="Hardware" />
         <StageDiagram
           stages={HARDWARE_STAGES}
@@ -209,7 +220,7 @@ export default function EmbeddedSoftwareDesignPage() {
       </section>
 
       {/* 2.3 — Before We Begin: Software */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <SectionHeading eyebrow="Before We Begin" heading="Software" />
         <StageDiagram
           stages={SOFTWARE_STAGES}
@@ -219,7 +230,7 @@ export default function EmbeddedSoftwareDesignPage() {
       </section>
 
       {/* 2.4 — The Path, Start to Finish */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <SectionHeading eyebrow="Start to Finish" heading="The Path" />
         <AnimatedSection className="mx-auto mb-10 max-w-[640px]">
           <AnimatedItem>
@@ -234,7 +245,7 @@ export default function EmbeddedSoftwareDesignPage() {
       </section>
 
       {/* 2.5 — Hardware note */}
-      <section className="bg-esc-paper px-6 py-8 sm:px-10 lg:px-16">
+      <section className="bg-esc-paper px-6 py-4 sm:px-10 lg:px-16">
         <AnimatedSection className="mx-auto max-w-[640px]">
           <AnimatedItem>
             <p className="text-center font-body text-sm italic leading-relaxed text-esc-teal">
@@ -246,12 +257,23 @@ export default function EmbeddedSoftwareDesignPage() {
       </section>
 
       {/* 2.6 — Who This Is Not For / For You If */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <ForYouList notForYou={NOT_FOR_YOU} forYou={FOR_YOU} />
+
+        <AnimatedItem className="mt-8 flex justify-center">
+          <Button variant="outline" href="/apply/embedded-software-design">
+            Ready? Start with Design →
+          </Button>
+        </AnimatedItem>
+      </section>
+
+      {/* Testimonials */}
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
+        <ProgramTestimonials testimonials={TESTIMONIALS} />
       </section>
 
       {/* 2.7 — What You Walk Away With */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <SectionHeading eyebrow="After This Programme" heading="What You Walk Away With" />
         <AnimatedSection className="mx-auto flex max-w-[760px] flex-col gap-10">
           <AnimatedItem>
@@ -271,7 +293,7 @@ export default function EmbeddedSoftwareDesignPage() {
       </section>
 
       {/* 2.8 — Format / Price / CTA */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <AnimatedSection className="mx-auto flex max-w-[560px] flex-col items-center gap-4 text-center">
           <AnimatedItem>
             <p className="font-body text-base text-esc-dark-teal">
@@ -288,15 +310,15 @@ export default function EmbeddedSoftwareDesignPage() {
               className="mt-2"
               style={{ boxShadow: "0 0 20px 4px rgba(240,120,57,.3), 0 4px 12px rgba(240,120,57,.3)" }}
             >
-              Start with Design
+              Start Learning Why It Works
             </Button>
           </AnimatedItem>
+          <AnimatedItem>
+            <p className="font-body text-sm text-esc-teal">
+              32 hours. Two months. Saturdays and Sunday mornings.
+            </p>
+          </AnimatedItem>
         </AnimatedSection>
-      </section>
-
-      {/* 2.9 — Testimonials */}
-      <section className="bg-esc-paper px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
-        <ProgramTestimonials testimonials={TESTIMONIALS} />
       </section>
 
       <Footer />

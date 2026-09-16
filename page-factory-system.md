@@ -42,20 +42,36 @@ Because a lead-magnet landing page exists purely to convert (capture the lead, t
 
 ---
 
-## Program/child pages (front end) — candidate template, pending confirmation
+## Program/child pages (front end) — CONFIRMED template (locked 2026-09-16)
 
-Discussed shape for a program-type child page:
-1. **Hero** — a 3D object only (method not yet decided — explicitly not defaulting to WebGL; Vamsi will specify the approach).
-2. **Below the hero** — Workflow D: the page's one static statement, illuminated phrase-by-phrase as the visitor scrolls past it.
-3. **After that section is crossed** — Workflow E: program-detail content blocks reveal as they enter the viewport.
+First real build: Embedded Software Design + Embedded Software Architecture (`esc/app/programs/*`). Confirmed shape for a program-type child page:
 
-This composition is *not itself a workflow* (per the atomic-workflow definition) — it's a candidate template, and won't be confirmed as "the" program-page template until the 3D method is settled and a first real page is built end-to-end. Pages that aren't about a specific program (blog, downloads index) skip the big hero entirely and lean on thumbnails instead.
+1. **Hero** — a 3D object, live-rendered in WebGL from a Tripo-generated GLB model (method locked 2026-09-15, see "Current status / open items" below).
+2. **Workflow D** — the page's one statement, illuminated phrase-by-phrase as the visitor scrolls past it. Sourced verbatim from the program's own "What's In It For You" opening lines — not invented, not a repeat of the hero's own doubt-statements.
+3. **Workflow E** — program-detail content blocks, revealing as they enter the viewport, in this locked order:
+   1. What's In It For You (the gap narrative) + "What We Promise" callout
+   2. **Early CTA** — `Button variant="outline"` (a real button, not a text link — see note below), placed right after step 1. Catches the reader who's already sold by the hook and the promise and doesn't need the rest of the page to say yes.
+   3. Program-specific mechanism blocks — whatever makes this program's method distinct (hardware/software framing diagrams, format description, roadmap, etc. — varies per program)
+   4. Qualifying block — Who This Is Not For / For You If, pulled from the program's own source doc in full, not the shortened homepage teaser version
+   5. **Mid CTA** — same `Button variant="outline"` weight, placed immediately after the qualifying block. This is the page's peak-intent moment: a reader who just self-selected "yes, that's me" needs something to click before scrolling further, not eight more sections of silence.
+   6. Testimonials / proof — real quotes structured as [before state] + [action taken] + [specific outcome] + [timeframe], placed *before* the final ask, never after it
+   7. What You Walk Away With + no-guarantee callout
+   8. Format / Price
+   9. **Primary CTA** — `Button variant="primary"` (full orange fill + glow), benefit-forward copy tied back to the page's own hook/reframe line, not a generic verb+noun (e.g. "Start Learning Why It Works," not just "Start with Design")
+
+Three CTA touchpoints total, escalating in weight: outline → outline → primary. The primary stays the single strongest ask, at the close, same "one signature moment" discipline as the motion — everything else supports it rather than competing with it.
+
+**On CTA weight — corrected 2026-09-16, second pass.** The first correction (same day) specified the two earlier CTAs as bare underlined text links. That shipped, and it was wrong: a text link reads as decoration, not as a call to action, and is exactly the kind of thing a visitor scrolls past without registering. Use the codebase's existing `Button` component's `outline` variant instead (`border-2 border-esc-dark-teal`, a real button shape) for both non-primary CTAs — visually distinct from the primary button, but unmistakably a button, not a footnote.
+
+This ordering is locked as of the `dr-copy-pipeline` copychief pass run against the Design/Architecture build (2026-09-16). The first version shipped with exactly one CTA, at the very end, with testimonials placed *after* it — the review's top finding was under-supplied CTAs and proof arriving after the ask instead of before it. Every program/child page from here forward starts from this corrected order; it is not optional per-page styling, it's the template.
+
+Pages that aren't about a specific program (blog, downloads index, weekend-session pages) skip the big hero and lean on thumbnails instead, but the same CTA-placement discipline (qualify → secondary CTA → proof → primary CTA) still applies to any page asking for a click, scaled to that page's length.
 
 ---
 
 ## Current status / open items
 
-- **3D-object hero technique** — pending; Vamsi is providing the approach separately (explicitly not the drag-controlled-frame-sequence idea floated earlier — a different method, TBD).
-- **Nothing has been built or tested yet.** This doc and `cinematic-hero-workflow.md` are both planning references; no workflow has been implemented in any of the three sites' actual code as of this writing.
+- **3D-object hero technique** — LOCKED (2026-09-15): image -> Tripo (tripo3d.ai, AI 3D model generator) -> export GLB -> render live/interactive in-browser via WebGL (react-three-fiber or equivalent -- not yet a dependency in esc/ or bve/, add on first implementation). This is a genuine live-rendered 3D object, not a pre-rendered frame sequence -- supersedes the earlier "not defaulting to WebGL" caution, and is a different pipeline from Blender MCP (which remains the path for multi-state AI-video reveals elsewhere in the catalog, per cinematic-hero-workflow.md). Per-program generation mode is not fixed: try both Tripo modes (one-click "Best Quality" vs. "Smart Mesh" + Generate Multi Views + Texture) on each program'''s source image and keep whichever renders better. Source: a YouTube tutorial transcript Vamsi provided, walking the full Tripo image-to-GLB-to-WebGL pipeline.
+- **Program/child page template is now built and shipped once** (Embedded Software Design + Embedded Software Architecture, 2026-09-16) - see the confirmed template section above. `cinematic-hero-workflow.md` remains the workflow-mechanics reference; this doc now also reflects one real, reviewed build rather than being purely speculative.
 - **GHL portability** is an assumption, not a validated fact — worth testing with one workflow (likely D or E, the lightest) before treating the whole catalog as portable.
 - **Design-decision layer and intake layer** are intentionally not started — they should be derived from the first real template, not designed ahead of it.
