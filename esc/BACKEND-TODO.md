@@ -10,9 +10,11 @@ Checklist of every stubbed form/route created during the ESC program child-page 
       submission handler, no success state, nothing sent anywhere.
 - [ ] `esc/app/apply/embedded-software-architecture/page.tsx` — same `ApplyForm` component,
       different program label/qualifying question. Same non-functional `onSubmit`.
-- [ ] `esc/components/sections/ApplyForm.tsx` — the shared component both pages above render.
+- [ ] `esc/app/apply/bytes-to-sockets/page.tsx` — same `ApplyForm` component, different program
+      label/qualifying question. Same non-functional `onSubmit`.
+- [ ] `esc/components/sections/ApplyForm.tsx` — the shared component all pages above render.
       Wire this file's `handleSubmit` once there's a real endpoint/automation to POST to
-      (GHL, a Next.js API route, etc.) — both apply pages pick it up automatically.
+      (GHL, a Next.js API route, etc.) — all apply pages pick it up automatically.
 
 ## Placeholder testimonials (not a form, but also blocking launch)
 
@@ -21,6 +23,8 @@ Checklist of every stubbed form/route created during the ESC program child-page 
       ("PLACEHOLDER TESTIMONIALS — replace before launch") that only renders outside production.
 - [ ] `esc/app/programs/embedded-software-architecture/page.tsx` — same, separate placeholder
       array for the Architecture cohort.
+- [ ] `esc/app/weekend-sessions/bytes-to-sockets/page.tsx` — same, separate placeholder array;
+      this product has never run before, so there's genuinely nothing real to slot in yet.
 - [ ] `esc/components/sections/ProgramTestimonials.tsx` — accepts a `testimonials` prop, so
       swapping in real quotes for each page is a one-line data change, no component edits
       needed.
@@ -34,6 +38,9 @@ Checklist of every stubbed form/route created during the ESC program child-page 
   the same page.
 - `StickyCtaBar` ("Explore Programs", global on every page) already points at `/#programs`, a
   real route + anchor.
-- `/weekend-sessions/bytes-to-sockets`, `/weekend-sessions/ble-in-weekend`,
-  `/weekend-sessions/lm75-driver-architecture`, `/downloads`, `/about`, `/blog` all exist as
-  real routes (placeholder "content in progress" pages, not dead links).
+- `/weekend-sessions/bytes-to-sockets` is now a real, full-content page (hero + Workflow D +
+  Workflow E), no longer a placeholder — see the stubbed application form and placeholder
+  testimonials entries above for what's still outstanding on it.
+- `/weekend-sessions/ble-in-weekend`, `/weekend-sessions/lm75-driver-architecture`,
+  `/downloads`, `/about`, `/blog` all exist as real routes (placeholder "content in progress"
+  pages, not dead links).

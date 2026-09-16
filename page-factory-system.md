@@ -65,7 +65,9 @@ Three CTA touchpoints total, escalating in weight: outline → outline → prima
 
 This ordering is locked as of the `dr-copy-pipeline` copychief pass run against the Design/Architecture build (2026-09-16). The first version shipped with exactly one CTA, at the very end, with testimonials placed *after* it — the review's top finding was under-supplied CTAs and proof arriving after the ask instead of before it. Every program/child page from here forward starts from this corrected order; it is not optional per-page styling, it's the template.
 
-Pages that aren't about a specific program (blog, downloads index, weekend-session pages) skip the big hero and lean on thumbnails instead, but the same CTA-placement discipline (qualify → secondary CTA → proof → primary CTA) still applies to any page asking for a click, scaled to that page's length.
+Pages that are purely navigational or list-like (blog index, downloads index) skip the big hero and lean on thumbnails instead, but the same CTA-placement discipline (qualify → secondary CTA → proof → primary CTA) still applies to any page asking for a click, scaled to that page's length.
+
+**Correction — 2026-09-16, weekend-session pages reclassified.** Originally grouped with blog/downloads as no-hero pages. That was wrong: a weekend-session page (Bytes to Sockets, BLE In Weekend, LM75 Driver Architecture) is a monetized, single-session product with its own price and CTA funnel — the same shape as a program page, just shorter in duration and scope. It gets the full program-page template (3D hero + Workflow D + Workflow E), not the thumbnails-only treatment. The no-hero tier is now scoped narrowly to pages that are genuinely just navigation/listing surfaces (blog index, downloads index) with no offer or price of their own.
 
 ---
 
