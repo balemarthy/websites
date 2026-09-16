@@ -100,6 +100,41 @@
     0 1px 6px rgba(0, 0, 0, 0.6);
 }
 
+/* ===== Persistent page-title label (bottom-left) ===== */
+
+.pageLabel {
+  position: absolute;
+  left: 24px;
+  bottom: 30px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--paper);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+  pointer-events: none;
+}
+
+.pageLabelRule {
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: var(--orange-500);
+  flex-shrink: 0;
+}
+
+@media (min-width: 640px) {
+  .pageLabel {
+    left: 32px;
+    bottom: 34px;
+    font-size: 13px;
+  }
+}
+
 /* ===== "Drag to explore" hint ===== */
 
 .dragHintWrap {

@@ -24,6 +24,7 @@ type DoubtCloudHeroProps = {
   statements: string[];
   modelPath?: string;
   backgroundImage?: string;
+  pageTitle: string;
 };
 
 function Model({ path }: { path: string }) {
@@ -130,6 +131,7 @@ export default function DoubtCloudHero({
   statements,
   modelPath = "/models/pagla-pagli-hero.glb",
   backgroundImage = "/images/hero/doubt-cloud-bg.jpg",
+  pageTitle,
 }: DoubtCloudHeroProps) {
   const [azimuthalAngle, setAzimuthalAngle] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -168,6 +170,17 @@ export default function DoubtCloudHero({
           />
         </Canvas>
       </div>
+
+      {/* Persistent page identifier — without this, a visitor who lands
+          directly on this hero (bookmark, back button, reopened tab) has no
+          way to tell which program page they're on: the floating statements
+          rotate and the nav's active-pill state isn't visible until you
+          look up at it. Bottom-left, same vertical row as "Drag to
+          explore" (bottom-center) so neither competes with the other. */}
+      <span className={`font-display ${styles.pageLabel}`}>
+        <span aria-hidden className={styles.pageLabelRule} />
+        {pageTitle}
+      </span>
 
       <div
         className={`${styles.dragHintWrap} ${isDragging ? styles.dragHintWrapHidden : ""}`}

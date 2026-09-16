@@ -116,6 +116,7 @@ export default function EmbeddedSoftwareArchitecturePage() {
       <DoubtCloudHero
         statements={STATEMENTS}
         backgroundImage="/images/hero/architecture-hero-bg.jpg"
+        pageTitle="Embedded Software Architecture"
       />
 
       <ScrollStatement phrases={SCROLL_PHRASES} />

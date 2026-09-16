@@ -161,7 +161,7 @@ function SectionHeading({ eyebrow, heading }: { eyebrow: string; heading: string
 export default function EmbeddedSoftwareDesignPage() {
   return (
     <main className="flex min-h-screen flex-col" style={{ backgroundColor: "var(--paper)" }}>
-      <DoubtCloudHero statements={STATEMENTS} />
+      <DoubtCloudHero statements={STATEMENTS} pageTitle="Embedded Software Design" />
 
       <ScrollStatement phrases={SCROLL_PHRASES} />
 
