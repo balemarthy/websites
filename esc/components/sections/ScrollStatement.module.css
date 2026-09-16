@@ -7,17 +7,17 @@
 .sticky {
   position: sticky;
   top: 0;
-  /* Deliberately shorter than a full 100vh: the sticky box's own height is
-     what determines how much empty top/bottom padding the centered
-     statement carries once it un-pins and settles at the bottom of the
-     (taller) track — a full-viewport box left a large dead gap of blank
-     paper between this section and the next. */
-  height: 64vh;
+  /* Content-sized on purpose — no forced vh height. `position: sticky`
+     doesn't need the sticky element itself to be tall for the pin to work;
+     forcing it to a fixed viewport fraction (an earlier version used
+     100vh, then 64vh) just left the centered text surrounded by dead
+     padding, both while pinned and once the section un-pins. ScrollStatement.tsx
+     measures this element's real height to size the track and the
+     scroll-progress math. */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 24px;
-  overflow: hidden;
+  padding: 72px 24px;
 }
 
 .statement {
