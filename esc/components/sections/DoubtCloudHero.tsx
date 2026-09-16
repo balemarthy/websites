@@ -15,8 +15,8 @@ import styles from "./DoubtCloudHero.module.css";
 const MODEL_HEIGHT = 3;
 const RING_RADIUS = 2.15;
 const RING_Y = MODEL_HEIGHT * 0.62;
-const CAMERA_DISTANCE = 6.6;
-const CAMERA_HEIGHT = RING_Y - 0.6;
+const CAMERA_DISTANCE = 5.6;
+const CAMERA_HEIGHT = RING_Y - 0.4;
 const CAMERA_POSITION: [number, number, number] = [0, CAMERA_HEIGHT, CAMERA_DISTANCE];
 const CAMERA_TARGET: [number, number, number] = [0, CAMERA_HEIGHT, 0];
 
@@ -167,11 +167,38 @@ export default function DoubtCloudHero({
         </Canvas>
       </div>
 
-      <span
-        className={`font-body ${styles.dragHint} ${hasInteracted ? styles.dragHintHidden : ""}`}
+      <div
+        className={`${styles.dragHintWrap} ${hasInteracted ? styles.dragHintWrapHidden : ""}`}
       >
-        Drag to explore
-      </span>
+        <svg
+          className={styles.rotateIcon}
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M4 12a8 8 0 0 1 8-8c2.5 0 4.75 1.2 6.2 3.06M20 12a8 8 0 0 1-8 8c-2.5 0-4.75-1.2-6.2-3.06"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+          <path
+            d="M18.6 3.4v3.9h-3.9"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M5.4 20.6v-3.9h3.9"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <span className={`font-body ${styles.dragHint}`}>Drag to explore</span>
+      </div>
     </section>
   );
 }

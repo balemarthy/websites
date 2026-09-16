@@ -102,23 +102,48 @@
 
 /* ===== "Drag to explore" hint ===== */
 
-.dragHint {
+.dragHintWrap {
   position: absolute;
   left: 50%;
   bottom: 28px;
   transform: translateX(-50%);
   z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  transition: opacity 500ms ease;
+}
+
+.dragHintWrapHidden {
+  opacity: 0;
+}
+
+.rotateIcon {
+  width: 22px;
+  height: 22px;
+  color: var(--paper);
+  opacity: 0.85;
+  animation: rotateHint 1.8s ease-in-out infinite;
+}
+
+@keyframes rotateHint {
+  0%,
+  100% {
+    transform: rotate(-20deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+}
+
+.dragHint {
   color: var(--paper);
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   opacity: 0.8;
-  pointer-events: none;
-  transition: opacity 500ms ease;
-}
-
-.dragHintHidden {
-  opacity: 0;
 }
 
 @media (min-width: 640px) {
