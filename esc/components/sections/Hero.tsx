@@ -59,7 +59,10 @@ export default function Hero() {
       {/* Mobile: static hero, no scroll-pin — a scroll-linked canvas felt too fast/heavy at
           this size, and this dedicated portrait crop (both characters, headroom for text above
           them) was built specifically for a static mobile backdrop. */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-esc-paper md:hidden">
+      <section
+        data-dark-bg
+        className="relative min-h-screen w-full overflow-hidden bg-esc-paper md:hidden"
+      >
         <MobileHeroImage />
         <div aria-hidden className="pointer-events-none absolute inset-0" style={mobileScrimStyle} />
         <div className="relative z-10 flex min-h-screen items-end justify-center px-6 pb-12">
@@ -71,6 +74,7 @@ export default function Hero() {
           scrolls past underneath it. */}
       <section
         data-hero-scroll-track
+        data-dark-bg
         className="relative hidden w-full bg-esc-paper md:block md:h-[350vh] lg:h-[400vh]"
       >
         <div className="sticky top-0 h-screen w-full overflow-hidden">

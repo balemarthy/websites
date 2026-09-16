@@ -136,6 +136,7 @@ export default function DoubtCloudHero({
 
   return (
     <section
+      data-dark-bg
       className={styles.section}
       aria-label="Program hero"
       style={{ "--hero-bg-image": `url(${backgroundImage})` } as CSSProperties}

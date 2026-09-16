@@ -15,7 +15,7 @@ const SOCIAL_LINKS: Array<{ label: string; href: string; Icon?: typeof Linkedin 
 
 export default function Footer() {
   return (
-    <footer className={styles.footer}>
+    <footer data-dark-bg className={styles.footer}>
       <Link href="/" className={`font-display ${styles.wordmark}`}>
         Embedded System Coach
       </Link>

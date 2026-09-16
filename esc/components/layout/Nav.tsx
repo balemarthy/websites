@@ -40,7 +40,6 @@ export default function Nav() {
   const [mobileGroup, setMobileGroup] = useState<NavGroupKey | null>(null);
   const [overHero, setOverHero] = useState(false);
 
-  const isHome = pathname === "/";
   const isDownloadsActive = pathname === "/downloads";
   const isAboutActive = pathname === "/about";
   const isBlogActive = pathname === "/blog";
@@ -56,29 +55,37 @@ export default function Nav() {
   }, [pathname]);
 
   // Desktop pill goes fully transparent (paper text floating directly over
-  // the photo, no fill/blur/shadow) while the dark hero photo is behind it,
-  // and solid Paper everywhere else — it can't stay transparent once
-  // paper-background content (rest of the homepage, or any child page)
-  // scrolls underneath it, there'd be nothing to read the text against. The
-  // hero's pinned canvas fills the viewport for the entire height of its
-  // scroll track, so "hero track still intersecting the viewport" is exactly
-  // the same window as "dark photo is behind the pill."
+  // whatever's behind it, no fill/blur/shadow) and the fixed top-left logo
+  // switches to its light mark whenever a dark section — a photo hero, the
+  // DoubtCloudHero canvas, or the site-wide --teal-800 Footer — sits behind
+  // that fixed top-left corner; both go solid/navy the moment that corner is
+  // over the light --paper background instead. A single tracked "hero"
+  // element isn't enough: program pages go straight from DoubtCloudHero into
+  // Footer with no paper in between, so dark-on-dark (or light-on-light) can
+  // happen at either end, not just at the top. Every dark section instead
+  // carries `data-dark-bg`, and on each scroll/resize tick we sample what's
+  // actually stacked under the logo's fixed position (elementsFromPoint,
+  // since the logo/pill sit on top of it in z-order) and check whether any
+  // of it sits inside a `data-dark-bg` ancestor.
   useEffect(() => {
-    if (!isHome) {
-      setOverHero(false);
-      return;
+    function sampleOverDarkBg() {
+      const stack = document.elementsFromPoint(30, 30);
+      setOverHero(stack.some((el) => el.closest("[data-dark-bg]")));
     }
-    const track = document.querySelector("[data-hero-scroll-track]");
-    if (!track) {
-      setOverHero(false);
-      return;
-    }
-    const observer = new IntersectionObserver(([entry]) => setOverHero(entry.isIntersecting), {
-      threshold: 0,
-    });
-    observer.observe(track);
-    return () => observer.disconnect();
-  }, [isHome]);
+
+    sampleOverDarkBg();
+
+    // No rAF throttle here on purpose — elementsFromPoint + a couple of
+    // closest() walks is cheap, and rAF callbacks get starved in a
+    // backgrounded/inactive tab, which would leave the logo/pill stuck on a
+    // stale read until the tab regains focus.
+    window.addEventListener("scroll", sampleOverDarkBg, { passive: true });
+    window.addEventListener("resize", sampleOverDarkBg);
+    return () => {
+      window.removeEventListener("scroll", sampleOverDarkBg);
+      window.removeEventListener("resize", sampleOverDarkBg);
+    };
+  }, [pathname]);
 
   // Close the mobile panel and any open desktop dropdown on outside click / Escape.
   useEffect(() => {
@@ -122,12 +129,17 @@ export default function Nav() {
       {/* Home logo link — fixed top-left, visible at every breakpoint, on every
           page (Nav renders globally via app/layout.tsx). This is the fix for
           "no way back to the homepage from a child page": the wordmark itself
-          is the backlink. Homepage keeps the light (cream-on-transparent)
-          mark since its hero sits on a dark photo; every child page has a
-          solid --paper background, so it gets the navy mark instead. */}
+          is the backlink. Its color follows the same `overHero` signal as the
+          pill: the light (cream-on-transparent) mark whenever a dark hero
+          photo/canvas is behind the top-left corner (home's hero, or a
+          program page's DoubtCloudHero — both while unscrolled), the navy
+          mark once the page has scrolled onto its solid --paper background.
+          Driving this off actual intersection rather than "is this the
+          homepage" is what keeps the mark legible on every page and at every
+          scroll position, not just home. */}
       <Link href="/" className={styles.logoLink} aria-label="Embedded System Coach — Home">
         <Image
-          src={isHome ? "/images/logo/esc-logo-navbar-light.png" : "/images/logo/esc-logo-navbar.png"}
+          src={overHero ? "/images/logo/esc-logo-navbar-light.png" : "/images/logo/esc-logo-navbar.png"}
           alt="Embedded System Coach"
           width={224}
           height={80}
