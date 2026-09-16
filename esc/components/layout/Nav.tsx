@@ -4,14 +4,19 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChevronDown } from "lucide-react";
 import styles from "./Nav.module.css";
 
 // Desktop dropdowns and mobile accordions render the same two groups —
 // drive both from one config instead of two near-identical JSX blocks each.
+// "program" carries an `href` to the homepage's Programs section — there's
+// no dedicated hub page, so the label itself is a real destination, not just
+// a menu trigger. "sessions" has no equivalent hub, so it stays toggle-only.
 const NAV_GROUPS = [
   {
     key: "program" as const,
     label: "The Program",
+    href: "/#programs",
     links: [
       { label: "Embedded Software Design", href: "/programs/embedded-software-design" },
       { label: "Embedded Software Architecture", href: "/programs/embedded-software-architecture" },
@@ -20,6 +25,7 @@ const NAV_GROUPS = [
   {
     key: "sessions" as const,
     label: "Weekend Sessions",
+    href: undefined as string | undefined,
     links: [
       { label: "Bytes to Sockets", href: "/weekend-sessions/bytes-to-sockets" },
       { label: "BLE In Weekend", href: "/weekend-sessions/ble-in-weekend" },
@@ -163,15 +169,39 @@ export default function Nav() {
             const isGroupActive = group.links.some((link) => pathname === link.href);
             return (
               <div key={group.key} className={styles.dropdownWrap}>
-                <button
-                  type="button"
-                  aria-haspopup="true"
-                  aria-expanded={desktopMenu === group.key}
-                  onClick={() => toggleDesktopMenu(group.key)}
-                  className={`${styles.navItem} ${isGroupActive ? styles.navItemActive : ""}`}
-                >
-                  {group.label}
-                </button>
+                {group.href ? (
+                  <div className={`${styles.navItemSplit} ${isGroupActive ? styles.navItemActive : ""}`}>
+                    <Link
+                      href={group.href}
+                      onClick={() => setDesktopMenu(null)}
+                      className={styles.navItemSplitLabel}
+                    >
+                      {group.label}
+                    </Link>
+                    <button
+                      type="button"
+                      aria-haspopup="true"
+                      aria-expanded={desktopMenu === group.key}
+                      aria-label={`Toggle ${group.label} submenu`}
+                      onClick={() => toggleDesktopMenu(group.key)}
+                      className={`${styles.navItemSplitCaret} ${
+                        desktopMenu === group.key ? styles.navItemSplitCaretOpen : ""
+                      }`}
+                    >
+                      <ChevronDown size={14} strokeWidth={2.5} aria-hidden />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    aria-haspopup="true"
+                    aria-expanded={desktopMenu === group.key}
+                    onClick={() => toggleDesktopMenu(group.key)}
+                    className={`${styles.navItem} ${isGroupActive ? styles.navItemActive : ""}`}
+                  >
+                    {group.label}
+                  </button>
+                )}
                 <div
                   className={`${styles.desktopDropdown} ${
                     desktopMenu === group.key ? styles.desktopDropdownOpen : ""
@@ -234,16 +264,43 @@ export default function Nav() {
             const isGroupActive = group.links.some((link) => pathname === link.href);
             return (
               <div key={group.key}>
-                <button
-                  type="button"
-                  aria-expanded={mobileGroup === group.key}
-                  onClick={() => toggleMobileGroup(group.key)}
-                  className={`${styles.mobilePanelItem} ${styles.mobilePanelGroupTrigger} ${
-                    isGroupActive ? styles.mobilePanelItemActive : ""
-                  }`}
-                >
-                  {group.label}
-                </button>
+                {group.href ? (
+                  <div
+                    className={`${styles.mobilePanelItem} ${styles.mobilePanelGroupRow} ${
+                      isGroupActive ? styles.mobilePanelItemActive : ""
+                    }`}
+                  >
+                    <Link
+                      href={group.href}
+                      onClick={closeMobileMenu}
+                      className={styles.mobilePanelGroupLabel}
+                    >
+                      {group.label}
+                    </Link>
+                    <button
+                      type="button"
+                      aria-expanded={mobileGroup === group.key}
+                      aria-label={`Toggle ${group.label} submenu`}
+                      onClick={() => toggleMobileGroup(group.key)}
+                      className={`${styles.mobilePanelGroupCaret} ${
+                        mobileGroup === group.key ? styles.mobilePanelGroupCaretOpen : ""
+                      }`}
+                    >
+                      <ChevronDown size={16} strokeWidth={2.5} aria-hidden />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    aria-expanded={mobileGroup === group.key}
+                    onClick={() => toggleMobileGroup(group.key)}
+                    className={`${styles.mobilePanelItem} ${styles.mobilePanelGroupTrigger} ${
+                      isGroupActive ? styles.mobilePanelItemActive : ""
+                    }`}
+                  >
+                    {group.label}
+                  </button>
+                )}
                 <div
                   className={`${styles.mobileAccordion} ${
                     mobileGroup === group.key ? styles.mobileAccordionOpen : ""
