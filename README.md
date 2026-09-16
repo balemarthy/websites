@@ -11,6 +11,16 @@ websites/
 
 `bve` and `dnm` were scaffolded as siblings of `esc` (commit `e3b284d`) — `bve` is a fresh build with `esc`'s *fonts and structural tokens* reused but its own Navy/Amber/Electric Blue palette; `dnm` is a closer clone that reuses `esc`'s palette and fonts almost exactly, with only its own wordmark as the distinguishing visual element.
 
+## Which doc explains what
+
+Three kinds of document live in this repo, and they're not interchangeable — worth knowing which is which before reading (or writing) any of them:
+
+- **`README.md`** (this file) — orientation for the whole repo. How the three sites relate, how to clone and run each one, what's built so far.
+- **`page-factory-system.md`** — the shared, cross-brand system for how child pages get built. Applies to ESC, BVE, and DNM equally, not just ESC — it defines which techniques combine into which page *type* (e.g. "a program page = hero + Workflow D + Workflow E, in this order, with CTAs placed at these specific points"). **Read this before building any child page, on any site**, before opening `cinematic-hero-workflow.md` or writing any code.
+- **`cinematic-hero-workflow.md`** — the technique catalog that `page-factory-system.md` draws from. Each entry (Workflow A through E) is one self-contained mechanic — what a scroll-scrubbed statement actually does, how a scroll-reveal block is built, and so on — without any opinion about which page type uses which. Read this once `page-factory-system.md` has told you which workflow(s) a page needs, for the how-to-build-it detail.
+
+Everything else — a build prompt for one specific page, a backend-wiring checklist, notes for one particular run — is **site-specific, not shared**, and lives inside that site's own folder instead of here at the root: see `esc/build-prompts/` for ESC's page-build prompts and `esc/BACKEND-TODO.md` for ESC's backend-wiring checklist. If `bve/` or `dnm/` need the same kind of prompt or checklist later, they get their own `build-prompts/` and `BACKEND-TODO.md` inside their own folder — never at the shared root, which stays reserved for the three docs above.
+
 ## Why this file exists
 
 This repo has no per-project `CLAUDE.md`. If you (human or agent) are opening this folder cold on a different machine, this file is the only written record of what's here and why — read it before touching anything.
