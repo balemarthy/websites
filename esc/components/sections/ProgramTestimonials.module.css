@@ -1,0 +1,67 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.devBanner {
+  align-self: center;
+  padding: 6px 14px;
+  /* --radius-sm (4px) only exists as a Tailwind borderRadius utility, not a
+     CSS custom property in styles/tokens.css — hardcoded here to match. */
+  border-radius: 4px;
+  background-color: var(--orange-050);
+  border: 1.5px dashed var(--orange-500);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--orange-700);
+  text-align: center;
+}
+
+.eyebrow {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--teal-500);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border-radius: var(--radius-card);
+  border: 1.5px solid var(--teal-100);
+  background-color: var(--paper);
+  box-shadow: var(--shadow-flat);
+}
+
+.quote {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--teal-800);
+}
+
+.nameRole {
+  font-size: 12px;
+  color: var(--teal-500);
+}

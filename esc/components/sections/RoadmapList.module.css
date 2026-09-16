@@ -1,0 +1,68 @@
+.list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.rule {
+  position: absolute;
+  left: 23px;
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  background-color: var(--teal-100);
+}
+
+.row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.marker {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--paper);
+}
+
+.markerOrange {
+  background-color: var(--orange-500);
+}
+
+.markerTeal {
+  background-color: var(--teal-500);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 8px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--teal-800);
+}
+
+.description {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--teal-500);
+}

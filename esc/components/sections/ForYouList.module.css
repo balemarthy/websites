@@ -1,0 +1,88 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+}
+
+.heading {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.notForYouHeading {
+  color: var(--orange-500);
+}
+
+.forYouHeading {
+  color: var(--paper);
+}
+
+.notForYouCol {
+  padding: 24px;
+  border-radius: var(--radius-card);
+  border: 1.5px solid var(--orange-200);
+  background-color: var(--orange-050);
+}
+
+.forYouCol {
+  padding: 24px;
+  border-radius: var(--radius-card);
+  background-color: var(--teal-500);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.notForYouItem,
+.forYouItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.notForYouIcon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--orange-500);
+}
+
+.forYouIcon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--paper);
+}
+
+.notForYouItem .itemText {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--teal-800);
+}
+
+.forYouItem .itemText {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--paper);
+}
+
+.notForYouItem .itemText :global(a),
+.forYouItem .itemText :global(a) {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
