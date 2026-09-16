@@ -7,6 +7,12 @@ type ScrollStatementProps = {
   phrases: string[];
 };
 
+// Must match .sticky's `height: 64vh` in ScrollStatement.module.css — used
+// both to size the track (sticky box height + scrub distance) and to work
+// out how much of the track is actually "stuck" scroll room, since sticky
+// no longer fills the full viewport.
+const STICKY_HEIGHT_VH = 64;
+
 // Workflow D (cinematic-hero-workflow.md) — a single statement, split into
 // per-phrase spans, pinned via `position: sticky` while a taller track
 // scrolls underneath. One phrase is "lit" (resolved ink) at a time, tied 1:1
@@ -35,7 +41,8 @@ export default function ScrollStatement({ phrases }: ScrollStatementProps) {
       const track = trackRef.current;
       if (!track) return 0;
       const rect = track.getBoundingClientRect();
-      const scrollable = track.offsetHeight - window.innerHeight;
+      const stickyHeightPx = (STICKY_HEIGHT_VH / 100) * window.innerHeight;
+      const scrollable = track.offsetHeight - stickyHeightPx;
       return scrollable > 0 ? Math.min(1, Math.max(0, -rect.top / scrollable)) : 0;
     }
 
@@ -75,12 +82,14 @@ export default function ScrollStatement({ phrases }: ScrollStatementProps) {
     };
   }, [phrases.length]);
 
+  // Track height = the sticky box's own height plus a modest scrub distance
+  // per phrase — tall enough for a readable scrub, not so tall it leaves a
+  // dead gap of blank paper once the last phrase lights up and the section
+  // un-pins.
+  const trackHeightVh = STICKY_HEIGHT_VH + phrases.length * 26;
+
   return (
-    <div
-      ref={trackRef}
-      className={styles.track}
-      style={{ height: `${phrases.length * 55}vh` }}
-    >
+    <div ref={trackRef} className={styles.track} style={{ height: `${trackHeightVh}vh` }}>
       <div className={styles.sticky}>
         <p className={`font-display ${styles.statement}`}>
           {phrases.map((phrase, i) => (

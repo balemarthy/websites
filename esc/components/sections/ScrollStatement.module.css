@@ -7,7 +7,12 @@
 .sticky {
   position: sticky;
   top: 0;
-  height: 100vh;
+  /* Deliberately shorter than a full 100vh: the sticky box's own height is
+     what determines how much empty top/bottom padding the centered
+     statement carries once it un-pins and settles at the bottom of the
+     (taller) track — a full-viewport box left a large dead gap of blank
+     paper between this section and the next. */
+  height: 64vh;
   display: flex;
   align-items: center;
   justify-content: center;
