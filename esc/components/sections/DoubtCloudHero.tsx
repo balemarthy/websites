@@ -132,7 +132,7 @@ export default function DoubtCloudHero({
   backgroundImage = "/images/hero/doubt-cloud-bg.jpg",
 }: DoubtCloudHeroProps) {
   const [azimuthalAngle, setAzimuthalAngle] = useState(0);
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   return (
     <section
@@ -159,7 +159,8 @@ export default function DoubtCloudHero({
             maxPolarAngle={Math.PI / 2}
             touches={{ ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.ROTATE }}
             rotateSpeed={0.6}
-            onStart={() => setHasInteracted(true)}
+            onStart={() => setIsDragging(true)}
+            onEnd={() => setIsDragging(false)}
             onChange={(e) => {
               if (e) setAzimuthalAngle(e.target.getAzimuthalAngle());
             }}
@@ -168,35 +169,37 @@ export default function DoubtCloudHero({
       </div>
 
       <div
-        className={`${styles.dragHintWrap} ${hasInteracted ? styles.dragHintWrapHidden : ""}`}
+        className={`${styles.dragHintWrap} ${isDragging ? styles.dragHintWrapHidden : ""}`}
       >
-        <svg
-          className={styles.rotateIcon}
-          viewBox="0 0 24 24"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M4 12a8 8 0 0 1 8-8c2.5 0 4.75 1.2 6.2 3.06M20 12a8 8 0 0 1-8 8c-2.5 0-4.75-1.2-6.2-3.06"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-          <path
-            d="M18.6 3.4v3.9h-3.9"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M5.4 20.6v-3.9h3.9"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <div className={styles.rotateIconTilt}>
+          <svg
+            className={styles.rotateIcon}
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M4 12a8 8 0 0 1 8-8c2.5 0 4.75 1.2 6.2 3.06M20 12a8 8 0 0 1-8 8c-2.5 0-4.75-1.2-6.2-3.06"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
+            <path
+              d="M18.6 3.4v3.9h-3.9"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M5.4 20.6v-3.9h3.9"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
         <span className={`font-body ${styles.dragHint}`}>Drag to explore</span>
       </div>
     </section>

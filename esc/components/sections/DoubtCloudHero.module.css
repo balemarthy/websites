@@ -120,21 +120,31 @@
   opacity: 0;
 }
 
+/* Tilts the icon back into the screen (like Google Maps' rotate control) so
+   the circular path reads as a foreshortened disc lying at an angle, not a
+   flat face-on ring — the perspective is what sells the "this spins in 3D"
+   impression, the animation just spins within that tilted plane. */
+.rotateIconTilt {
+  perspective: 80px;
+}
+
 .rotateIcon {
   width: 22px;
   height: 22px;
   color: var(--paper);
   opacity: 0.85;
+  transform: rotateX(55deg);
+  transform-style: preserve-3d;
   animation: rotateHint 1.8s ease-in-out infinite;
 }
 
 @keyframes rotateHint {
   0%,
   100% {
-    transform: rotate(-20deg);
+    transform: rotateX(55deg) rotateZ(-20deg);
   }
   50% {
-    transform: rotate(20deg);
+    transform: rotateX(55deg) rotateZ(20deg);
   }
 }
 
