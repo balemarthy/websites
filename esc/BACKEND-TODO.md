@@ -12,6 +12,10 @@ Checklist of every stubbed form/route created during the ESC program child-page 
       different program label/qualifying question. Same non-functional `onSubmit`.
 - [ ] `esc/app/apply/bytes-to-sockets/page.tsx` — same `ApplyForm` component, different program
       label/qualifying question. Same non-functional `onSubmit`.
+- [ ] `esc/app/apply/ble-in-weekend/page.tsx` — same `ApplyForm` component, different program
+      label/qualifying question. Same non-functional `onSubmit`.
+- [ ] `esc/app/apply/lm75-driver-architecture/page.tsx` — same `ApplyForm` component, different
+      program label/qualifying question. Same non-functional `onSubmit`.
 - [ ] `esc/components/sections/ApplyForm.tsx` — the shared component all pages above render.
       Wire this file's `handleSubmit` once there's a real endpoint/automation to POST to
       (GHL, a Next.js API route, etc.) — all apply pages pick it up automatically.
@@ -25,6 +29,11 @@ Checklist of every stubbed form/route created during the ESC program child-page 
       array for the Architecture cohort.
 - [ ] `esc/app/weekend-sessions/bytes-to-sockets/page.tsx` — same, separate placeholder array;
       this product has never run before, so there's genuinely nothing real to slot in yet.
+- [ ] `esc/app/weekend-sessions/ble-in-weekend/page.tsx` — same, separate placeholder array;
+      this product has never run before, so there's genuinely nothing real to slot in yet.
+- [ ] `esc/app/weekend-sessions/lm75-driver-architecture/page.tsx` — same, separate placeholder
+      array; none of the six stages have been built/traced on hardware yet as of this page
+      shipping, so there's genuinely nothing real to slot in yet.
 - [ ] `esc/components/sections/ProgramTestimonials.tsx` — accepts a `testimonials` prop, so
       swapping in real quotes for each page is a one-line data change, no component edits
       needed.
@@ -38,9 +47,9 @@ Checklist of every stubbed form/route created during the ESC program child-page 
   the same page.
 - `StickyCtaBar` ("Explore Programs", global on every page) already points at `/#programs`, a
   real route + anchor.
-- `/weekend-sessions/bytes-to-sockets` is now a real, full-content page (hero + Workflow D +
-  Workflow E), no longer a placeholder — see the stubbed application form and placeholder
-  testimonials entries above for what's still outstanding on it.
-- `/weekend-sessions/ble-in-weekend`, `/weekend-sessions/lm75-driver-architecture`,
-  `/downloads`, `/about`, `/blog` all exist as real routes (placeholder "content in progress"
+- `/weekend-sessions/bytes-to-sockets`, `/weekend-sessions/ble-in-weekend`, and
+  `/weekend-sessions/lm75-driver-architecture` are now real, full-content pages (hero + Workflow D
+  + Workflow E), no longer placeholders — see the stubbed application form and placeholder
+  testimonials entries above for what's still outstanding on each.
+- `/downloads`, `/about`, `/blog` all exist as real routes (placeholder "content in progress"
   pages, not dead links).

@@ -25,6 +25,7 @@ type DoubtCloudHeroProps = {
   modelPath?: string;
   backgroundImage?: string;
   pageTitle: string;
+  overlayLine?: string;
 };
 
 function Model({ path }: { path: string }) {
@@ -132,6 +133,7 @@ export default function DoubtCloudHero({
   modelPath = "/models/pagla-pagli-hero.glb",
   backgroundImage = "/images/hero/doubt-cloud-bg.jpg",
   pageTitle,
+  overlayLine,
 }: DoubtCloudHeroProps) {
   const [azimuthalAngle, setAzimuthalAngle] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -181,6 +183,10 @@ export default function DoubtCloudHero({
         <span aria-hidden className={styles.pageLabelRule} />
         {pageTitle}
       </span>
+
+      {overlayLine && (
+        <p className={`font-body ${styles.overlayLine}`}>{overlayLine}</p>
+      )}
 
       <div
         className={`${styles.dragHintWrap} ${isDragging ? styles.dragHintWrapHidden : ""}`}
