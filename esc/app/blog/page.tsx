@@ -1,19 +1,48 @@
 import Footer from "@/components/layout/Footer";
+import Callout from "@/components/sections/Callout";
+import Newsletter from "@/components/sections/Newsletter";
+import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 
+// No-hero listing tier (page-factory-system.md): navigational page, no
+// offer/price of its own, so no big hero — flat header + light content only.
 export default function BlogPage() {
   return (
     <main className="flex min-h-screen flex-col" style={{ backgroundColor: "var(--paper)" }}>
-      <div className="flex flex-1 flex-col items-center justify-center px-6 py-32 text-center">
-        <h1
-          className="font-display text-3xl font-extrabold uppercase tracking-tight sm:text-4xl"
-          style={{ color: "var(--teal-800)" }}
-        >
-          BLOG
-        </h1>
-        <p className="font-body mt-4 text-base" style={{ color: "var(--teal-600)" }}>
-          Content in progress. Check back soon.
-        </p>
-      </div>
+      <section className="bg-esc-paper px-6 pb-6 pt-20 text-center sm:px-10 sm:pt-28 lg:px-16">
+        <AnimatedSection className="mx-auto flex max-w-[680px] flex-col items-center gap-4">
+          <AnimatedItem>
+            <span className="font-mono text-xs uppercase tracking-[0.15em] text-esc-teal">
+              Blog
+            </span>
+          </AnimatedItem>
+          <AnimatedItem>
+            <h1 className="font-display text-3xl font-extrabold uppercase leading-tight tracking-tight text-esc-dark-teal sm:text-4xl">
+              Writing on embedded fluency
+            </h1>
+          </AnimatedItem>
+          <AnimatedItem>
+            <p className="font-body text-base leading-relaxed text-esc-dark-teal sm:text-lg">
+              Long-form pieces on the reasoning behind the register, not just the register — the same
+              material the programs are built from.
+            </p>
+          </AnimatedItem>
+        </AnimatedSection>
+      </section>
+
+      {/* Empty state — no posts published on this site yet. Real, not a
+          "content in progress" placeholder: tells the visitor exactly what
+          this page is for and gives them a reason to come back. */}
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
+        <AnimatedSection className="mx-auto max-w-[640px]">
+          <Callout eyebrow="First Pieces Landing Soon">
+            Nothing published here yet — the first pieces are in progress. Subscribe below and
+            you&apos;ll get each one the day it goes up, before it&apos;s posted anywhere else.
+          </Callout>
+        </AnimatedSection>
+      </section>
+
+      <Newsletter />
+
       <Footer />
     </main>
   );

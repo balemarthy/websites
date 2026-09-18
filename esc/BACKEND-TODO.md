@@ -38,6 +38,17 @@ Checklist of every stubbed form/route created during the ESC program child-page 
       swapping in real quotes for each page is a one-line data change, no component edits
       needed.
 
+## Downloads, About, Blog build-out (2026-09-18)
+
+- [ ] `esc/app/downloads/page.tsx` — `DOWNLOADS` array lists three real, confirmed-in-progress
+      pieces (Embedded C Design Patterns, GET-SET Protocol Specification, Zero-Copy UART Command
+      Handler) at placeholder prices within the ₹99–₹299 lead-magnet band. Needs: (1) the actual
+      PDF files exported into `esc/public/downloads/`, (2) each price confirmed or corrected,
+      (3) each "Get This" `Button` currently has `href="#"` — wire to each title's real GHL
+      landing page once it exists.
+- [ ] `esc/app/about/page.tsx` — "Book Time With Me" `Button` has `href="#"` — no live booking
+      destination yet. Point it at the Topmate link or GHL booking URL once that flow is built.
+
 ## Already real, no action needed
 
 - Homepage `ProgramCards.tsx` CTAs ("Start with Design" / "Start with Architecture") already
@@ -51,5 +62,6 @@ Checklist of every stubbed form/route created during the ESC program child-page 
   `/weekend-sessions/lm75-driver-architecture` are now real, full-content pages (hero + Workflow D
   + Workflow E), no longer placeholders — see the stubbed application form and placeholder
   testimonials entries above for what's still outstanding on each.
-- `/downloads`, `/about`, `/blog` all exist as real routes (placeholder "content in progress"
-  pages, not dead links).
+- `/downloads`, `/about`, `/blog` are now real, full-content pages (2026-09-18 build), no longer
+  "content in progress" placeholders — see the Downloads/About/Blog entry above for what's still
+  outstanding on each.
