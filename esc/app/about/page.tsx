@@ -21,28 +21,32 @@ const CAREER_STEPS = [
   {
     number: "01",
     title: "Wipro",
-    description: "Where the embedded systems work started.",
+    description:
+      "A real product, a counterpart in the US on the other end of every review, and C++ that had to actually hold up under someone else's eyes. That's where UML and class design stopped being theory from a textbook and started being how software actually gets designed.",
   },
   {
     number: "02",
     title: "Bosch",
-    description: "One stop in a run across four companies, over twenty years, in embedded systems.",
+    description:
+      "A parent board talking to a daughter board wired with sensors — one of them driving a vacuum pump, on a device built to repair a car's AC system. That's where 'embedded software' stopped meaning register-level C and started meaning the layer above it: abstraction, the OS, Linux on a custom board.",
   },
   {
     number: "03",
     title: "Cisco",
-    description: "Same discipline, a different system to learn from the inside.",
+    description:
+      "Chosen on purpose, for the domain — not just the paycheck. Data center, enterprise networking, a custom-built OS giving way to Linux. The most technical years of the run. Also the years that taught the hardest lesson: technical skill alone doesn't move a career forward. Nobody tells you that. You find out.",
   },
   {
     number: "04",
     title: "Dell",
-    description: "Two decades in, the pattern was clear before the exit was.",
+    description:
+      "Had a clear path back to Cisco. Turned it down for this instead — on purpose, to get closer to the hardware after years of living at the abstraction layer. The company where 'I understand the whole stack' stopped being a claim and started being something I could actually back up.",
   },
   {
     number: "05",
     title: "Embedded System Coach",
     description:
-      "Built from the one thing all four jobs confirmed: nobody was ever coming to manage the career itself. So now that's the job.",
+      "Two stints at Wipro bookended the run — the second one as an architect, mentoring engineers straight out of NITs and regional colleges. Turned out the coaching had already started before it had a name. Built from the one thing all four employers confirmed: nobody was ever coming to manage the career itself. So now that's the job.",
   },
 ];
 
@@ -93,22 +97,36 @@ export default function AboutPage() {
         <AnimatedSection className="mx-auto flex max-w-[760px] flex-col gap-10">
           <AnimatedItem className="flex flex-col gap-5">
             <p className="font-body text-base leading-relaxed text-esc-dark-teal sm:text-lg">
-              I don&apos;t coach from a certification or a course I once took. I coach from having
-              actually been the engineer on the other side of the register, the datasheet, and the
-              performance review — four times over, at four different companies, across twenty years.
+              Before any of the four companies on this page, there were two years writing 8051
+              code for pay that wasn&apos;t worth mentioning. I didn&apos;t set out to become an
+              embedded engineer — I don&apos;t think I even knew that was a job. I just wanted to
+              understand why a microcontroller did what it did, and I struggled with 8085 assembly
+              long enough that it stopped feeling like study and started feeling like a game. Those
+              two years weren&apos;t wasted. They were the foundation everything after was built on.
             </p>
             <p className="font-body text-base leading-relaxed text-esc-dark-teal sm:text-lg">
-              I run Embedded System Coach as a one-person media house — every program, every session,
-              every piece of content comes from the same place: what actually worked, tested on real
-              hardware, not repackaged theory. I call myself the Chief Human Officer of it, because
-              that&apos;s the job — nobody else is hiring for it.
+              I spent the Bosch and Cisco years the way most engineers do — banking everything on
+              technical skill, assuming the career would follow. It doesn&apos;t. That&apos;s not a
+              theory I read somewhere; it&apos;s the lesson those years actually taught me, the hard
+              way: technical skill alone doesn&apos;t give you progression or visibility.
+              Communication does. Nobody told me that going in. I&apos;m telling you now.
+            </p>
+            <p className="font-body text-base leading-relaxed text-esc-dark-teal sm:text-lg">
+              There was an 8-month stretch at a startup where hardware and software both sat on my
+              desk, full ownership, no one else to hand it to. And a second run at Wipro, this time
+              as an architect, mentoring engineers straight out of NITs and regional colleges —
+              before I ever called it coaching. Add it all up and I&apos;ve now touched every layer
+              of the stack: low-level drivers, the OS, the GUI, the domain logic, the libraries
+              underneath all of it. When someone asks where security or encryption actually belongs
+              in a system, I&apos;m not guessing at the layer — I&apos;ve worked at all of them.
             </p>
           </AnimatedItem>
 
           <Callout eyebrow="What I Actually Believe">
-            Your career is a one-person business. Not a slogan — the operating premise behind every
-            program on this site. Nobody at any of the four companies I worked for was ever going to
-            manage my career for me. Once that was clear, everything else — the programs, the weekend
+            Your career is a one-person business. Not a slogan — a lesson Bosch and Cisco taught me
+            the hard way, when I found out technical skill alone doesn&apos;t move you forward.
+            Nobody at any of the four companies I worked for was ever going to manage my career for
+            me. Once that was clear, everything else — the programs, the weekend
             sessions, the content — followed from it.
           </Callout>
         </AnimatedSection>
