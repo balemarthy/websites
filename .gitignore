@@ -1,2 +1,5 @@
 # static export bundles (build output, not source)
 *-static-export.zip
+
+# Claude-generated briefs, decision docs and PDFs (working notes, never committed)
+Claude outputs/
