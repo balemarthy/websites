@@ -10,12 +10,12 @@ const FRAME_PATH = (n: number) => `/frames/frame_${String(n).padStart(4, "0")}.j
 const STATES = [
   {
     key: "career",
-    headline: "Career Fluency",
+    headline: "Clarity",
     portrait: "/portraits/portrait-career.png",
   },
   {
     key: "branding",
-    headline: "Technical Branding And Visibility",
+    headline: "Visibility",
     portrait: "/portraits/portrait-branding.png",
   },
 ] as const;

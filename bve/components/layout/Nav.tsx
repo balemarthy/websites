@@ -6,11 +6,11 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import styles from "./Nav.module.css";
 
-const LINKS = [
-  { label: "Career Fluency", href: "/career-fluency" },
-  { label: "Technical Branding", href: "/technical-branding" },
-  { label: "Consulting", href: "/consulting" },
-  { label: "Colleges", href: "/colleges" },
+const PRIMARY_LINK = { label: "Clarity & Visibility", href: "/clarity-visibility" };
+
+const CONSULTING_LINKS = [
+  { label: "Industry Consulting", href: "/industry-consulting" },
+  { label: "Campus To Career", href: "/campus-to-career" },
 ];
 
 const SERVICES_LINKS = [
@@ -25,7 +25,9 @@ const TRAILING_LINKS = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [consultingOpen, setConsultingOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileConsultingOpen, setMobileConsultingOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   return (
@@ -44,14 +46,35 @@ export default function Nav() {
       {/* Desktop: floating Paper pill, centered */}
       <nav className={`font-body ${styles.pill}`} aria-label="Primary">
         <div className={styles.desktopItems}>
-          {LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.navItem}>
-              {link.label}
-            </Link>
-          ))}
+          <Link href={PRIMARY_LINK.href} className={styles.navItem}>
+            {PRIMARY_LINK.label}
+          </Link>
 
           <div
-            className={styles.servicesWrap}
+            className={styles.dropdownWrap}
+            onMouseEnter={() => setConsultingOpen(true)}
+            onMouseLeave={() => setConsultingOpen(false)}
+          >
+            <button
+              type="button"
+              className={styles.navItem}
+              aria-haspopup="true"
+              aria-expanded={consultingOpen}
+              onClick={() => setConsultingOpen((v) => !v)}
+            >
+              Consulting
+            </button>
+            <div className={`${styles.dropdownPanel} ${consultingOpen ? styles.dropdownPanelOpen : ""}`}>
+              {CONSULTING_LINKS.map((link) => (
+                <Link key={link.href} href={link.href} className={styles.dropdownPanelItem}>
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div
+            className={styles.dropdownWrap}
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
           >
@@ -64,9 +87,9 @@ export default function Nav() {
             >
               Services
             </button>
-            <div className={`${styles.servicesPanel} ${servicesOpen ? styles.servicesPanelOpen : ""}`}>
+            <div className={`${styles.dropdownPanel} ${servicesOpen ? styles.dropdownPanelOpen : ""}`}>
               {SERVICES_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} className={styles.servicesPanelItem}>
+                <Link key={link.href} href={link.href} className={styles.dropdownPanelItem}>
                   {link.label}
                 </Link>
               ))}
@@ -98,16 +121,29 @@ export default function Nav() {
         </button>
 
         <div className={`font-body ${styles.mobilePanel} ${open ? styles.mobilePanelOpen : ""}`}>
-          {LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={styles.mobilePanelItem}
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+          <Link href={PRIMARY_LINK.href} className={styles.mobilePanelItem} onClick={() => setOpen(false)}>
+            {PRIMARY_LINK.label}
+          </Link>
+
+          <button
+            type="button"
+            className={styles.mobilePanelItem}
+            aria-expanded={mobileConsultingOpen}
+            onClick={() => setMobileConsultingOpen((v) => !v)}
+          >
+            Consulting
+          </button>
+          {mobileConsultingOpen &&
+            CONSULTING_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={styles.mobilePanelSubItem}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
 
           <button
             type="button"

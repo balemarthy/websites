@@ -69,13 +69,26 @@ button.navItem {
   cursor: pointer;
 }
 
-/* ===== Services dropdown (desktop) ===== */
+/* ===== Dropdown submenus (desktop) — shared by Consulting and Services =====
+   .dropdownWrap grows a ::after bridge under the trigger so the pointer never
+   leaves the wrap's hit-test tree while crossing the visual gap to the panel
+   (dead-zone fix: without the bridge, mouseleave fired mid-transit and the
+   panel closed before it could be reached). */
 
-.servicesWrap {
+.dropdownWrap {
   position: relative;
 }
 
-.servicesPanel {
+.dropdownWrap::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 8px;
+}
+
+.dropdownPanel {
   position: absolute;
   top: calc(100% + 8px);
   left: 50%;
@@ -95,13 +108,13 @@ button.navItem {
     transform 200ms var(--ease-premium);
 }
 
-.servicesPanelOpen {
+.dropdownPanelOpen {
   opacity: 1;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
 }
 
-.servicesPanelItem {
+.dropdownPanelItem {
   display: block;
   padding: 10px 14px;
   border-radius: var(--radius-panel);
@@ -113,7 +126,7 @@ button.navItem {
   transition: background-color 200ms var(--ease-premium);
 }
 
-.servicesPanelItem:hover {
+.dropdownPanelItem:hover {
   background-color: rgba(10, 31, 68, 0.06);
 }
 
