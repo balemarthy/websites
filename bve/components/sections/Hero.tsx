@@ -18,10 +18,23 @@ const STATES = [
     headline: "Visibility",
     portrait: "/portraits/portrait-branding.png",
   },
+  {
+    key: "industry-consulting",
+    headline: "Industry Consulting",
+    portrait: "/portraits/portrait-consulting.png",
+  },
+  {
+    key: "campus-to-career",
+    headline: "Campus To Career",
+    portrait: "/portraits/portrait-career.png",
+  },
 ] as const;
 
 function stateIndexForProgress(progress: number) {
-  return progress < 0.5 ? 0 : 1;
+  if (progress < 0.25) return 0;
+  if (progress < 0.5) return 1;
+  if (progress < 0.75) return 2;
+  return 3;
 }
 
 export default function Hero() {

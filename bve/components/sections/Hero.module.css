@@ -34,8 +34,8 @@
   background: linear-gradient(
     90deg,
     rgba(5, 10, 17, 0.55) 0%,
-    rgba(5, 10, 17, 0.38) 38%,
-    rgba(5, 10, 17, 0) 60%
+    rgba(5, 10, 17, 0.4) 48%,
+    rgba(5, 10, 17, 0) 75%
   );
 }
 
@@ -107,21 +107,25 @@
   opacity: 1;
 }
 
-/* Text layer — off-center, anchored left, overlaps the portrait edge */
+/* Text layer — headline centered in the sticky viewport; portrait stays
+   anchored right as-is (a full recompose is saved for later). */
 .textBlock {
   position: absolute;
-  left: 6vw;
+  left: 50%;
+  transform: translateX(-50%);
   top: 14vh;
-  width: 52vw;
+  width: min(760px, 70vw);
   min-height: 34vh;
+  text-align: center;
 }
 
 .headline {
   position: absolute;
   left: 0;
+  right: 0;
   top: 0;
-  max-width: 18ch;
-  margin: 0;
+  max-width: none;
+  margin: 0 auto;
   /* Navy-tinted white, not clinical #FFFFFF — keeps the headline feeling
      part of the navy hero rather than a flat white layer dropped on top. */
   color: #EDF1FA;
@@ -147,6 +151,11 @@
 
 .headline1 {
   font-size: 52px;
+}
+
+.headline2,
+.headline3 {
+  font-size: 34px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -194,6 +203,7 @@
     right: 6vw;
     top: 51vh;
     width: auto;
+    transform: none;
     bottom: auto;
     text-align: center;
     min-height: auto;
@@ -223,6 +233,11 @@
   .headline1 {
     font-size: 32px;
   }
+
+  .headline2,
+  .headline3 {
+    font-size: 22px;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -232,5 +247,10 @@
 
   .headline1 {
     font-size: 60px;
+  }
+
+  .headline2,
+  .headline3 {
+    font-size: 40px;
   }
 }

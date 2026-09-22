@@ -61,11 +61,13 @@
 }
 
 .navItem:hover {
-  background-color: rgba(10, 31, 68, 0.06);
+  background-color: rgba(10, 31, 68, 0.1);
 }
 
 .navItemActive {
-  background-color: rgba(10, 31, 68, 0.06);
+  background-color: rgba(10, 31, 68, 0.1);
+  color: var(--accent-600);
+  font-weight: 700;
 }
 
 button.navItem {
@@ -131,7 +133,13 @@ button.navItem {
 }
 
 .dropdownPanelItem:hover {
-  background-color: rgba(10, 31, 68, 0.06);
+  background-color: rgba(10, 31, 68, 0.1);
+}
+
+.dropdownPanelItemActive {
+  background-color: rgba(10, 31, 68, 0.1);
+  color: var(--accent-600);
+  font-weight: 700;
 }
 
 /* ===== Mobile hamburger + compact panel (mobile only) ===== */
@@ -203,6 +211,12 @@ button.navItem {
   background-color: rgba(251, 247, 241, 0.08);
 }
 
+.mobilePanelItemActive {
+  background-color: rgba(251, 247, 241, 0.14);
+  color: var(--accent-500);
+  font-weight: 700;
+}
+
 button.mobilePanelItem {
   width: 100%;
   text-align: left;
@@ -226,6 +240,13 @@ button.mobilePanelItem {
 
 .mobilePanelSubItem:hover {
   background-color: rgba(251, 247, 241, 0.08);
+}
+
+.mobilePanelSubItemActive {
+  background-color: rgba(251, 247, 241, 0.14);
+  color: var(--accent-500);
+  opacity: 1;
+  font-weight: 700;
 }
 
 @media (min-width: 1024px) {

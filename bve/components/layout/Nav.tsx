@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import styles from "./Nav.module.css";
 
@@ -24,11 +25,23 @@ const TRAILING_LINKS = [
 ];
 
 export default function Nav() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [consultingOpen, setConsultingOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileConsultingOpen, setMobileConsultingOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+
+  useEffect(() => {
+    setConsultingOpen(false);
+    setServicesOpen(false);
+    setOpen(false);
+    setMobileConsultingOpen(false);
+    setMobileServicesOpen(false);
+  }, [pathname]);
+
+  const consultingActive = CONSULTING_LINKS.some((link) => pathname === link.href);
+  const servicesActive = SERVICES_LINKS.some((link) => pathname === link.href);
 
   return (
     <>
@@ -46,7 +59,10 @@ export default function Nav() {
       {/* Desktop: floating Paper pill, centered */}
       <nav className={`font-body ${styles.pill}`} aria-label="Primary">
         <div className={styles.desktopItems}>
-          <Link href={PRIMARY_LINK.href} className={styles.navItem}>
+          <Link
+            href={PRIMARY_LINK.href}
+            className={`${styles.navItem} ${pathname === PRIMARY_LINK.href ? styles.navItemActive : ""}`}
+          >
             {PRIMARY_LINK.label}
           </Link>
 
@@ -57,7 +73,7 @@ export default function Nav() {
           >
             <button
               type="button"
-              className={`${styles.navItem} ${consultingOpen ? styles.navItemActive : ""}`}
+              className={`${styles.navItem} ${consultingOpen || consultingActive ? styles.navItemActive : ""}`}
               aria-haspopup="true"
               aria-expanded={consultingOpen}
               onClick={() => setConsultingOpen((v) => !v)}
@@ -66,7 +82,12 @@ export default function Nav() {
             </button>
             <div className={`${styles.dropdownPanel} ${consultingOpen ? styles.dropdownPanelOpen : ""}`}>
               {CONSULTING_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} className={styles.dropdownPanelItem}>
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`${styles.dropdownPanelItem} ${pathname === link.href ? styles.dropdownPanelItemActive : ""}`}
+                  onClick={() => setConsultingOpen(false)}
+                >
                   {link.label}
                 </Link>
               ))}
@@ -80,7 +101,7 @@ export default function Nav() {
           >
             <button
               type="button"
-              className={`${styles.navItem} ${servicesOpen ? styles.navItemActive : ""}`}
+              className={`${styles.navItem} ${servicesOpen || servicesActive ? styles.navItemActive : ""}`}
               aria-haspopup="true"
               aria-expanded={servicesOpen}
               onClick={() => setServicesOpen((v) => !v)}
@@ -89,7 +110,12 @@ export default function Nav() {
             </button>
             <div className={`${styles.dropdownPanel} ${servicesOpen ? styles.dropdownPanelOpen : ""}`}>
               {SERVICES_LINKS.map((link) => (
-                <Link key={link.href} href={link.href} className={styles.dropdownPanelItem}>
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`${styles.dropdownPanelItem} ${pathname === link.href ? styles.dropdownPanelItemActive : ""}`}
+                  onClick={() => setServicesOpen(false)}
+                >
                   {link.label}
                 </Link>
               ))}
@@ -97,7 +123,11 @@ export default function Nav() {
           </div>
 
           {TRAILING_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.navItem}>
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`${styles.navItem} ${pathname === link.href ? styles.navItemActive : ""}`}
+            >
               {link.label}
             </Link>
           ))}
@@ -121,13 +151,17 @@ export default function Nav() {
         </button>
 
         <div className={`font-body ${styles.mobilePanel} ${open ? styles.mobilePanelOpen : ""}`}>
-          <Link href={PRIMARY_LINK.href} className={styles.mobilePanelItem} onClick={() => setOpen(false)}>
+          <Link
+            href={PRIMARY_LINK.href}
+            className={`${styles.mobilePanelItem} ${pathname === PRIMARY_LINK.href ? styles.mobilePanelItemActive : ""}`}
+            onClick={() => setOpen(false)}
+          >
             {PRIMARY_LINK.label}
           </Link>
 
           <button
             type="button"
-            className={styles.mobilePanelItem}
+            className={`${styles.mobilePanelItem} ${consultingActive ? styles.mobilePanelItemActive : ""}`}
             aria-expanded={mobileConsultingOpen}
             onClick={() => setMobileConsultingOpen((v) => !v)}
           >
@@ -138,7 +172,7 @@ export default function Nav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={styles.mobilePanelSubItem}
+                className={`${styles.mobilePanelSubItem} ${pathname === link.href ? styles.mobilePanelSubItemActive : ""}`}
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -147,7 +181,7 @@ export default function Nav() {
 
           <button
             type="button"
-            className={styles.mobilePanelItem}
+            className={`${styles.mobilePanelItem} ${servicesActive ? styles.mobilePanelItemActive : ""}`}
             aria-expanded={mobileServicesOpen}
             onClick={() => setMobileServicesOpen((v) => !v)}
           >
@@ -158,7 +192,7 @@ export default function Nav() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={styles.mobilePanelSubItem}
+                className={`${styles.mobilePanelSubItem} ${pathname === link.href ? styles.mobilePanelSubItemActive : ""}`}
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -169,7 +203,7 @@ export default function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className={styles.mobilePanelItem}
+              className={`${styles.mobilePanelItem} ${pathname === link.href ? styles.mobilePanelItemActive : ""}`}
               onClick={() => setOpen(false)}
             >
               {link.label}
