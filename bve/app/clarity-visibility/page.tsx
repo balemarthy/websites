@@ -5,6 +5,9 @@ export default function ClarityVisibilityPage() {
         id="clarity"
         className="flex min-h-screen flex-col items-center justify-center px-6 py-32 text-center"
       >
+        <span className="font-mono text-xs uppercase tracking-[0.15em] text-bve-accent">
+          Career Fluency
+        </span>
         <h1 className="font-display text-3xl font-extrabold uppercase tracking-tight text-bve-ink sm:text-4xl">
           Clarity
         </h1>
@@ -17,6 +20,9 @@ export default function ClarityVisibilityPage() {
         id="visibility"
         className="flex min-h-screen flex-col items-center justify-center px-6 py-32 text-center"
       >
+        <span className="font-mono text-xs uppercase tracking-[0.15em] text-bve-accent">
+          Technical Branding
+        </span>
         <h1 className="font-display text-3xl font-extrabold uppercase tracking-tight text-bve-ink sm:text-4xl">
           Visibility
         </h1>
