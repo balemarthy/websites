@@ -10,12 +10,23 @@ const LINKS = [
   { label: "Career Fluency", href: "/career-fluency" },
   { label: "Technical Branding", href: "/technical-branding" },
   { label: "Consulting", href: "/consulting" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Colleges", href: "/colleges" },
+];
+
+const SERVICES_LINKS = [
+  { label: "Resume Review", href: "/resume-review" },
+  { label: "LinkedIn Profile", href: "/linkedin-profile" },
+];
+
+const TRAILING_LINKS = [
+  { label: "Blog", href: "/blog" },
+  { label: "Downloads", href: "/downloads" },
 ];
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   return (
     <>
@@ -34,6 +45,35 @@ export default function Nav() {
       <nav className={`font-body ${styles.pill}`} aria-label="Primary">
         <div className={styles.desktopItems}>
           {LINKS.map((link) => (
+            <Link key={link.href} href={link.href} className={styles.navItem}>
+              {link.label}
+            </Link>
+          ))}
+
+          <div
+            className={styles.servicesWrap}
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
+          >
+            <button
+              type="button"
+              className={styles.navItem}
+              aria-haspopup="true"
+              aria-expanded={servicesOpen}
+              onClick={() => setServicesOpen((v) => !v)}
+            >
+              Services
+            </button>
+            <div className={`${styles.servicesPanel} ${servicesOpen ? styles.servicesPanelOpen : ""}`}>
+              {SERVICES_LINKS.map((link) => (
+                <Link key={link.href} href={link.href} className={styles.servicesPanelItem}>
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {TRAILING_LINKS.map((link) => (
             <Link key={link.href} href={link.href} className={styles.navItem}>
               {link.label}
             </Link>
@@ -59,6 +99,37 @@ export default function Nav() {
 
         <div className={`font-body ${styles.mobilePanel} ${open ? styles.mobilePanelOpen : ""}`}>
           {LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={styles.mobilePanelItem}
+              onClick={() => setOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+
+          <button
+            type="button"
+            className={styles.mobilePanelItem}
+            aria-expanded={mobileServicesOpen}
+            onClick={() => setMobileServicesOpen((v) => !v)}
+          >
+            Services
+          </button>
+          {mobileServicesOpen &&
+            SERVICES_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={styles.mobilePanelSubItem}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+          {TRAILING_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}

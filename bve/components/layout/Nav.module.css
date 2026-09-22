@@ -64,6 +64,59 @@
   background-color: rgba(10, 31, 68, 0.06);
 }
 
+button.navItem {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ===== Services dropdown (desktop) ===== */
+
+.servicesWrap {
+  position: relative;
+}
+
+.servicesPanel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  min-width: 200px;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: var(--canvas);
+  padding: 8px;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-flat);
+  transition:
+    opacity 200ms var(--ease-premium),
+    transform 200ms var(--ease-premium);
+}
+
+.servicesPanelOpen {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.servicesPanelItem {
+  display: block;
+  padding: 10px 14px;
+  border-radius: var(--radius-panel);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 200ms var(--ease-premium);
+}
+
+.servicesPanelItem:hover {
+  background-color: rgba(10, 31, 68, 0.06);
+}
+
 /* ===== Mobile hamburger + compact panel (mobile only) ===== */
 
 .mobileWrap {
@@ -130,6 +183,31 @@
 }
 
 .mobilePanelItem:hover {
+  background-color: rgba(251, 247, 241, 0.08);
+}
+
+button.mobilePanelItem {
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.mobilePanelSubItem {
+  display: block;
+  padding: 10px 12px 10px 24px;
+  border-radius: var(--radius-panel);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--canvas);
+  opacity: 0.8;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.mobilePanelSubItem:hover {
   background-color: rgba(251, 247, 241, 0.08);
 }
 

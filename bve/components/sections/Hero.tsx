@@ -10,25 +10,18 @@ const FRAME_PATH = (n: number) => `/frames/frame_${String(n).padStart(4, "0")}.j
 const STATES = [
   {
     key: "career",
-    headline: "Your career needs clarity.",
+    headline: "Career Fluency",
     portrait: "/portraits/portrait-career.png",
   },
   {
     key: "branding",
-    headline: "You need visibility.",
+    headline: "Technical Branding And Visibility",
     portrait: "/portraits/portrait-branding.png",
-  },
-  {
-    key: "consulting",
-    headline: "Your people need this too.",
-    portrait: "/portraits/portrait-consulting.png",
   },
 ] as const;
 
 function stateIndexForProgress(progress: number) {
-  if (progress < 0.33) return 0;
-  if (progress < 0.66) return 1;
-  return 2;
+  return progress < 0.5 ? 0 : 1;
 }
 
 export default function Hero() {
