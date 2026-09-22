@@ -1,0 +1,41 @@
+.track {
+  position: relative;
+  width: 100%;
+  background-color: var(--canvas);
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 24px;
+}
+
+.statement {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  font-size: clamp(22px, 4.2vw, 40px);
+  line-height: 1.28;
+}
+
+.phrase {
+  transition:
+    color 250ms var(--ease-premium),
+    opacity 250ms var(--ease-premium);
+}
+
+.phraseActive {
+  color: var(--ink);
+  opacity: 1;
+}
+
+.phraseInactive {
+  color: var(--ink);
+  opacity: 0.4;
+}

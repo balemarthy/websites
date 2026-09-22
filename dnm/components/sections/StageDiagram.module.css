@@ -1,0 +1,105 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.intro,
+.closing {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .row {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4px;
+  }
+}
+
+.stageWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .stageWrap {
+    flex-direction: row;
+    width: auto;
+  }
+}
+
+.arrow {
+  color: var(--accent-500);
+  flex-shrink: 0;
+  transform: rotate(90deg);
+  margin: 4px 0;
+}
+
+@media (min-width: 768px) {
+  .arrow {
+    transform: none;
+    margin: 44px 8px 0;
+  }
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 220px;
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.iconRing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-pill);
+  background-color: var(--canvas);
+  border: 2px solid var(--ink);
+  color: var(--ink);
+}
+
+.marker {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--accent-500);
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.description {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink);
+}
