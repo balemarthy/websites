@@ -57,7 +57,7 @@ export default function Nav() {
           >
             <button
               type="button"
-              className={styles.navItem}
+              className={`${styles.navItem} ${consultingOpen ? styles.navItemActive : ""}`}
               aria-haspopup="true"
               aria-expanded={consultingOpen}
               onClick={() => setConsultingOpen((v) => !v)}
@@ -80,7 +80,7 @@ export default function Nav() {
           >
             <button
               type="button"
-              className={styles.navItem}
+              className={`${styles.navItem} ${servicesOpen ? styles.navItemActive : ""}`}
               aria-haspopup="true"
               aria-expanded={servicesOpen}
               onClick={() => setServicesOpen((v) => !v)}
