@@ -6,8 +6,9 @@ import styles from "./Nav.module.css";
 
 const LINKS = [
   { label: "What's Inside", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Webinar", href: "/webinar" },
+  { label: "Blog", href: "/blog" },
+  { label: "Downloads", href: "/downloads" },
 ];
 
 // Wordmark is the one DNM-specific visual element (see signature-devices.md):
@@ -38,14 +39,17 @@ export default function Nav() {
         </a>
 
         <div className={styles.rightGroup}>
-          {/* Primary CTA — desktop only, scrolls to the webinar registration form */}
-          <a href="#register" className={`font-body ${styles.cta}`}>
+          {/* Primary CTA — desktop only, links to the dedicated webinar
+              registration page (dnm-webinar-build-prompt.md: the confirmed
+              funnel mechanic), not an in-page anchor that only exists on
+              the homepage. */}
+          <a href="/webinar" className={`font-body ${styles.cta}`}>
             Register Free
           </a>
 
           {/* Mobile: compact CTA + hamburger toggle, compact panel anchored below it */}
           <div className={styles.mobileWrap}>
-            <a href="#register" className={`font-body ${styles.ctaMobile}`}>
+            <a href="/webinar" className={`font-body ${styles.ctaMobile}`}>
               Register
             </a>
             <button
