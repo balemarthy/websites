@@ -49,6 +49,7 @@ export default function Nav() {
   const isDownloadsActive = pathname === "/downloads";
   const isAboutActive = pathname === "/about";
   const isBlogActive = pathname === "/blog";
+  const isHomeActive = pathname === "/";
 
   // Close any open dropdown/panel on route change — a same-nav link click
   // (Downloads, About Me, Blog, or a dropdown item itself) fires inside
@@ -165,6 +166,9 @@ export default function Nav() {
         aria-label="Primary"
       >
         <div className={styles.desktopItems}>
+          <Link href="/" className={`${styles.navItem} ${isHomeActive ? styles.navItemActive : ""}`}>
+            Home
+          </Link>
           {NAV_GROUPS.map((group) => {
             const isGroupActive = group.links.some((link) => pathname === link.href);
             return (
@@ -260,6 +264,13 @@ export default function Nav() {
         </button>
 
         <div className={`font-body ${styles.mobilePanel} ${mobileOpen ? styles.mobilePanelOpen : ""}`}>
+          <Link
+            href="/"
+            className={`${styles.mobilePanelItem} ${isHomeActive ? styles.mobilePanelItemActive : ""}`}
+            onClick={closeMobileMenu}
+          >
+            Home
+          </Link>
           {NAV_GROUPS.map((group) => {
             const isGroupActive = group.links.some((link) => pathname === link.href);
             return (

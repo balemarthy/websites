@@ -42,6 +42,7 @@ export default function Nav() {
 
   const consultingActive = CONSULTING_LINKS.some((link) => pathname === link.href);
   const servicesActive = SERVICES_LINKS.some((link) => pathname === link.href);
+  const isHomeActive = pathname === "/";
 
   return (
     <>
@@ -59,6 +60,9 @@ export default function Nav() {
       {/* Desktop: floating Paper pill, centered */}
       <nav className={`font-body ${styles.pill}`} aria-label="Primary">
         <div className={styles.desktopItems}>
+          <Link href="/" className={`${styles.navItem} ${isHomeActive ? styles.navItemActive : ""}`}>
+            Home
+          </Link>
           <Link
             href={PRIMARY_LINK.href}
             className={`${styles.navItem} ${pathname === PRIMARY_LINK.href ? styles.navItemActive : ""}`}
@@ -151,6 +155,13 @@ export default function Nav() {
         </button>
 
         <div className={`font-body ${styles.mobilePanel} ${open ? styles.mobilePanelOpen : ""}`}>
+          <Link
+            href="/"
+            className={`${styles.mobilePanelItem} ${isHomeActive ? styles.mobilePanelItemActive : ""}`}
+            onClick={() => setOpen(false)}
+          >
+            Home
+          </Link>
           <Link
             href={PRIMARY_LINK.href}
             className={`${styles.mobilePanelItem} ${pathname === PRIMARY_LINK.href ? styles.mobilePanelItemActive : ""}`}
