@@ -1,0 +1,54 @@
+.band {
+  width: 100%;
+  background-color: var(--accent-500);
+  padding: 56px 24px;
+  text-align: center;
+}
+
+.bandNavy {
+  background-color: var(--ink);
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.statement {
+  margin: 12px auto 0;
+  max-width: 640px;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+@media (min-width: 1024px) {
+  .statement {
+    font-size: 26px;
+  }
+}
+
+.cta {
+  display: inline-flex;
+  margin-top: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-panel);
+  padding: 12px 28px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background-color: #ffffff;
+  transition: opacity 200ms ease;
+}
+
+.cta:hover {
+  opacity: 0.85;
+}
