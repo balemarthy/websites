@@ -50,6 +50,7 @@ export default function CampusToCareerPage() {
             </p>
           </AnimatedItem>
           <AnimatedItem>
+            {/* TODO(vamsi): wire to the real Campus-to-Career booking/request destination — no URL provided yet */}
             <Button href="#" variant="primary">
               Request a Session →
             </Button>
@@ -95,6 +96,7 @@ export default function CampusToCareerPage() {
       <ReframeBand
         statement="NOT ANOTHER GUEST LECTURE. A HEAD START."
         variant="navy"
+        // TODO(vamsi): wire to the real Campus-to-Career booking/request destination — no URL provided yet
         cta={{ label: "Request a Session", href: "#" }}
       />
     </main>

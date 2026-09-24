@@ -83,7 +83,7 @@
   z-index: 2;
 }
 
-/* Portrait layer — off-center, anchored right, snaps between 3 states */
+/* Portrait layer — large, anchored right, reaching into center; snaps between states */
 .portraitWrap {
   position: absolute;
   inset: 0;
@@ -91,11 +91,11 @@
 
 .portrait {
   position: absolute;
-  right: 4vw;
+  right: 0;
   bottom: 0;
-  height: 88%;
+  height: 92%;
   width: auto;
-  max-width: 46vw;
+  max-width: 58vw;
   object-fit: contain;
   object-position: bottom;
   opacity: 0;
@@ -107,29 +107,34 @@
   opacity: 1;
 }
 
-/* Text layer — headline centered in the sticky viewport; portrait stays
-   anchored right as-is (a full recompose is saved for later). */
+/* Text layer — left-anchored full-height column, narrow enough to clear the
+   portrait, which fills the right and center of the frame. Headlines are
+   vertically centered in it. */
 .textBlock {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 14vh;
-  width: min(760px, 70vw);
-  min-height: 34vh;
-  text-align: center;
+  left: 6vw;
+  top: 0;
+  bottom: 0;
+  width: 38vw;
+  text-align: left;
 }
 
 .headline {
   position: absolute;
   left: 0;
-  right: 0;
-  top: 0;
+  top: 50%;
+  /* Separate `translate` so centering composes with the enter/exit transform */
+  translate: 0 -50%;
   max-width: none;
-  margin: 0 auto;
   /* Navy-tinted white, not clinical #FFFFFF — keeps the headline feeling
      part of the navy hero rather than a flat white layer dropped on top. */
   color: #EDF1FA;
-  text-shadow: 0 2px 20px rgba(5, 10, 17, 0.45);
+  /* Dark shadow keeps legibility on bright frames; two bve-accent-glow
+     (#DEAC54) layers — tight + wide — add a soft halo on top. */
+  text-shadow:
+    0 2px 20px rgba(5, 10, 17, 0.45),
+    0 0 24px rgba(222, 172, 84, 0.55),
+    0 0 48px rgba(222, 172, 84, 0.3);
   text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 0.97;
@@ -145,17 +150,18 @@
   transform: translateY(0);
 }
 
+/* Scale with viewport width so each word fills the text column */
 .headline0 {
-  font-size: 40px;
+  font-size: 7.5vw;
 }
 
 .headline1 {
-  font-size: 52px;
+  font-size: 6.2vw;
 }
 
 .headline2,
 .headline3 {
-  font-size: 34px;
+  font-size: 5vw;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -213,6 +219,7 @@
     left: 0;
     right: 0;
     top: 0;
+    translate: none;
     bottom: auto;
     max-width: none;
     text-align: center;
@@ -237,20 +244,5 @@
   .headline2,
   .headline3 {
     font-size: 22px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .headline0 {
-    font-size: 48px;
-  }
-
-  .headline1 {
-    font-size: 60px;
-  }
-
-  .headline2,
-  .headline3 {
-    font-size: 40px;
   }
 }
