@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { X } from "lucide-react";
 import ReframeBand from "@/components/sections/ReframeBand";
@@ -10,6 +11,8 @@ import forYouListStyles from "@/components/sections/ForYouList.module.css";
 const PROBLEM_CARDS = [
   {
     title: "Career Fluency",
+    image: "/personas/arjun-career-fluency.jpg",
+    imageAlt: "Arjun working late, alone in an empty office",
     subhead: "When the market doesn’t answer.",
     items: [
       "You apply, and nothing comes back. Not a no. Nothing.",
@@ -19,6 +22,8 @@ const PROBLEM_CARDS = [
   },
   {
     title: "Technical Branding",
+    image: "/personas/priya-technical-branding.jpg",
+    imageAlt: "Priya on her balcony at night, thinking",
     subhead: "When your own company doesn’t see you.",
     items: [
       "You deliver, and someone else gets tagged for it.",
@@ -165,6 +170,15 @@ export default function ClarityVisibilityPage() {
               key={card.title}
               className="flex flex-col gap-4 rounded-lg bg-white p-8 shadow-[0_4px_16px_rgba(10,31,68,0.11)]"
             >
+              <Image
+                src={card.image}
+                alt={card.imageAlt}
+                width={480}
+                height={270}
+                sizes="(min-width: 640px) 440px, 85vw"
+                loading="lazy"
+                className="h-[180px] w-full rounded-lg object-cover sm:h-[200px]"
+              />
               <h3 className="font-display text-xl font-extrabold uppercase leading-tight tracking-tight text-bve-ink">
                 {card.title}
               </h3>
@@ -221,6 +235,17 @@ export default function ClarityVisibilityPage() {
       {/* 6. Arjun and Priya */}
       <section className="px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <AnimatedSection className="mx-auto flex max-w-[900px] flex-col gap-6">
+          <AnimatedItem>
+            <Image
+              src="/personas/arjun-priya-together.jpg"
+              alt="Arjun and Priya walking home together after work"
+              width={1200}
+              height={500}
+              sizes="(min-width: 900px) 900px, 100vw"
+              loading="lazy"
+              className="h-[220px] w-full rounded-xl object-cover sm:h-[300px]"
+            />
+          </AnimatedItem>
           <div className="grid gap-6 sm:grid-cols-2">
             <AnimatedItem>
               <p className="font-body text-base leading-relaxed text-bve-ink-body sm:text-lg">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FileSearch, MessageSquare, Layers } from "lucide-react";
 import Testimonials from "@/components/sections/Testimonials";
 import ReframeBand from "@/components/sections/ReframeBand";
@@ -13,13 +14,13 @@ import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 const FEATURES = [
   {
     Icon: FileSearch,
-    eyebrow: "Free Audit",
+    eyebrow: "Step 1 · Audit",
     title: "Six-Section Scorecard",
-    desc: "A Red/Yellow/Green scorecard. Diagnosis only — you see exactly where positioning breaks down before spending anything.",
+    desc: "A Red/Yellow/Green scorecard. Diagnosis first, so you see exactly where positioning breaks down before anything gets rewritten.",
   },
   {
     Icon: MessageSquare,
-    eyebrow: "Strategy Session",
+    eyebrow: "Step 2 · Strategy Session",
     title: "Rebuild, Not Rewrite",
     desc: "Once the audit names the gap, a paid 1:1 session rebuilds the positioning around it, not just the wording.",
   },
@@ -63,36 +64,49 @@ const SCORECARD_CHECKS = [
 export default function ResumeReviewPage() {
   return (
     <main className="flex min-h-screen flex-col bg-bve-canvas">
-      <section className="px-6 pb-6 pt-20 text-center sm:px-10 sm:pt-28 lg:px-16">
-        <AnimatedSection className="mx-auto flex max-w-[760px] flex-col items-center gap-4">
-          <AnimatedItem>
-            <span className="font-mono text-xs uppercase tracking-[0.15em] text-bve-accent">
-              Resume Clarity
-            </span>
-          </AnimatedItem>
-          <AnimatedItem>
-            <h1 className="font-display text-3xl font-extrabold uppercase leading-tight tracking-tight text-bve-ink sm:text-4xl lg:text-5xl">
-              It&apos;s not your experience that&apos;s thin. It&apos;s your positioning.
-            </h1>
-          </AnimatedItem>
-          <AnimatedItem>
-            <p className="font-body text-base leading-relaxed text-bve-ink-body sm:text-lg">
-              You&apos;ve shipped real work for years. Your resume still reads like a job
-              description. That gap is the only thing standing between your experience and the
-              interview.
-            </p>
-          </AnimatedItem>
-          <AnimatedItem>
-            <p className="font-body text-sm leading-relaxed text-bve-ink-body/70">
-              This is the same clarity gap Arjun — ten-plus years in, technically excellent,
-              professionally invisible — kept hitting every time he updated his resume.
-            </p>
-          </AnimatedItem>
-          <AnimatedItem>
-            {/* TODO(vamsi): wire to the real Resume Review booking/payment destination — no URL provided yet */}
-            <Button href="#" variant="primary">
-              Get Your Free Resume Audit →
-            </Button>
+      <section className="px-6 pb-6 pt-20 sm:px-10 sm:pt-28 lg:px-16">
+        <AnimatedSection className="mx-auto grid max-w-[1040px] items-center gap-10 text-center lg:grid-cols-2 lg:text-left">
+          <div className="order-2 flex flex-col items-center gap-4 lg:order-1 lg:items-start">
+            <AnimatedItem>
+              <span className="font-mono text-xs uppercase tracking-[0.15em] text-bve-accent">
+                Resume Clarity
+              </span>
+            </AnimatedItem>
+            <AnimatedItem>
+              <h1 className="font-display text-3xl font-extrabold uppercase leading-tight tracking-tight text-bve-ink sm:text-4xl lg:text-5xl">
+                It&apos;s not your experience that&apos;s thin. It&apos;s your positioning.
+              </h1>
+            </AnimatedItem>
+            <AnimatedItem>
+              <p className="font-body text-base leading-relaxed text-bve-ink-body sm:text-lg">
+                You&apos;ve shipped real work for years. Your resume still reads like a job
+                description. That gap is the only thing standing between your experience and the
+                interview.
+              </p>
+            </AnimatedItem>
+            <AnimatedItem>
+              <p className="font-body text-sm leading-relaxed text-bve-ink-body/70">
+                This is the same clarity gap Arjun — ten-plus years in, technically excellent,
+                professionally invisible — kept hitting every time he updated his resume.
+              </p>
+            </AnimatedItem>
+            <AnimatedItem>
+              {/* TODO(vamsi): wire to the real Resume Review booking/payment destination — no URL provided yet */}
+              <Button href="#" variant="primary">
+                Book Your Resume Audit →
+              </Button>
+            </AnimatedItem>
+          </div>
+          <AnimatedItem className="order-1 lg:order-2">
+            <Image
+              src="/personas/arjun-resume-review.jpg"
+              alt="Arjun, a mid-career engineer, checking his phone on the commute home"
+              width={600}
+              height={600}
+              sizes="(min-width: 1024px) 460px, 85vw"
+              priority
+              className="mx-auto w-full max-w-[420px] rounded-xl object-cover lg:max-w-none"
+            />
           </AnimatedItem>
         </AnimatedSection>
       </section>

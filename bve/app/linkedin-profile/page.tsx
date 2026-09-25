@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Search, Users, Layers } from "lucide-react";
 import Testimonials from "@/components/sections/Testimonials";
 import ReframeBand from "@/components/sections/ReframeBand";
@@ -34,34 +35,47 @@ const PROFILE_SESSION_URL = "https://topmate.io/balemarthy_vamsi/1715793";
 export default function LinkedInProfilePage() {
   return (
     <main className="flex min-h-screen flex-col bg-bve-canvas">
-      <section className="px-6 pb-6 pt-20 text-center sm:px-10 sm:pt-28 lg:px-16">
-        <AnimatedSection className="mx-auto flex max-w-[760px] flex-col items-center gap-4">
-          <AnimatedItem>
-            <span className="font-mono text-xs uppercase tracking-[0.15em] text-bve-accent">
-              Professional Visibility
-            </span>
-          </AnimatedItem>
-          <AnimatedItem>
-            <h1 className="font-display text-3xl font-extrabold uppercase leading-tight tracking-tight text-bve-ink sm:text-4xl lg:text-5xl">
-              A complete profile still says nothing if no one ever sees it move.
-            </h1>
-          </AnimatedItem>
-          <AnimatedItem>
-            <p className="font-body text-base leading-relaxed text-bve-ink-body sm:text-lg">
-              You filled in every section years ago. You haven&apos;t posted, commented, or shown
-              up since. A finished profile and a visible one are not the same thing.
-            </p>
-          </AnimatedItem>
-          <AnimatedItem>
-            <p className="font-body text-sm leading-relaxed text-bve-ink-body/70">
-              This is Priya&apos;s exact pattern — seven-plus years in, waiting to be noticed by
-              people who have no way of finding her.
-            </p>
-          </AnimatedItem>
-          <AnimatedItem>
-            <Button href={PROFILE_SESSION_URL} variant="primary">
-              Book a Profile Session →
-            </Button>
+      <section className="px-6 pb-6 pt-20 sm:px-10 sm:pt-28 lg:px-16">
+        <AnimatedSection className="mx-auto grid max-w-[1040px] items-center gap-10 text-center lg:grid-cols-2 lg:text-left">
+          <div className="order-2 flex flex-col items-center gap-4 lg:order-1 lg:items-start">
+            <AnimatedItem>
+              <span className="font-mono text-xs uppercase tracking-[0.15em] text-bve-accent">
+                Professional Visibility
+              </span>
+            </AnimatedItem>
+            <AnimatedItem>
+              <h1 className="font-display text-3xl font-extrabold uppercase leading-tight tracking-tight text-bve-ink sm:text-4xl lg:text-5xl">
+                A complete profile still says nothing if no one ever sees it move.
+              </h1>
+            </AnimatedItem>
+            <AnimatedItem>
+              <p className="font-body text-base leading-relaxed text-bve-ink-body sm:text-lg">
+                You filled in every section years ago. You haven&apos;t posted, commented, or
+                shown up since. A finished profile and a visible one are not the same thing.
+              </p>
+            </AnimatedItem>
+            <AnimatedItem>
+              <p className="font-body text-sm leading-relaxed text-bve-ink-body/70">
+                This is Priya&apos;s exact pattern — seven-plus years in, waiting to be noticed by
+                people who have no way of finding her.
+              </p>
+            </AnimatedItem>
+            <AnimatedItem>
+              <Button href={PROFILE_SESSION_URL} variant="primary">
+                Book a Profile Session →
+              </Button>
+            </AnimatedItem>
+          </div>
+          <AnimatedItem className="order-1 lg:order-2">
+            <Image
+              src="/personas/priya-linkedin-profile.jpg"
+              alt="Priya, a senior engineer, thinking at her laptop"
+              width={600}
+              height={600}
+              sizes="(min-width: 1024px) 460px, 85vw"
+              priority
+              className="mx-auto w-full max-w-[420px] rounded-xl object-cover lg:max-w-none"
+            />
           </AnimatedItem>
         </AnimatedSection>
       </section>

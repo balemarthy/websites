@@ -24,7 +24,7 @@ const FEATURES = [
     Icon: Award,
     eyebrow: "A Track Record, Delivered Live",
     title: "“From Bytes To Sockets”",
-    desc: "A hands-on protocol-engineering session for 7th-semester ECE students at Jyothy Institute of Technology, IEEE JIT/SPS chapter, Aug 2026.",
+    desc: "A hands-on protocol-engineering session for 7th-semester ECE students, delivered at a reputed engineering college.",
   },
 ];
 
@@ -46,19 +46,21 @@ export default function CampusToCareerPage() {
         <AnimatedSection className="mx-auto flex max-w-[760px] flex-col items-center gap-4">
           <AnimatedItem>
             <span className="font-mono text-xs uppercase tracking-[0.15em] text-bve-accent">
-              For Institutions
+              For Colleges &amp; Final-Year Students
             </span>
           </AnimatedItem>
           <AnimatedItem>
             <h1 className="font-display text-3xl font-extrabold uppercase leading-tight tracking-tight text-bve-ink sm:text-4xl lg:text-5xl">
-              The degree ends. The invisibility starts there.
+              Ready for the job. Invisible to the recruiter.
             </h1>
           </AnimatedItem>
           <AnimatedItem>
             <p className="font-body text-base leading-relaxed text-bve-ink-body sm:text-lg">
-              Final-year students graduate technically ready and professionally unseen. A session
-              on career visibility, before that gap costs them their first year of job search, not
-              after.
+              Final-year students walk into placement season with a resume that reads like a
+              syllabus and a LinkedIn profile no recruiter can find. Students lose shortlists they
+              were qualified for. Placement cells watch good batches underperform. One session on
+              career visibility, run before placements open, fixes that while there&apos;s still
+              time.
             </p>
           </AnimatedItem>
           <AnimatedItem>
@@ -66,6 +68,11 @@ export default function CampusToCareerPage() {
             <Button href="#" variant="primary">
               Request a Session →
             </Button>
+          </AnimatedItem>
+          <AnimatedItem>
+            <p className="font-body text-sm leading-relaxed text-bve-ink-body/70">
+              Student? Share this page with your placement cell.
+            </p>
           </AnimatedItem>
         </AnimatedSection>
       </section>
@@ -99,8 +106,8 @@ export default function CampusToCareerPage() {
           ))}
         </AnimatedSection>
         <p className="mx-auto mt-8 max-w-[760px] text-center font-body text-xs leading-relaxed text-bve-ink-body/60">
-          The JIT session was a purely technical talk (protocol engineering, Wireshark, sockets) —
-          not a career-visibility session. It&apos;s used here only as proof Vamsi does campus
+          That session was a purely technical talk (protocol engineering, Wireshark, sockets), not
+          a career-visibility session. It&apos;s used here only as proof Vamsi does campus
           engagements at all, not as an example of this specific offer.
         </p>
       </section>
