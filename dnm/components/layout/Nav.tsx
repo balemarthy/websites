@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { BLOG_URL } from "@/lib/links";
 import styles from "./Nav.module.css";
 
 const LINKS = [
   { label: "Home", href: "/" },
   { label: "What's Inside", href: "/#features" },
   { label: "Webinar", href: "/webinar" },
-  { label: "Blog", href: "/blog" },
+  { label: "Blog", href: BLOG_URL },
   { label: "Downloads", href: "/downloads" },
 ];
 
