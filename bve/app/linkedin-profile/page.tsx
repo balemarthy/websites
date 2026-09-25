@@ -3,6 +3,7 @@ import Testimonials from "@/components/sections/Testimonials";
 import ReframeBand from "@/components/sections/ReframeBand";
 import Button from "@/components/ui/Button";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
+import { LINKEDIN_URL } from "@/lib/links";
 
 // Same anatomy as /resume-review by design — the two pages are meant to
 // read as siblings. Flat typographic header, not the homepage Hero (see
@@ -92,6 +93,34 @@ export default function LinkedInProfilePage() {
               <p className="font-body text-sm leading-relaxed text-bve-ink-body/80">{desc}</p>
             </AnimatedItem>
           ))}
+        </AnimatedSection>
+      </section>
+
+      {/* Not planning to become a LinkedIn influencer? */}
+      <section className="px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
+        <AnimatedSection className="mx-auto flex max-w-[640px] flex-col items-center gap-4 text-center">
+          <AnimatedItem>
+            <h2 className="font-display text-2xl font-extrabold uppercase leading-tight tracking-tight text-bve-ink sm:text-3xl">
+              Not planning to become a LinkedIn influencer?
+            </h2>
+          </AnimatedItem>
+          <AnimatedItem>
+            <p className="font-body text-base leading-relaxed text-bve-ink-body sm:text-lg">
+              Good. Neither is this. No daily posting, no motivational threads, no cringe. The
+              rhythm is built on technical work you&apos;ve already done, at a pace you&apos;ll
+              actually keep.
+            </p>
+          </AnimatedItem>
+          <AnimatedItem>
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-body text-sm font-bold text-bve-accent underline underline-offset-2"
+            >
+              See how I do it →
+            </a>
+          </AnimatedItem>
         </AnimatedSection>
       </section>
 

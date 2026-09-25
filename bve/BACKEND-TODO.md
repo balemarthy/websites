@@ -7,18 +7,20 @@ technical-branding, consulting, contact) no longer matched the repo.
 
 ## Where BVE stands
 
-Eight real routes. Every nav link resolves; no missing pages.
+Eight real routes. Every nav link resolves; no missing pages, no stubs left.
+Updated 2026-09-26: Clarity & Visibility and Industry Consulting shipped full content;
+Blog nav now points at `BLOG_URL` (GHL) instead of the local `/blog` route.
 
 | Route | Status |
 |---|---|
 | `/` | Real — homepage (`Hero`, `Marquee`, `ProgramCards`, `ProgramStacks`, `Battlefield`, `AboutAuthority`, `Testimonials`, `Newsletter`). Tagged `bve-v1.0.0` (commit `49588ba`). |
 | `/campus-to-career` | Real, shipped content — CTAs still dead, see below. |
 | `/resume-review` | Real, shipped content — primary CTA still dead, see below. |
-| `/linkedin-profile` | Real, shipped content — CTAs wired to Topmate (`PROFILE_SESSION_URL`). |
-| `/blog` | Real, shipped content. |
+| `/linkedin-profile` | Real, shipped content — CTAs wired to Topmate (`PROFILE_SESSION_URL`); "See how I do it" link still dead, see below. |
+| `/blog` | Real, empty-state content. Nav "Blog" now points at `BLOG_URL` (`lib/links.ts`), not this route — this page only still renders while `BLOG_URL` is `"#"`; once real, it redirects here to there. |
 | `/downloads` | Real, shipped content. |
-| `/clarity-visibility` | Stub — "Content in progress. Check back soon." No copy yet. |
-| `/industry-consulting` | Stub — "Content in progress. Check back soon." No copy yet. |
+| `/clarity-visibility` | Real, shipped content (2026-09-26) — CTAs still dead, see below. |
+| `/industry-consulting` | Real, shipped content (2026-09-26) — CTAs still dead, see below. |
 
 The routes, nav, and page-factory template (see `../page-factory-system.md`) are ready
 to receive content the moment each stub page's content is decided — no structural work
@@ -28,26 +30,22 @@ blocks either one, only content/business decisions.
 
 Every registration/booking CTA on the site will point at a GoHighLevel (GHL) page. The
 GHL backend isn't built yet; Vamsi will supply all the links at once when it is. Until
-then these stay `href="#"`, marked in code with a `TODO(vamsi)` comment. Wire the same way
-`app/linkedin-profile/page.tsx` does: a named URL const near the top of the file,
-referenced from both the hero CTA and the closing `ReframeBand` CTA.
+then these stay `"#"`, centralized in `bve/lib/links.ts` (2026-09-26 — previously a
+per-page named const, e.g. `PROFILE_SESSION_URL` in `app/linkedin-profile/page.tsx`;
+new pending links go in `lib/links.ts` instead, each with a `TODO(Vamsi)` comment).
 
+- [ ] `bve/lib/links.ts` — `BOOK_CALL_CLARITY`, `BOOK_CALL_CONSULTING`, `LINKEDIN_URL`,
+      `BLOG_URL` all still `"#"`. Referenced from `/clarity-visibility`,
+      `/industry-consulting`, the "See how I do it" link on `/linkedin-profile`, and the
+      Blog nav item (desktop + mobile) respectively.
 - [ ] `bve/app/resume-review/page.tsx` — "Get Your Free Resume Audit →" primary `Button`
-      has `href="#"`. Needs the real Resume Review booking/payment destination (Topmate,
-      GHL, or similar). The closing `ReframeBand` CTA is already wired
-      (`STRATEGY_SESSION_URL`).
+      has `href="#"` (not yet moved to `lib/links.ts`). Needs the real Resume Review
+      booking/payment destination (Topmate, GHL, or similar). The closing `ReframeBand`
+      CTA is already wired (`STRATEGY_SESSION_URL`).
 - [ ] `bve/app/campus-to-career/page.tsx` — "Request a Session →" primary `Button` **and**
       the closing `ReframeBand` CTA ("Request a Session") both have `href="#"`. Needs the
       real Campus-to-Career booking/request destination. (Also flagged in
       `pending-items-master-list-2026-09-23.md`.)
-
-## Per-page: what's needed before a build prompt can be written
-
-- [ ] **Clarity & Visibility** (`/clarity-visibility`) — program/service content: what it
-      includes, format, price. Waiting on research.
-- [ ] **Industry Consulting** (`/industry-consulting`) — Vamsi-as-himself territory (the
-      one deliberate exception to the Arjun/Priya hero-logic on BVE pages). Needs: scope,
-      engagement shape, price, proof/case examples from Vamsi directly. Waiting on research.
 
 ## Hero-logic reminder (per the Architecture Brief)
 

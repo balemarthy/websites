@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { BLOG_URL } from "@/lib/links";
 import styles from "./Nav.module.css";
 
 const PRIMARY_LINK = { label: "Clarity & Visibility", href: "/clarity-visibility" };
@@ -20,7 +21,7 @@ const SERVICES_LINKS = [
 ];
 
 const TRAILING_LINKS = [
-  { label: "Blog", href: "/blog" },
+  { label: "Blog", href: BLOG_URL },
   { label: "Downloads", href: "/downloads" },
 ];
 

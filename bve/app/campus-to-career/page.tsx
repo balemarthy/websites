@@ -1,7 +1,8 @@
-import { Lightbulb, FileCheck, Award } from "lucide-react";
+import { Lightbulb, FileCheck, Award, Check } from "lucide-react";
 import ReframeBand from "@/components/sections/ReframeBand";
 import Button from "@/components/ui/Button";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
+import forYouListStyles from "@/components/sections/ForYouList.module.css";
 
 // Separate from /industry-consulting (companies, purely technical) per Vamsi's
 // explicit correction — this page is career-visibility content aimed at
@@ -24,6 +25,17 @@ const FEATURES = [
     eyebrow: "A Track Record, Delivered Live",
     title: "“From Bytes To Sockets”",
     desc: "A hands-on protocol-engineering session for 7th-semester ECE students at Jyothy Institute of Technology, IEEE JIT/SPS chapter, Aug 2026.",
+  },
+];
+
+const INSTITUTION_GETS = [
+  {
+    title: "A take-home worksheet for every student.",
+    desc: "A one-page version of the value-proposition exercise they can finish after the session.",
+  },
+  {
+    title: "A post-session summary for the placement cell.",
+    desc: "What was covered and what students should do next.",
   },
 ];
 
@@ -91,6 +103,34 @@ export default function CampusToCareerPage() {
           not a career-visibility session. It&apos;s used here only as proof Vamsi does campus
           engagements at all, not as an example of this specific offer.
         </p>
+      </section>
+
+      {/* What the institution gets */}
+      <section className="px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
+        <AnimatedSection className="mx-auto max-w-[560px]">
+          <AnimatedItem className={forYouListStyles.forYouCol}>
+            <span
+              className={`font-display ${forYouListStyles.heading} ${forYouListStyles.forYouHeading}`}
+            >
+              What the institution gets
+            </span>
+            <ul className={forYouListStyles.list}>
+              {INSTITUTION_GETS.map((item) => (
+                <li key={item.title} className={forYouListStyles.forYouItem}>
+                  <Check
+                    aria-hidden
+                    size={18}
+                    strokeWidth={2}
+                    className={forYouListStyles.forYouIcon}
+                  />
+                  <span className={`font-body ${forYouListStyles.itemText}`}>
+                    <strong>{item.title}</strong> {item.desc}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </AnimatedItem>
+        </AnimatedSection>
       </section>
 
       <ReframeBand

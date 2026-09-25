@@ -1,11 +1,20 @@
+import { redirect } from "next/navigation";
 import Callout from "@/components/sections/Callout";
 import Newsletter from "@/components/sections/Newsletter";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
+import { BLOG_URL } from "@/lib/links";
 
 // Honest-empty-state shell, matching ESC's exact precedent
 // (website-changes-2026-09-18.md) — the locked pattern for a page with no
-// content yet, not a lesser effort.
+// content yet, not a lesser effort. Blog content now lives in GHL
+// (BLOG_URL) — once that link is real, any visitor who still lands on this
+// route gets bounced straight there. While BLOG_URL is still the "#"
+// placeholder, this stays the empty-state page.
 export default function BlogPage() {
+  if (BLOG_URL !== "#") {
+    redirect(BLOG_URL);
+  }
+
   return (
     <main className="flex min-h-screen flex-col bg-bve-canvas">
       <section className="px-6 pb-6 pt-20 text-center sm:px-10 sm:pt-28 lg:px-16">

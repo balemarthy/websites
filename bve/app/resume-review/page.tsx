@@ -1,6 +1,7 @@
 import { FileSearch, MessageSquare, Layers } from "lucide-react";
 import Testimonials from "@/components/sections/Testimonials";
 import ReframeBand from "@/components/sections/ReframeBand";
+import Callout from "@/components/sections/Callout";
 import Button from "@/components/ui/Button";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
 
@@ -31,6 +32,33 @@ const FEATURES = [
 ];
 
 const STRATEGY_SESSION_URL = "https://topmate.io/balemarthy_vamsi/1668087";
+
+const SCORECARD_CHECKS = [
+  {
+    title: "Format & ATS Parseability.",
+    desc: "Can a parser read it at all?",
+  },
+  {
+    title: "Positioning & Career-Stage Fit.",
+    desc: "Does it say who you are and what you want next, at the right breadth for your seniority?",
+  },
+  {
+    title: "Target-Role Alignment.",
+    desc: "Does the vocabulary match the roles you're actually going after?",
+  },
+  {
+    title: "Bullet Discipline.",
+    desc: "Is each bullet a result, or just a duty?",
+  },
+  {
+    title: "Technical Depth & Ownership.",
+    desc: "Is there proof behind the keywords?",
+  },
+  {
+    title: "Career Summary.",
+    desc: "Does the top make the case in six seconds?",
+  },
+];
 
 export default function ResumeReviewPage() {
   return (
@@ -96,6 +124,39 @@ export default function ResumeReviewPage() {
               <p className="font-body text-sm leading-relaxed text-bve-ink-body/80">{desc}</p>
             </AnimatedItem>
           ))}
+        </AnimatedSection>
+      </section>
+
+      {/* What the Scorecard actually checks */}
+      <section className="px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
+        <AnimatedItem className="mb-4 flex flex-col items-center gap-3 text-center">
+          <h2 className="font-display text-2xl font-extrabold uppercase leading-tight tracking-tight text-bve-ink sm:text-3xl">
+            What the Scorecard actually checks
+          </h2>
+        </AnimatedItem>
+        <AnimatedItem>
+          <p className="mx-auto mb-10 max-w-[640px] text-center font-body text-sm leading-relaxed text-bve-ink-body/80 sm:text-base">
+            Six sections, each marked Red, Yellow or Green. You see exactly what&apos;s working
+            and what isn&apos;t, before anyone rewrites a word.
+          </p>
+        </AnimatedItem>
+        <AnimatedSection className="mx-auto grid max-w-[1200px] gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {SCORECARD_CHECKS.map((item) => (
+            <AnimatedItem
+              key={item.title}
+              className="flex flex-col gap-2 rounded-lg bg-white p-8 shadow-[0_4px_16px_rgba(10,31,68,0.11)]"
+            >
+              <h3 className="font-display text-lg font-extrabold text-bve-ink">{item.title}</h3>
+              <p className="font-body text-sm leading-relaxed text-bve-ink-body/80">{item.desc}</p>
+            </AnimatedItem>
+          ))}
+        </AnimatedSection>
+        <AnimatedSection className="mx-auto mt-10 max-w-[560px]">
+          <Callout eyebrow="Example verdict (illustrative, not a real client)">
+            Bullet: <em>“Responsible for firmware development of the BMS module.”</em>{" "}
+            <strong>Bullet Discipline: Red.</strong> It says what the job was, not what you did.
+            No result, no decision, no scale.
+          </Callout>
         </AnimatedSection>
       </section>
 
