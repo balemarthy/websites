@@ -126,6 +126,7 @@ const NOT_FOR_YOU = [
 
 const FOR_YOU = [
   "You can make embedded code work, but go quiet when asked to explain why it was built that way.",
+  "You keep restarting. C, then C++, then arrays, then linked lists, and you never finish a layer before the next one looks more urgent.",
   "You've felt a design review or interview question go deeper than you could answer.",
   "You're willing to read real source code and sit with material that doesn't resolve in ten minutes.",
   "You want to understand the hardware and software well enough to teach someone else, not just pass a test on it.",
@@ -238,6 +239,12 @@ export default function EmbeddedSoftwareDesignPage() {
               Structured the way the discipline itself is structured — consolidated from the canon
               engineers have used for decades to actually learn this properly, not a syllabus invented
               for a cohort.
+            </p>
+          </AnimatedItem>
+          <AnimatedItem>
+            <p className="text-center font-body text-sm leading-relaxed text-esc-dark-teal sm:text-base">
+              If your honest answer is “I don&apos;t know where to start”, good. The programme starts
+              there, and every stage tells you exactly what comes next.
             </p>
           </AnimatedItem>
         </AnimatedSection>

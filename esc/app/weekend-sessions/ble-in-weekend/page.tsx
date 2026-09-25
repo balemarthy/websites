@@ -160,6 +160,13 @@ export default function BleInWeekendPage() {
       <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <ForYouList notForYou={NOT_FOR_YOU} forYou={FOR_YOU} />
 
+        <AnimatedItem className="mx-auto mt-6 max-w-[640px]">
+          <p className="text-center font-body text-sm italic leading-relaxed text-esc-teal">
+            Not sure if that&apos;s you? If you&apos;ve set a breakpoint in GDB and read a
+            register value, you&apos;re ready.
+          </p>
+        </AnimatedItem>
+
         <AnimatedItem className="mt-8 flex justify-center">
           <Button variant="outline" href="/apply/ble-in-weekend">
             Reserve Your Spot →

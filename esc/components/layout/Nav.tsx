@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
+import { BLOG_URL } from "@/lib/links";
 import styles from "./Nav.module.css";
 
 // Desktop dropdowns and mobile accordions render the same two groups —
@@ -48,7 +49,7 @@ export default function Nav() {
 
   const isDownloadsActive = pathname === "/downloads";
   const isAboutActive = pathname === "/about";
-  const isBlogActive = pathname === "/blog";
+  const isBlogActive = pathname === BLOG_URL;
   const isHomeActive = pathname === "/";
 
   // Close any open dropdown/panel on route change — a same-nav link click
@@ -237,7 +238,7 @@ export default function Nav() {
           <Link href="/about" className={`${styles.navItem} ${isAboutActive ? styles.navItemActive : ""}`}>
             About Me
           </Link>
-          <Link href="/blog" className={`${styles.navItem} ${isBlogActive ? styles.navItemActive : ""}`}>
+          <Link href={BLOG_URL} className={`${styles.navItem} ${isBlogActive ? styles.navItemActive : ""}`}>
             Blog
           </Link>
         </div>
@@ -349,7 +350,7 @@ export default function Nav() {
             About Me
           </Link>
           <Link
-            href="/blog"
+            href={BLOG_URL}
             className={`${styles.mobilePanelItem} ${isBlogActive ? styles.mobilePanelItemActive : ""}`}
             onClick={closeMobileMenu}
           >

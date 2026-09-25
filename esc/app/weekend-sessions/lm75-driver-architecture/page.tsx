@@ -1,4 +1,5 @@
-import { Cpu, Layers, GitBranch, Server } from "lucide-react";
+import type { ReactNode } from "react";
+import { Cpu, Layers, GitBranch, Server, Check } from "lucide-react";
 import Footer from "@/components/layout/Footer";
 import DoubtCloudHero from "@/components/sections/DoubtCloudHero";
 import ScrollStatement from "@/components/sections/ScrollStatement";
@@ -8,6 +9,7 @@ import Callout from "@/components/sections/Callout";
 import ProgramTestimonials from "@/components/sections/ProgramTestimonials";
 import Button from "@/components/ui/Button";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
+import forYouListStyles from "@/components/sections/ForYouList.module.css";
 
 // Workflow D — Section 3.1's own promise line, verbatim. Don't paraphrase.
 const SCROLL_PHRASES = [
@@ -59,6 +61,16 @@ const FOR_YOU = [
   "You can write a driver for one platform but freeze the moment someone asks how it'd look on another.",
   "You want the reflex — the questions to ask on sight — not another API to memorize.",
   "You're staring at a JD that lists bare metal, RTOS, and Linux drivers like one skill, and you know they're not, and you want to actually own all of them.",
+];
+
+const QUESTIONS_YOULL_ANSWER: ReactNode[] = [
+  "Walk me through how this driver changes if we move it to Zephyr.",
+  "In the HAL version, which part of the code is still yours?",
+  "Under FreeRTOS, who owns the I²C bus, and what happens when two tasks want it?",
+  <>
+    What does <code className="font-mono text-esc-teal">probe()</code> do in Linux that your
+    bare-metal init used to do?
+  </>,
 ];
 
 // TODO(vamsi): replace with real testimonials once this has run as a paid product — placeholder content only
@@ -162,7 +174,36 @@ export default function Lm75DriverArchitecturePage() {
       {/* Mechanism */}
       <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <SectionHeading eyebrow="How The Weekend Works" heading="The Mechanism" />
-        <StageDiagram stages={MECHANISM_STAGES} />
+        <StageDiagram
+          stages={MECHANISM_STAGES}
+          intro="One driver, taken through every place it has to live: AVR, STM32, HAL, FreeRTOS, Zephyr and Linux. You're guided in order, from understanding one simple sensor to the way each framework takes over the driver."
+        />
+      </section>
+
+      {/* Questions you'll be able to answer */}
+      <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
+        <AnimatedSection className="mx-auto max-w-[520px]">
+          <AnimatedItem className={forYouListStyles.forYouCol}>
+            <span
+              className={`font-display ${forYouListStyles.heading} ${forYouListStyles.forYouHeading}`}
+            >
+              Questions you&apos;ll be able to answer
+            </span>
+            <ul className={forYouListStyles.list}>
+              {QUESTIONS_YOULL_ANSWER.map((item, i) => (
+                <li key={i} className={forYouListStyles.forYouItem}>
+                  <Check
+                    aria-hidden
+                    size={18}
+                    strokeWidth={2}
+                    className={forYouListStyles.forYouIcon}
+                  />
+                  <span className={`font-body ${forYouListStyles.itemText}`}>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </AnimatedItem>
+        </AnimatedSection>
       </section>
 
       {/* Qualifying block */}

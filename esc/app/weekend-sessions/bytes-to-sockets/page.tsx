@@ -159,7 +159,10 @@ export default function BytesToSocketsPage() {
       {/* Mechanism */}
       <section className="bg-esc-paper px-6 py-10 sm:px-10 lg:px-16 lg:py-14">
         <SectionHeading eyebrow="How The Weekend Works" heading="The Mechanism" />
-        <StageDiagram stages={MECHANISM_STAGES} />
+        <StageDiagram
+          stages={MECHANISM_STAGES}
+          intro="Not a course where the hardware turns out to be optional. Real boards on the table, real packets in Wireshark, your own socket code on the wire."
+        />
       </section>
 
       {/* Qualifying block */}

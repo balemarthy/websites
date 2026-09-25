@@ -49,6 +49,13 @@ Checklist of every stubbed form/route created during the ESC program child-page 
 - [ ] `esc/app/about/page.tsx` — "Book Time With Me" `Button` has `href="#"` — no live booking
       destination yet. Point it at the Topmate link or GHL booking URL once that flow is built.
 
+## Blog nav → GHL (2026-09-26)
+
+- [ ] `esc/lib/links.ts` — `BLOG_URL` still `"#"`. Referenced from the Nav "Blog" item
+      (desktop + mobile, `esc/components/layout/Nav.tsx`). `esc/app/blog/page.tsx` keeps
+      its existing empty-state content only while `BLOG_URL` is `"#"`; once real, that
+      route redirects straight to it.
+
 ## Already real, no action needed
 
 - Homepage `ProgramCards.tsx` CTAs ("Start with Design" / "Start with Architecture") already

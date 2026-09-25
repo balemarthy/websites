@@ -1,11 +1,20 @@
+import { redirect } from "next/navigation";
 import Footer from "@/components/layout/Footer";
 import Callout from "@/components/sections/Callout";
 import Newsletter from "@/components/sections/Newsletter";
 import { AnimatedSection, AnimatedItem } from "@/components/ui/AnimatedSection";
+import { BLOG_URL } from "@/lib/links";
 
 // No-hero listing tier (page-factory-system.md): navigational page, no
 // offer/price of its own, so no big hero — flat header + light content only.
+// Blog content now lives in GHL (BLOG_URL) — once that link is real, any
+// visitor who still lands on this route gets bounced straight there. While
+// BLOG_URL is still the "#" placeholder, this stays the empty-state page.
 export default function BlogPage() {
+  if (BLOG_URL !== "#") {
+    redirect(BLOG_URL);
+  }
+
   return (
     <main className="flex min-h-screen flex-col" style={{ backgroundColor: "var(--paper)" }}>
       <section className="bg-esc-paper px-6 pb-6 pt-20 text-center sm:px-10 sm:pt-28 lg:px-16">
